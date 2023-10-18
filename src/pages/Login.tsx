@@ -1,3 +1,4 @@
+import '../styles/Login.css'
 import referiteLogo from '../assets/images/referite_logo.png'
 
 function Login() {
@@ -7,11 +8,11 @@ function Login() {
         <img src={referiteLogo} alt="" />
         <div className="box">
             <label className="label-name">Referee ID</label>
-            <input className="textbox id" type="text" placeholder="Type your ID" />
+            <input className="textbox id-input" type="text" placeholder="Type your ID" />
             <label className="label-name">Password</label>
-            <input className="textbox password" type="text" placeholder="Type your password" />
+            <input className="textbox password-input" type="text" placeholder="Type your password" />
             <a className="forgot-password" href="">Forgot password</a>
-            <button>Sign Up</button>
+            <button>Sign In</button>
         </div>
     </div>
     </>
