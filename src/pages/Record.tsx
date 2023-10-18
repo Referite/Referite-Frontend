@@ -65,7 +65,7 @@ export default function Record () {
                 </div>  
             </div>
             <div className="record-button-container">
-                <input type="button" value="Record Medals" className="record-button"/>
+                <input type="button" value="Send record" className="record-button"/>
             </div>
         </div>
     )
