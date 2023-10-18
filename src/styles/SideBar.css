@@ -1,0 +1,34 @@
+.side-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 4.5%;
+    height: 100%;
+    background-color: #363b7a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    position: absolute;
+    top: 0;
+    color: white;
+    margin-top: 20%;
+    justify-content: center;
+    align-items: center;
+}
+
+.return-button {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 30%;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-pic {
+    max-width: 3vw;
+    height: auto;
+}

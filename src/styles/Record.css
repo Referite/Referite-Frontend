@@ -1,0 +1,84 @@
+.record-page-container {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.type-topic-container {
+    position: relative;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.sport-topic {
+    width: 100%;
+    font-size: 3.9vw;
+    margin-top: 3%;
+    text-align: center;
+}
+
+.sport-info {
+    width: 100%;
+    margin-top: 3%;
+    display: flex;
+    position: relative;
+    justify-content: center; 
+    align-items: center;
+}
+
+.participants {
+    margin-left: 15%;
+}
+
+.type-selector {
+    width: 25vw;
+    padding: 12px 20px;
+    margin-top: 5%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+.recording-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    padding: 1vw;
+    grid-column-gap: 5vw;
+}
+.grid-item {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    font-size: 30px;
+    text-align: center;
+}
+
+.country-selector {
+    width: 25vw;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border-radius:10px;
+}
+
+.number-input {
+    appearance: none;
+    border: none;
+    outline: none;
+    border-bottom: .2em solid grey;
+    border-radius: .2em .2em 0 0;
+    padding: .4em;
+    width: 5vw;
+}
+
+.record-button-container {
+    text-align: center;
+    margin-top: 2%;
+}
+
+.record-button {
+    font-size: 15px;
+    height: 4vw;
+    width: 20vw;
+    border-radius:10px;
+}
+
