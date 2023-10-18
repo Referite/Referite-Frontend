@@ -1,14 +1,16 @@
 import Sidebar from "../components/SideBar";
-import '../App.css'
+import '../styles/Home.css';
 
 function Home() {
 
   return (
     <>
       <Sidebar />
-      <h1>
-        Home page for future development
-      </h1>
+      <div className="home-page-title">
+        <h1>
+          Home page for future development
+        </h1>
+      </div>
     </>
   )
 }
