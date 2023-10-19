@@ -3,9 +3,8 @@ import referiteLogo from '../assets/images/referite_logo.png'
 
 function Login() {
   return (
-    <>
     <div className="login">
-        <img src={referiteLogo} alt="" />
+        <img src={referiteLogo} alt="referite logo" />
         <div className="box">
             <label className="label-name">Referee ID</label>
             <input className="textbox id-input" type="text" placeholder="Type your ID" />
@@ -15,7 +14,6 @@ function Login() {
             <button>Sign In</button>
         </div>
     </div>
-    </>
   )
 }
 
