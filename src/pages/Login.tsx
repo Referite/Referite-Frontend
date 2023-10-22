@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import referiteLogo from '../assets/images/referite_logo.png'
+import login from '../routes/Login';
 import '../styles/Login.css'
+// import { hashSync } from 'bcrypt-ts';
 
 function Login() {
   const [refereeID, setRefereeID] = useState<string>('');
@@ -9,7 +11,18 @@ function Login() {
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     // console.log(refereeID, password)
+    // console.log(
+    //   {
+    //     "id": refereeID,
+    //     "password": hashSync(password, 10),
+    //   }
+    // )
+    login(refereeID, password)
   }
+
+  useEffect(() => {
+
+  }, [refereeID, password]);
 
   return (
     <div className="login">
