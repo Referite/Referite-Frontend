@@ -1,9 +1,13 @@
 import '../styles/Login.css'
 import referiteLogo from '../assets/images/referite_logo.png'
+import BGChanger from '../components/BGChanger'
+
 
 function Login() {
+
   return (
     <div className="login">
+      <BGChanger/>
         <img src={referiteLogo} alt="referite logo" />
         <div className="box">
             <label className="label-name">Referee ID</label>
