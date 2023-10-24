@@ -1,0 +1,101 @@
+.record-page-container {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.type-topic-container {
+    width: 100%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    /* border: solid 1px black; */
+}
+
+.sport-topic {
+    width: 100%;
+    font-size: 3.9vw;
+    margin-top: 3%;
+    text-align: center;
+}
+
+.sport-info {
+    width: 100%;
+    margin-top: 3%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    box-sizing: border-box;
+    gap: 5%;
+    /* border: solid 1px black; */
+}
+
+.type-selector {
+    width: 25vw;
+    padding: 12px 20px;
+    margin-top: 5%;
+    box-sizing: border-box;
+    border-radius: 10px;
+  }
+
+.recording-container {
+    padding: 2%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    overflow-y: scroll;
+    /* border: solid 1px black; */
+}
+
+.medals-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-column-gap: 1vw;
+    width: 50%;
+    /* justify-content: center; 
+    align-items: center; */
+    /* border: solid 1px black; */
+}
+
+.blank-space {
+    width: 13vw;
+}
+
+.medal {
+    /* display: flex; */
+    margin-left: 32%;
+} 
+
+.big-input-container {
+    padding-right: 5%;
+    height: 16vw;
+    overflow-y: scroll;
+}
+
+.buttons-container {
+    display: flex;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    gap: 5%;
+    justify-content: center; 
+    align-items: center;
+}
+
+.record-button {
+    font-size: 1vw;
+    height: 4vw;
+    width: 20vw;
+    border-radius:10px;
+}
+
+.add-country-button {
+    font-size: 1vw;
+    height: 4vw;
+    width: 20vw;
+    border-radius:10px;
+}
+
