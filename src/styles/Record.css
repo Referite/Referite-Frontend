@@ -83,19 +83,53 @@
     gap: 5%;
     justify-content: center; 
     align-items: center;
+    
 }
 
 .record-button {
-    font-size: 1vw;
+    font-size: 1.25vw;
+    color: white;
     height: 4vw;
     width: 20vw;
-    border-radius:10px;
+    border: none;
+    border-radius:12px;
+    background-color: #363b7a;
+}
+
+.record-button:hover {
+    background-color: #4d5499;
+    cursor: pointer;
+
 }
 
 .add-country-button {
-    font-size: 1vw;
+    font-size: 1.25vw;
+    color: black;
     height: 4vw;
     width: 20vw;
-    border-radius:10px;
+    border: 1px solid #484fa3;
+    border-radius:12px;
+    background-color: #f3f3f3;
 }
 
+.add-country-button:hover {
+    color: white;
+    background-color: #7678c7;
+    cursor: pointer;
+}
+
+.date {
+    font-size: 1.25vw;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+    color: #4d5499;
+}
+
+.participants {
+    font-size: 1.25vw;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center;
+    color: #4d5499;
+}
