@@ -18,11 +18,13 @@
     font-size: 3.9vw;
     margin-top: 3%;
     text-align: center;
+    font-family: 'Aptos';
+    color: #474ea0;
 }
 
 .sport-info {
     width: 100%;
-    margin-top: 3%;
+    /* margin-top: 1%; */
     display: flex;
     justify-content: center; 
     align-items: center;
@@ -33,10 +35,12 @@
 
 .type-selector {
     width: 25vw;
+    height: 8vh;
     padding: 12px 20px;
     margin-top: 5%;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 1vw;
+    background-color: #e4e4f4;
   }
 
 .recording-container {
@@ -46,7 +50,6 @@
     flex-direction: column;
     justify-content: center; 
     align-items: center;
-    overflow-y: scroll;
     /* border: solid 1px black; */
 }
 
@@ -78,7 +81,7 @@
 .buttons-container {
     display: flex;
     text-align: center;
-    margin-top: 2%;
+    /* margin-top: 1%; */
     margin-bottom: 2%;
     gap: 5%;
     justify-content: center; 
@@ -132,4 +135,8 @@
     margin-bottom: 2%;
     text-align: center;
     color: #4d5499;
+}
+
+.copetition-date, .countries-num {
+    color: #5a5855;
 }

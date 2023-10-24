@@ -26,8 +26,8 @@ export default function Record () {
                         <select className="type-selector"> </select> 
                     </div>
                     <div className="sport-info">
-                        <label className="date"> Compeitition Date: DD / MM / YY </label>
-                        <label className="participants"> Participating countries: num Countries </label>
+                        <label className="date"> Compeitition Date: <span className="copetition-date"> DD / MM / YY </span> </label>
+                        <label className="participants"> Participating countries: <span className="countries-num"> num Countries </span> </label>
                     </div>
                 </div>
                 <div className="recording-container">
