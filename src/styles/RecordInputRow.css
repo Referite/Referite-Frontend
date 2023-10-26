@@ -34,7 +34,7 @@
 }
 .medal-num-input::placeholder {
     font-size: 1.25vw;
-    color: grey;
+    color: rgb(185, 185, 185);
     text-align: center;
     justify-content: center;
     align-items: center;

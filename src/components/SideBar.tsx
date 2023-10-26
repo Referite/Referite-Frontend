@@ -1,5 +1,6 @@
 import '../styles/SideBar.css';
 import sidebar_logo from '../assets/images/sidebar_logo.png';
+import return_button from '../assets/images/return_button.png';
 import { Link } from 'react-router-dom'
 export default function Sidebar () {
     return (
@@ -10,7 +11,9 @@ export default function Sidebar () {
                 </Link>
             </div>
             <div className="return-button">
-                Return
+                <Link to="/">
+                    <img src={return_button} className='return-pic'/>
+                </Link>
             </div>
         </div>
     )

@@ -58,19 +58,23 @@
     display: grid;
     grid-template-columns: auto auto auto auto;
     grid-column-gap: 1vw;
-    width: 50%;
+    width: 55%;
     /* justify-content: center; 
     align-items: center; */
     /* border: solid 1px black; */
 }
 
 .blank-space {
-    width: 13vw;
+    width: 15vw;
 }
 
 .medal {
     /* display: flex; */
-    margin-left: 32%;
+    text-align: center;
+    font-size: 1.25vw;
+    color: #5a5855;
+    line-height: 1.5vw;
+    vertical-align: middle;
 } 
 
 .big-input-container {
@@ -141,3 +145,4 @@
 .copetition-date, .countries-num {
     color: #5a5855;
 }
+
