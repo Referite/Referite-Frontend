@@ -1,9 +1,6 @@
 .input-container {
-    width: 60%;
     display: grid;
     grid-template-columns: auto auto auto auto;
-    grid-column-gap: 6vw;
-    /* padding: 1vw; */
 }
 
 .input-container-item{
@@ -16,9 +13,14 @@
 .country-selector {
     width: 20vw;
     padding: 12px 20px;
-    /* box-sizing: border-box; */
-    border-radius:10px;
+    border-radius:17px;
     background-color: #f3f3f3;
+    box-sizing: border-box;
+    border: none;
+    height: 3vw;
+    font-size: 1.5vw;
+    font-family: 'TH SarabunPSK';
+    color: #b9b9b9;
 }
 
 .medal-num-input {
@@ -28,23 +30,28 @@
     border-bottom: .2em solid grey;
     border-radius: .2em .2em 0 0;
     padding: .4em;
-    width: 2vw;
+    width: 15%;
     color: rgb(185, 185, 185);
-    /* background-color: #f3f3f3; */
+    text-align: center;
+    font-size: 15px;
 }
+
 .medal-num-input::placeholder {
-    font-size: 1.25vw;
+    font-size: 1.5vw;
     color: rgb(185, 185, 185);
     text-align: center;
     justify-content: center;
     align-items: center;
+}
 
+.medal-num-input:focus::placeholder {
+    color: transparent;
 }
 
 .type-selector {
     width: 20vw;
+    height: auto;
     padding: 12px 20px;
-    /* box-sizing: border-box; */
     border-radius:10px;
     border: none;
     background-color: #cdcefa;

@@ -1,5 +1,6 @@
 .record-page-container {
-    width: 100%;
+    width: 90%;
+    margin-left: 6%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -10,7 +11,6 @@
     display: grid;
     justify-content: center;
     align-items: center;
-    /* border: solid 1px black; */
 }
 
 .sport-topic {
@@ -25,13 +25,11 @@
 
 .sport-info {
     width: 100%;
-    /* margin-top: 1%; */
     display: flex;
     justify-content: center; 
     align-items: center;
     box-sizing: border-box;
     gap: 5%;
-    /* border: solid 1px black; */
 }
 
 .type-selector {
@@ -54,39 +52,28 @@
     /* border: solid 1px black; */
 }
 
-.medals-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    grid-column-gap: 1vw;
-    width: 55%;
-    /* justify-content: center; 
-    align-items: center; */
-    /* border: solid 1px black; */
-}
-
-.blank-space {
-    width: 15vw;
-}
-
 .medal {
-    /* display: flex; */
+    font-family: TH SarabunPSK;
     text-align: center;
-    font-size: 1.25vw;
-    color: #5a5855;
-    line-height: 1.5vw;
-    vertical-align: middle;
+    font-size: 2.7vw;
+    color: #848484;   
+    font-weight: 600;
 } 
 
 .big-input-container {
     padding-right: 5%;
-    height: 16vw;
+    width: 60%;
+    max-height: 20vw;
     overflow-y: scroll;
+}
+
+.big-input-container::-webkit-scrollbar-thumb {
+    border-radius: 200px;
 }
 
 .buttons-container {
     display: flex;
     text-align: center;
-    /* margin-top: 1%; */
     margin-bottom: 2%;
     gap: 5%;
     justify-content: center; 
@@ -95,29 +82,32 @@
 }
 
 .record-button {
-    font-size: 1.25vw;
+    font-size: 2vw;
+    font-weight: 549;
     color: white;
     height: 4vw;
     width: 20vw;
     border: none;
-    border-radius:12px;
+    border-radius:17px;
     background-color: #363b7a;
+    font-family: 'TH SarabunPSK';
 }
 
 .record-button:hover {
     background-color: #4d5499;
     cursor: pointer;
-
 }
 
 .add-country-button {
-    font-size: 1.25vw;
-    color: black;
+    font-size: 2vw;
+    font-weight: 549;
+    font-family: 'TH SarabunPSK';
+    color: white;
     height: 4vw;
     width: 20vw;
-    border: 1px solid #484fa3;
-    border-radius:12px;
-    background-color: #f3f3f3;
+    border-radius:17px;
+    border: none;
+    background-color: #a6a6a6;
 }
 
 .add-country-button:hover {

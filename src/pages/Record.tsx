@@ -1,7 +1,7 @@
 import Sidebar from "../components/SideBar";
 import RecordInputRow from "../components/RecordInputRow";
 import '../styles/Record.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 
 export default function Record () {
@@ -14,7 +14,6 @@ export default function Record () {
     const AddMoreCountry = () => {
         setServiceList([...serviceList, { service: '' }])
     }
-
     return (
         <>
             <Sidebar />
@@ -31,25 +30,20 @@ export default function Record () {
                     </div>
                 </div>
                 <div className="recording-container">
-                    <div className="medals-container">
-                        <label className="blank-space">&nbsp;</label>
-                        <label className="medal"> Gold </label>
-                        <label className="medal"> Silver </label>
-                        <label className="medal"> Bronze </label>
-                    </div>
-                    <div className="big-input-container">
+                    <div className='big-input-container'>
+                        <div className="input-container">
+                            <label className="blank-space">&nbsp;</label>
+                            <label className="medal"> Gold </label>
+                            <label className="medal"> Silver </label>
+                            <label className="medal"> Bronze </label>
+                            <RecordInputRow/>
+                            <RecordInputRow/>                        
+                        </div>
                         {serviceList.map((singleService, index) => (
                             <div key={index} className="input-container">
-                                {/* initial row 1 */}
                                 <RecordInputRow/>                          
                             </div>
-                        ))}
-                        <div className="input-container">
-                            {/* initial row 1 */}
-                            <RecordInputRow/>
-                            {/* initial row 2 */}
-                            <RecordInputRow/>                         
-                        </div>
+                        ))}  
                     </div>
                 </div>
                 <div className="buttons-container">

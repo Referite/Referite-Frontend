@@ -4,8 +4,9 @@ export default function RecordInputRow () {
     return (
         <>
             <div className="input-container-item"> 
-                <select className="country-selector" placeholder='Select'/> 
-                
+                <select className="country-selector" placeholder='Select'> 
+                    <option value="" disabled selected hidden> Select Country</option>
+                </select>
             </div>
             <div className="input-container-item"> 
                 <input type="text" className="medal-num-input" placeholder='0'/> 

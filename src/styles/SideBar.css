@@ -37,3 +37,10 @@
     max-width: 1.5vw;
     height: auto;
 }
+
+.btn {
+    background-color: transparent;
+    border: none;
+    outline:none;
+    cursor: pointer;
+}
