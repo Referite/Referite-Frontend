@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import referiteLogo from '../assets/images/referite_logo.png'
 import login from '../routes/Login';
+import { UserContext } from '../context/UserContext';
 import '../styles/Login.css'
 // import { hashSync } from 'bcrypt-ts';
 
 function Login() {
   const [refereeID, setRefereeID] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  //TODO Fix this const [, setToken] = useContext(UserContext);
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
