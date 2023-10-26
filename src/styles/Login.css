@@ -65,3 +65,8 @@
 .login .box .sign-in:hover {
     background-color: #9596ce;
 }
+
+.html {
+    height: 100%;
+    margin: 0;
+}
