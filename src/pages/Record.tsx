@@ -29,21 +29,24 @@ export default function Record () {
                         <label className="participants"> Participating countries: <span className="countries-num"> num Countries </span> </label>
                     </div>
                 </div>
-                <div className="recording-container">
-                    <div className='big-input-container'>
-                        <div className="input-container">
-                            <label className="blank-space">&nbsp;</label>
-                            <label className="medal"> Gold </label>
-                            <label className="medal"> Silver </label>
-                            <label className="medal"> Bronze </label>
-                            <RecordInputRow/>
-                            <RecordInputRow/>                        
+                <div className="border-container">
+                    <div className="recording-container">
+                        <div className="header-container">
+                            <div className="header-item"> <label className="medal"> Gold </label> </div>
+                            <div className="header-item"> <label className="medal"> Silver </label> </div>
+                            <div className="header-item"> <label className="medal"> Bronze </label> </div>
                         </div>
-                        {serviceList.map((singleService, index) => (
-                            <div key={index} className="input-container">
-                                <RecordInputRow/>                          
+                        <div className='big-input-container'>
+                            <div className="input-container">
+                                <RecordInputRow/>
+                                <RecordInputRow/>                        
                             </div>
-                        ))}  
+                            {serviceList.map((singleService, index) => (
+                                <div key={index} className="input-container">
+                                    <RecordInputRow/>                          
+                                </div>
+                            ))}  
+                        </div>
                     </div>
                 </div>
                 <div className="buttons-container">

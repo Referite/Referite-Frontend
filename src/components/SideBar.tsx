@@ -14,9 +14,9 @@ export default function Sidebar () {
                 </Link>
             </div>
             <div className="return-button">
-                <button onClick={() => navigate(-1)} className='btn'>
+                <Link to="/login">
                     <img src={return_button} className='return-pic'/>
-                </button>
+                </Link>
             </div>
         </div>
     )

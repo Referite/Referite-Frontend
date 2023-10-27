@@ -34,7 +34,7 @@
 
 .type-selector {
     width: 25vw;
-    height: 8vh;
+    height: 4vw;
     padding: 12px 20px;
     margin-top: 5%;
     box-sizing: border-box;
@@ -43,42 +43,77 @@
   }
 
 .recording-container {
-    padding: 2%;
-    width: 100%;
+    flex: 1;
+    margin: 0 auto;
+    margin-left: 5%;
+    width:80%;
     display: flex;
     flex-direction: column;
     justify-content: center; 
     align-items: center;
-    /* border: solid 1px black; */
 }
 
 .medal {
-    font-family: TH SarabunPSK;
+    font-family: 'TH SarabunPSK';
     text-align: center;
     font-size: 2.7vw;
     color: #848484;   
     font-weight: 600;
 } 
 
+.header-container {
+    flex: 1;
+    margin-left: 8%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 53.9%;
+}
+
+.header-item {
+    text-align: center;
+}
+
 .big-input-container {
-    padding-right: 5%;
-    width: 60%;
-    max-height: 20vw;
+    width: 100%;
+    max-height: 15vw;
     overflow-y: scroll;
+    margin-bottom: 1%;
+}
+
+.big-input-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
 }
 
 .big-input-container::-webkit-scrollbar-thumb {
-    border-radius: 200px;
+    background: #888; 
+}
+
+.big-input-container::-webkit-scrollbar-button { 
+    display: none; 
+}
+
+.force-overflow {
+    min-height: 450px;
+}  
+
+.border-container {
+    width: 70%;
+    display: flex;
+    border-style: solid;
+    border-color: hsl(0, 0%, 73%);
+    border-width: 0.001em;;
+    border-radius: 1vw;
+    margin: 0 auto;
 }
 
 .buttons-container {
     display: flex;
     text-align: center;
+    margin-top: 2%;
     margin-bottom: 2%;
     gap: 5%;
     justify-content: center; 
     align-items: center;
-    
 }
 
 .record-button {

@@ -5,7 +5,7 @@ export default function RecordInputRow () {
         <>
             <div className="input-container-item"> 
                 <select className="country-selector" placeholder='Select'> 
-                    <option value="" disabled selected hidden> Select Country</option>
+                    <option value=""> Select Country </option>
                 </select>
             </div>
             <div className="input-container-item"> 
