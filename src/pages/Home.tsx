@@ -19,34 +19,56 @@ function Home() {
   return (
     <>
       <Sidebar />
-      <div className="home-page-title">
-        {/* <h1>
-          Home page for future development
-        </h1> */}
-        {/* {sportNameList.map((sportName: string) => {
-          return <p>{sportName}</p>
-        })
-        } */}
-      </div>
       <div className="sport-schudule">
         <table>
           <thead>
             <tr>
-              <th></th>
+              <th>Sports</th>
+              <th>Day1</th>
+              <th>Day2</th>
+              <th>Day3</th>
+              <th>Day4</th>
+              <th>Day5</th>
+              <th>Day6</th>
+              <th>Day7</th>
+              <th>Day8</th>
+              <th>Day9</th>
+              <th>Day10</th>
             </tr>
           </thead>
           <tbody>
-              {
-              sportNameList.sort((a, b) => a.sport_name[0].localeCompare(b.sport_name[0])).map((rec) => {
-                return (
-                  <tr key={rec.sport_id}>
-                    <td>{rec.sport_name}</td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                )
-                })
-              }
+            <tr>
+              <td>Ceremonies</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+            {
+            sportNameList.map((rec) => {
+              return (
+                <tr key={rec.sport_id}>
+                  <td>{rec.sport_name}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              )
+              })
+            }
           </tbody>
         </table>
       </div>

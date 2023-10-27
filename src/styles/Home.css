@@ -1,10 +1,48 @@
-.home-page-title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.sport-schedule {
+    /* float: right;
+    width: 95.5%;
+    margin-left: 20px; */
+    overflow-x: auto;
 }
 
-.sport-schedule {
-    margin-left: 20%;
+table {
+    border-collapse: collapse;
+    width: 95.5%;
+    float: right;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    font-size: 22px;
+    height: 10vh;
+    border-bottom: 1.5px solid #d6d6d6;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+}
+
+td {
+    border-bottom: 1px solid #d6d6d6;
+    height: 6vh;
+    padding-left: 7%;
+    font-size: 20px;
+}
+
+tr th:nth-child(1) {
+    width: 22%
+}
+
+tr th:nth-child(odd) {
+    background-color: #f3f3f3;
+}
+
+tr th:nth-child(even) {
+    background-color: #c8c9ff;
+}
+
+tr td:nth-child(odd) {
+    background-color: #f3f3f3;
+}
+
+tr td:nth-child(even) {
+    background-color: #c8c9ff;
 }
