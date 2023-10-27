@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import referiteLogo from '../assets/images/referite_logo.png'
-import login from '../routes/Login';
+import Login from '../routes/Login';
 import { UserContext } from '../context/UserContext';
 import '../styles/Login.css'
 // import { hashSync } from 'bcrypt-ts';
@@ -8,18 +8,28 @@ import '../styles/Login.css'
 function Login() {
   const [refereeID, setRefereeID] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  //TODO Fix this const [, setToken] = useContext(UserContext);
+  // const [errorMessage, setErrorMessage] = useState("");
+  // const [, setToken] = useContext<[string | null, React.Dispatch<React.SetStateAction<string | null>>] | null>(UserContext);
+
+  // const submitLogin = async () => {
+  //   const requestOptions = {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
+  //   };
+
+  //   const response = await fetch("/api/token", requestOptions);
+  //   const data = await response.json();
+
+  //   if (!response.ok) {
+  //     setErrorMessage(data.detail);
+  //   } else {
+  //     setToken(data.access_token);
+  //   }
+  // };
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    // console.log(refereeID, password)
-    // console.log(
-    //   {
-    //     "id": refereeID,
-    //     "password": hashSync(password, 10),
-    //   }
-    // )
-    login(refereeID, password)
+    // submitLogin();
   }
 
   useEffect(() => {

@@ -1,17 +1,17 @@
 import axios from "axios";
 import { redirect } from "react-router-dom";
 
-const login = async (username: string, password: string) => { 
+
+export const Login = async (username: string, password: string, token, setToken) => { 
     const resp = await axios.post(
-        'http://127.0.0.1:8000/auth/token',
-         { username, password },
-         { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-     );
-        console.log(resp);
-        const data = await resp.data;
-        console.log(data);
-
-    
+        'http://127.0.0.1:8000/api/auth/token',
+        { 
+            username: username, 
+            password: password,
+        },
+        { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
+    );
+    console.log(resp);
+    const data = await resp.data;
+    console.log(data);
 };
-
-export default login;
