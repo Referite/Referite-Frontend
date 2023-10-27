@@ -1,25 +1,22 @@
 import axios from "axios";
 import { SportScheduleObject } from "../interfaces/SportSchedule";
 
+
+const sportNameURL = 'http://127.0.0.1:8000/api/schedule/sport';
 const sportScheduleURL = 'http://127.0.0.1:8000/api/schedule/all'; // sport schedule API endpoint URL
 
 
-export const getSportName = async (setSportNameList: React.Dispatch<React.SetStateAction<Array<string>>>, 
+export const getSportName = (setSportNameList: React.Dispatch<React.SetStateAction<Array<string>>>, 
     setSportNameListStatus: React.Dispatch<React.SetStateAction<boolean>>) => {
-    await axios.get(sportScheduleURL)
+    axios.get(sportNameURL)
     .then((response) => {
-        console.log(response.data.schedule_list);
+        console.log(response.data.sport_list);
         setSportNameListStatus(true);
-        const scheduleList:Array<SportScheduleObject> = response.data.schedule_list;
-        let sportName:Array<string> = [];
-        for (let i = 0; i < scheduleList.length; i++) {
-            if (!sportName.includes(scheduleList[i].sport[0].sport_name)) {
-                sportName.push(scheduleList[i].sport[0].sport_name);
-            }
-        }
-        console.log(sportName);
-        setSportNameList(sportName);
+        setSportNameList(response.data.sport_list);
     })
+    .catch((error) => {
+        console.log(error);
+    });
 }
 
 

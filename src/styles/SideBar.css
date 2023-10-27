@@ -28,7 +28,12 @@
     align-items: center;
 }
 
-.logo-pic {
+.sidebar-logo-pic {
     max-width: 3vw;
+    height: auto;
+}
+
+.logout-logo-pic {
+    max-width: 2.5vw;
     height: auto;
 }

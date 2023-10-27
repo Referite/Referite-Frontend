@@ -37,15 +37,13 @@ function Home() {
           </thead>
           <tbody>
               {
-              sportNameList.map((id: number, sportName: string) => {
+              sportNameList.sort((a, b) => a.sport_name[0].localeCompare(b.sport_name[0])).map((rec) => {
                 return (
-                  <>
-                    <tr key={id}>
-                      <td>{sportName}</td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                  </>
+                  <tr key={rec.sport_id}>
+                    <td>{rec.sport_name}</td>
+                    <td></td>
+                    <td></td>
+                  </tr>
                 )
                 })
               }
