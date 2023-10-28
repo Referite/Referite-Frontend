@@ -2,7 +2,8 @@
     /* float: right;
     width: 95.5%;
     margin-left: 20px; */
-    overflow-x: auto;
+    position: relative;
+    height: 100%;
 }
 
 table {
@@ -11,7 +12,7 @@ table {
     float: right;
 }
 
-th {
+thead {
     position: sticky;
     top: 0;
     font-size: 22px;
