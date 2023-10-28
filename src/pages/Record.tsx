@@ -39,13 +39,11 @@ export default function Record () {
                         <div className='big-input-container'>
                             <div className="input-container">
                                 <RecordInputRow/>
-                                <RecordInputRow/>                        
-                            </div>
-                            {serviceList.map((singleService, index) => (
-                                <div key={index} className="input-container">
+                                <RecordInputRow/>  
+                                {serviceList.map((singleService, index) => (
                                     <RecordInputRow/>                          
-                                </div>
-                            ))}  
+                                ))}                        
+                            </div>
                         </div>
                     </div>
                 </div>

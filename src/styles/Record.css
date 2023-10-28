@@ -75,26 +75,16 @@
 
 .big-input-container {
     width: 100%;
-    max-height: 15vw;
+    max-height: 16vw;
     overflow-y: scroll;
     margin-bottom: 1%;
 }
 
-.big-input-container::-webkit-scrollbar-track {
-    background: #f1f1f1;
+.input-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin-bottom: 10%;
 }
-
-.big-input-container::-webkit-scrollbar-thumb {
-    background: #888; 
-}
-
-.big-input-container::-webkit-scrollbar-button { 
-    display: none; 
-}
-
-.force-overflow {
-    min-height: 450px;
-}  
 
 .border-container {
     width: 70%;

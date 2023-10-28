@@ -1,27 +1,4 @@
-.input-container {
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-}
 
-.input-container-item{
-    padding-top: 1vw;
-    padding-bottom: 1vw;
-    font-size: 30px;
-    text-align: center;
-}
-
-.country-selector {
-    width: 20vw;
-    padding: 12px 20px;
-    border-radius:17px;
-    background-color: #f3f3f3;
-    box-sizing: border-box;
-    border: none;
-    height: 3vw;
-    font-size: 1.5vw;
-    font-family: 'TH SarabunPSK';
-    color: #b9b9b9;
-}
 
 .medal-num-input {
     appearance: none;

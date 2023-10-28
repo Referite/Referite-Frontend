@@ -1,13 +1,21 @@
 import '../styles/RecordInputRow.css';
+import CountrySelector from './CountrySelector';
 
 export default function RecordInputRow () {
+
+    const sample_coutries = [
+        "Thailand", 
+        "Japan",
+        "USA",
+        "France",
+        "Italy",
+        "Korea"
+    ];
+
     return (
         <>
-            <div className="input-container-item"> 
-                <select className="country-selector" placeholder='Select'> 
-                    <option value=""> Select Country </option>
-                </select>
-            </div>
+            <CountrySelector countriesLst={sample_coutries}/>
+
             <div className="input-container-item"> 
                 <input type="text" className="medal-num-input" placeholder='0'/> 
             </div>
