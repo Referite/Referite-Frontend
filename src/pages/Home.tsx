@@ -23,25 +23,25 @@ function Home() {
         <thead>
             <tr>
                 <th>Sports</th>
-                <th>Day1</th>
-                <th>Day2</th>
-                <th>Day3</th>
-                <th>Day4</th>
-                <th>Day5</th>
-                <th>Day6</th>
-                <th>Day7</th>
-                <th>Day8</th>
-                <th>Day9</th>
-                <th>Day10</th>
-                <th>Day11</th>
-                <th>Day12</th>
-                <th>Day13</th>
-                <th>Day14</th>
-                <th>Day15</th>
-                <th>Day16</th>
-                <th>Day17</th>
-                <th>Day18</th>
-                <th>Day19</th>
+                <th>24</th>
+                <th>25</th>
+                <th>26</th>
+                <th>27</th>
+                <th>28</th>
+                <th>29</th>
+                <th>30</th>
+                <th>31</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+                <th>8</th>
+                <th>9</th>
+                <th>10</th>
+                <th>11</th>
             </tr>
         </thead>
         <tbody>
@@ -71,7 +71,9 @@ function Home() {
             sportNameList.map((rec) => {
             return (
                 <tr key={rec.sport_id}>
-                    <td>{rec.sport_name}</td>
+                    <td>
+                      {rec.sport_name}
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
