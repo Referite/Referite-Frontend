@@ -2,10 +2,39 @@ import Sidebar from "../components/SideBar";
 import RecordInputRow from "../components/RecordInputRow";
 import '../styles/Record.css';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { getSportData } from '../assets/services/SportsDetails'
 
 
 export default function Record () {
-    
+    // load data
+
+    interface SportType {
+        type_name: string;
+        competition_date: string;
+        particating_country: Array<string>;
+    }
+
+    interface SportData {
+        sport_name: string;
+        sport_types: Array<SportType>;
+      }
+
+    const [sport, setSport] = useState<SportData>({
+        sport_name: '',
+        sport_types: []
+    });
+
+    const { sport_id } = useParams()
+
+    useEffect(() => {
+        if (sport_id) {
+            getSportData(sport_id).then(data => setSport(data)).catch(err => console.log(err));
+        }
+    }, [sport_id]);
+  
+    // add country button
+
     const [serviceList, setServiceList] = useState([
         { service: '' },
         
@@ -14,6 +43,7 @@ export default function Record () {
     const AddMoreCountry = () => {
         setServiceList([...serviceList, { service: '' }])
     }
+
     return (
         <>
             <Sidebar />
@@ -21,8 +51,14 @@ export default function Record () {
                 
                 <div className="sport-info-container">
                     <div className="type-topic-container">
-                        <label className="sport-topic"> Sport </label>
-                        <select className="type-selector"> </select> 
+                        <label className="sport-topic"> {sport.sport_name} </label>
+                        <select className="type-selector"> 
+                            {/* {typesName.map((i, index) => (
+                                <option key={index} value={index}>
+                                    {i}
+                                </option>
+                            ))} */}
+                        </select>
                     </div>
                     <div className="sport-info">
                         <label className="date"> Compeitition Date: <span className="copetition-date"> DD / MM / YY </span> </label>
@@ -59,5 +95,4 @@ export default function Record () {
             </div>
         </>
     )
-
 }
