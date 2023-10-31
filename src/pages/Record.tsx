@@ -12,7 +12,8 @@ export default function Record () {
     interface SportType {
         type_name: string;
         competition_date: string;
-        particating_country: Array<string>;
+        participating_country_count: number;
+        participating_countries: Array<string>;
     }
 
     interface SportData {
@@ -32,6 +33,52 @@ export default function Record () {
             getSportData(sport_id).then(data => setSport(data)).catch(err => console.log(err));
         }
     }, [sport_id]);
+
+    const typesName: string[] = [];
+
+    for(const t of sport.sport_types) {
+        typesName.push(t.type_name);
+    }
+
+    var [selectedType, setSelectedType] = useState('');
+    const [competitionDate, setCompetitionDate] = useState('');
+
+    const updateLabelText = () => {
+        if (selectedType) {
+          const selectedTypeData = sport.sport_types.find(type => type.type_name === selectedType);
+          if (selectedTypeData) {
+            const formattedDate = formatDate(selectedTypeData.competition_date);
+            setCompetitionDate(formattedDate);
+          }
+        }
+      };
+
+    useEffect(() => {
+    // Set initial label text when the component mounts
+    updateLabelText();
+    }, [selectedType]); 
+
+    const handleChangeType = (e: any) => {
+        setSelectedType(e.target.value);
+    };
+
+    const participatingCountries = selectedType && sport.sport_types.find((type) => type.type_name === selectedType)?.participating_countries || [];
+
+    // daate formater
+    const formatDate = (dateString: any) => {
+        const date = dateString ? new Date(dateString) : null;
+      
+        if (date) {
+          const day = date.getDate().toString().padStart(2, '0');
+          const month = (date.getMonth() + 1).toString().padStart(2, '0');
+          const year = date.getFullYear();
+      
+          return `${day} / ${month} / ${year}`;
+        }
+      
+        return '';
+      };
+
   
     // add country button
 
@@ -52,17 +99,36 @@ export default function Record () {
                 <div className="sport-info-container">
                     <div className="type-topic-container">
                         <label className="sport-topic"> {sport.sport_name} </label>
-                        <select className="type-selector"> 
-                            {/* {typesName.map((i, index) => (
-                                <option key={index} value={index}>
+                        <select
+                            className="type-selector"
+                            value={selectedType}
+                            onChange={handleChangeType}
+                            >
+                            <option > Select Sport Type... </option>
+                            {typesName.map((i, index) => (
+                                <option key={index} value={i}>
                                     {i}
                                 </option>
-                            ))} */}
+                            ))}
                         </select>
                     </div>
                     <div className="sport-info">
-                        <label className="date"> Compeitition Date: <span className="copetition-date"> DD / MM / YY </span> </label>
-                        <label className="participants"> Participating countries: <span className="countries-num"> num Countries </span> </label>
+                        <label className="participants"> 
+                            Competition Date: {" "}
+                            <span className="countries-num"> 
+                                {selectedType && formatDate(
+                                    sport.sport_types.find((type) => type.type_name === selectedType)?.competition_date
+                                )}
+                                {" "}  
+                            </span> 
+                        </label>
+                        <label className="participants"> 
+                            Participating countries: {" "}
+                            <span className="countries-num"> 
+                                {selectedType && sport.sport_types.find((type)=> type.type_name == selectedType)?.participating_country_count}
+                                {" "}  
+                            </span> 
+                        </label>
                     </div>
                 </div>
                 <div className="border-container">
@@ -73,13 +139,14 @@ export default function Record () {
                             <div className="header-item"> <label className="medal"> Bronze </label> </div>
                         </div>
                         <div className='big-input-container'>
-                            <div className="input-container">
-                                <RecordInputRow/>
-                                <RecordInputRow/>  
-                                {serviceList.map((singleService, index) => (
-                                    <RecordInputRow/>                          
-                                ))}                        
-                            </div>
+
+                        <div className="input-container">
+                            <RecordInputRow key="input1" countriesLst={participatingCountries} />
+                            <RecordInputRow key="input2" countriesLst={participatingCountries} />  
+                            {serviceList.map((singleService, index) => (
+                                <RecordInputRow key={`input${index + 3}`} countriesLst={participatingCountries} />
+                            ))}                        
+                        </div>
                         </div>
                     </div>
                 </div>
