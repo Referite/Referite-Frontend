@@ -140,13 +140,13 @@ export default function Record () {
                         </div>
                         <div className='big-input-container'>
 
-                        <div className="input-container">
-                            <RecordInputRow key="input1" countriesLst={participatingCountries} />
-                            <RecordInputRow key="input2" countriesLst={participatingCountries} />  
-                            {serviceList.map((singleService, index) => (
-                                <RecordInputRow key={`input${index + 3}`} countriesLst={participatingCountries} />
-                            ))}                        
-                        </div>
+                            <div className="input-container">
+                                <RecordInputRow key="input1" countriesLst={participatingCountries} />
+                                <RecordInputRow key="input2" countriesLst={participatingCountries} />  
+                                {serviceList.map((singleService, index) => (
+                                    <RecordInputRow key={`input${index + 3}`} countriesLst={participatingCountries} />
+                                ))}                        
+                            </div>
                         </div>
                     </div>
                 </div>
