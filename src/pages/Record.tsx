@@ -9,6 +9,8 @@ import { getSportData } from '../assets/services/SportsDetails'
 export default function Record () {
     // load data
 
+    const { sport_id } = useParams()
+
     interface SportType {
         type_name: string;
         competition_date: string;
@@ -26,8 +28,6 @@ export default function Record () {
         sport_types: []
     });
 
-    const { sport_id } = useParams()
-
     useEffect(() => {
         if (sport_id) {
             getSportData(sport_id).then(data => setSport(data)).catch(err => console.log(err));
@@ -41,22 +41,6 @@ export default function Record () {
     }
 
     var [selectedType, setSelectedType] = useState('');
-    const [competitionDate, setCompetitionDate] = useState('');
-
-    const updateLabelText = () => {
-        if (selectedType) {
-          const selectedTypeData = sport.sport_types.find(type => type.type_name === selectedType);
-          if (selectedTypeData) {
-            const formattedDate = formatDate(selectedTypeData.competition_date);
-            setCompetitionDate(formattedDate);
-          }
-        }
-      };
-
-    useEffect(() => {
-    // Set initial label text when the component mounts
-    updateLabelText();
-    }, [selectedType]); 
 
     const handleChangeType = (e: any) => {
         setSelectedType(e.target.value);
@@ -143,7 +127,7 @@ export default function Record () {
                             <div className="input-container">
                                 <RecordInputRow key="input1" countriesLst={participatingCountries} />
                                 <RecordInputRow key="input2" countriesLst={participatingCountries} />  
-                                {serviceList.map((singleService, index) => (
+                                {serviceList.map((_singleService, index) => (
                                     <RecordInputRow key={`input${index + 3}`} countriesLst={participatingCountries} />
                                 ))}                        
                             </div>

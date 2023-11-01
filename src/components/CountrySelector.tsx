@@ -16,13 +16,6 @@ export default function CountrySelector ({ countriesLst }: CountrySelectorProps)
         setSelectedValue(option);
     }
 
-    const isSelected = (option: any) => {
-        if (!selectedValue) {
-            return false;
-        }
-        return selectedValue === option;
-    };
-
     useEffect(() => {
         const handler = () => setShowMenu(false);
 
