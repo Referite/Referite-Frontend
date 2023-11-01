@@ -16,13 +16,6 @@ export default function CountrySelector ({ countriesLst }: CountrySelectorProps)
         setSelectedValue(option);
     }
 
-    const isSelected = (option: any) => {
-        if (!selectedValue) {
-            return false;
-        }
-        return selectedValue === option;
-    };
-
     useEffect(() => {
         const handler = () => setShowMenu(false);
 
@@ -38,9 +31,9 @@ export default function CountrySelector ({ countriesLst }: CountrySelectorProps)
 
     const getDisplay = () => {
         if (selectedValue) {
-            return selectedValue
+            return <span className="selected">{selectedValue}</span>;
         }
-        return "Select Country"
+        return <span className="default">Select Country</span>;
     }
 
     const [searchValue, setSearchValue] = useState("");
@@ -69,9 +62,9 @@ export default function CountrySelector ({ countriesLst }: CountrySelectorProps)
             <div className="input-container-item">
                 <div className="dropdown">
                     <div className="country-selector" onClick={handleInputClick}> 
-                        <div className="country-text">
-                            {getDisplay()}
-                        </div>
+                    <div className="country-text">
+                        {getDisplay()}
+                    </div>
                         <div className="dropdown-tools">
                             <div className="dropdown-tool"> ⌄ </div>
                         </div>

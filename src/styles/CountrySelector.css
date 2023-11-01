@@ -62,11 +62,6 @@
     cursor: pointer;
 }
 
-.dropdown-item.selected {
-    background-color: #0d6efd;
-    color: #fff;
-}
-
 .search-box {
     padding: 5px;
     background-color: #eee;
@@ -77,4 +72,13 @@
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+.selected {
+    color: #5d5b58; 
+    font-weight: bold;
+}
+
+.default {
+    color: #b6b6b6; 
 }
