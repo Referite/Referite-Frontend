@@ -68,11 +68,19 @@ export default function Record () {
 
     const [serviceList, setServiceList] = useState([
         { service: '' },
+        { service: '' },
+        { service: '' }
         
     ]);
 
     const AddMoreCountry = () => {
         setServiceList([...serviceList, { service: '' }])
+    }
+
+    const RemoveRow = (index: number) => {
+        const list = [...serviceList];
+        list.splice(index, 1);
+        setServiceList(list);
     }
 
     return (
@@ -125,11 +133,13 @@ export default function Record () {
                         <div className='big-input-container'>
 
                             <div className="input-container">
-                                <RecordInputRow key="input1" countriesLst={participatingCountries} />
-                                <RecordInputRow key="input2" countriesLst={participatingCountries} />  
-                                {serviceList.map((_singleService, index) => (
-                                    <RecordInputRow key={`input${index + 3}`} countriesLst={participatingCountries} />
-                                ))}                        
+                            {serviceList.map((_singleService, index) => (
+                                <RecordInputRow 
+                                key={`input${index + 1}`} 
+                                countriesLst={participatingCountries} 
+                                onButtonClick={() => RemoveRow(index)} 
+                                />
+                            ))}                        
                             </div>
                         </div>
                     </div>

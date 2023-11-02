@@ -1,8 +1,10 @@
 .input-container-item{
+    width: 20vw;
     padding-top: 1vw;
     padding-bottom: 1vw;
     font-size: 30px;
     text-align: center;
+    /* border: 1px solid black; */
 }
 
 .dropdown {
@@ -55,6 +57,10 @@
     max-height: 6vw;
     overflow-y: auto;
     transform: translateY(4px);
+}
+
+.dropdown-item {
+    width: 100%;
 }
 
 .dropdown-item:hover {
