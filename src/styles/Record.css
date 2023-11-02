@@ -44,8 +44,17 @@
     box-sizing: border-box;
     border-radius: 1vw;
     background-color: #e4e4f4;
+    font-family: 'TH SarabunPSK';
+    font-size: 1.8vw;
+    font-weight: bold;
+    color: #474ea0;
   }
 
+.type-selector option {
+    color: #5a5855;
+    background-color: white;
+}
+  
 .recording-container {
     flex: 1;
     margin: 0 auto;
