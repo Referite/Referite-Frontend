@@ -19,6 +19,12 @@
     align-items: center;
 }
 
+.information {
+    position: absolute;
+    top: 1;
+    margin-bottom: 70vh;
+}
+
 .return-button {
     color: white;
     position: absolute;
@@ -30,6 +36,11 @@
 
 .sidebar-logo-pic {
     max-width: 3vw;
+    height: auto;
+}
+
+.information-logo-pic {
+    max-width: 3.5vw;
     height: auto;
 }
 
