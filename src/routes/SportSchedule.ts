@@ -29,14 +29,13 @@ export const getSportSchedule = async (setSportScheduleList: React.Dispatch<Reac
         setSportScheduleListStatus(true);
         setSportScheduleList(response.data.schedule_list);
 
-        // console.log(response.data.schedule_list[0].datetime)
-        const testArray: Array<string> = [];
-        for (let i = 0; i < response.data.schedule_list.length; i++) {
-            if (!testArray.includes(response.data.schedule_list[i].datetime)) {
-                testArray.push(response.data.schedule_list[i].datetime)
-            }
-        }
-        console.log(testArray)
+        // const testArray: Array<string> = [];
+        // for (let i = 0; i < response.data.schedule_list.length; i++) {
+        //     if (!testArray.includes(response.data.schedule_list[i].datetime)) {
+        //         testArray.push(response.data.schedule_list[i].datetime)
+        //     }
+        // }
+        // console.log(testArray)
     })
     .catch((error) => {
         console.log(error);
