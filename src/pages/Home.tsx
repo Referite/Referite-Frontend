@@ -3,6 +3,7 @@ import { getSportSchedule, getSportName } from "../routes/SportSchedule";
 import { SportScheduleObject } from "../interfaces/SportSchedule";
 import { SportObject } from "../interfaces/Sport";
 import Sidebar from "../components/SideBar";
+import StatusIconBar from "../components/StatusIconBar";
 import '../styles/Home.css';
 
 function Home() {
@@ -305,6 +306,7 @@ function Home() {
         </tbody>
         </table>
       </div>
+      <StatusIconBar/>
     </>
   )
 }

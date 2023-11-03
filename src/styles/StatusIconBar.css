@@ -1,0 +1,43 @@
+.status-icon {
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    width: 95.5%;
+    height: 8vh;
+    float: right;
+    background-color: #f3f3f3;
+    border-top: 1.5px solid #d6d6d6;
+    box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.4);
+    justify-content: center;
+}
+
+.icon {
+    display: flex;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    align-items: center;
+}
+
+.ceremonies-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.competition-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.medal-status-icon {
+    width: 32px;
+    height: 44px;
+}
+
+.recorded-status-icon {
+    width: 32px;
+    height: 44px;
+}
+
+p {
+    margin-left: 1vw;
+}
