@@ -19,6 +19,7 @@ thead {
     height: 10vh;
     border-bottom: 1.5px solid #d6d6d6;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+    justify-content: center;
 }
 
 td {
