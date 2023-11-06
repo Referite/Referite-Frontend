@@ -1,35 +1,44 @@
-import { useEffect, useState, useContext } from 'react';
+import axios from 'axios';
+import { useEffect, useState, useContext, Dispatch, SetStateAction } from 'react';
+import PropTypes from 'prop-types'
 import referiteLogo from '../assets/images/referite_logo.png'
-import Login from '../routes/Login';
-import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
+// import { Authentication }  from '../routes/Authentication'
 import '../styles/Login.css'
-// import { hashSync } from 'bcrypt-ts';
 
-function Login() {
+function Login({ setToken }) {
   const [refereeID, setRefereeID] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  // const [errorMessage, setErrorMessage] = useState("");
-  // const [, setToken] = useContext<[string | null, React.Dispatch<React.SetStateAction<string | null>>] | null>(UserContext);
+  const [errorMessage, setErrorMessage] = useState<string>("");
+  const navigate = useNavigate();
 
-  // const submitLogin = async () => {
-  //   const requestOptions = {
-  //     method: "POST",
-  //     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  //   };
+  const LoginUser = async (username: string, password: string) => { 
+    await axios.post(
+        'http://127.0.0.1:8000/api/auth/token',
+        { 
+            username: username, 
+            password: password,
+        },
+        { 
+          method: "POST",
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' } 
+        }
+    ).then((res) => {
+      console.log(res);
+      console.log(res.data.access_token);
+      setToken(res.data.access_token)
+      // window.location.href = '/home';
+      navigate('/home');
+    }).catch((err) => {
+  
+      console.log(err);
+    });
+  };
 
-  //   const response = await fetch("/api/token", requestOptions);
-  //   const data = await response.json();
-
-  //   if (!response.ok) {
-  //     setErrorMessage(data.detail);
-  //   } else {
-  //     setToken(data.access_token);
-  //   }
-  // };
-
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     // submitLogin();
+    await LoginUser(refereeID, password);
   }
 
   useEffect(() => {
@@ -46,6 +55,7 @@ function Login() {
           placeholder="Type your ID"
           value={refereeID}
           onChange={(e) => setRefereeID(e.target.value)}
+          required
         />
         <label className="label-name">Password</label>
         <input className="textbox password-input"
@@ -53,6 +63,7 @@ function Login() {
           placeholder="Type your password"
           value={password} 
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
         <a className="forgot-password" href="">Forgot password</a>
         <button className='sign-in' onClick={handleSubmit}>Sign In</button>
@@ -60,5 +71,9 @@ function Login() {
     </div>
   )
 }
+
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
+};
 
 export default Login
