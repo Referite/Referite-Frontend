@@ -48,13 +48,18 @@
     font-size: 1.8vw;
     font-weight: bold;
     color: #474ea0;
+    cursor: pointer;
   }
 
 .type-selector option {
     color: #5a5855;
     background-color: white;
+    width: 25vw;
 }
-  
+
+select option:checked {
+    background-color: #cdcefa;
+  }
 .recording-container {
     flex: 1;
     margin: 0 auto;
@@ -181,3 +186,26 @@
     color: #5a5855;
 }
 
+.swal2-actions button {
+    width: 13vw; 
+}
+
+.swal2-popup {
+    border-radius:17px;
+    width: 40vw;
+    max-height: 60vw;
+    overflow-y: scroll;
+}
+
+.swal2-title {
+    margin-bottom: 0; /* Remove the bottom margin of the title */
+  }
+  
+  .swal2-icon img {
+    border: none; /* Remove any border */
+    outline: none; /* Remove any outline */
+  }
+
+  .no-border {
+    border: 0 !important;
+  }
