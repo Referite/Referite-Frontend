@@ -32,3 +32,15 @@
     max-width: 3vw;
     height: auto;
 }
+
+.return-pic {
+    max-width: 1.5vw;
+    height: auto;
+}
+
+.btn {
+    background-color: transparent;
+    border: none;
+    outline:none;
+    cursor: pointer;
+}

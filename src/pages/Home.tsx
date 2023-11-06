@@ -10,7 +10,7 @@ function Home() {
         <h1>
           Home page for future development
         </h1>
-      </div>
+      </div>      
     </>
   )
 }
