@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getSportSchedule, getSportName } from "../routes/SportSchedule";
-import { SportScheduleObject } from "../interfaces/SportSchedule";
+import { SportScheduleObject, dateObject } from "../interfaces/SportSchedule";
 import { SportObject } from "../interfaces/Sport";
 import Sidebar from "../components/SideBar";
 import StatusIconBar from "../components/StatusIconBar";
@@ -18,27 +18,21 @@ function Home() {
       getSportSchedule(setSportScheduleList, setSportScheduleListStatus);
   }, [])
 
-  const dateColumns = [
-    { day: '24', month: 'Jul', suffix: 'D-2' },
-    { day: '25', month: 'Jul', suffix: 'D-1' },
-    { day: '26', month: 'Jul', suffix: 'D0' },
-    { day: '27', month: 'Jul', suffix: 'D1' },
-    { day: '28', month: 'Jul', suffix: 'D2' },
-    { day: '29', month: 'Jul', suffix: 'D3' },
-    { day: '30', month: 'Jul', suffix: 'D4' },
-    { day: '31', month: 'Jul', suffix: 'D5' },
-    { day: '01', month: 'Aug', suffix: 'D6' },
-    { day: '02', month: 'Aug', suffix: 'D7' },
-    { day: '03', month: 'Aug', suffix: 'D8' },
-    { day: '04', month: 'Aug', suffix: 'D9' },
-    { day: '05', month: 'Aug', suffix: 'D10' },
-    { day: '06', month: 'Aug', suffix: 'D11' },
-    { day: '07', month: 'Aug', suffix: 'D12' },
-    { day: '08', month: 'Aug', suffix: 'D13' },
-    { day: '09', month: 'Aug', suffix: 'D14' },
-    { day: '10', month: 'Aug', suffix: 'D15' },
-    { day: '11', month: 'Aug', suffix: 'D16' },
-  ];
+  const dateColumns: dateObject[] = [];
+
+  for (const i in sportScheduleList) {
+    const datetime = new Date(sportScheduleList[i].datetime);
+    const day = String(datetime.getDate()).padStart(2, '0');
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    const month = monthNames[datetime.getMonth()];
+    const suffix = `D${parseInt(i) - 2}`;
+
+    dateColumns.push({ 
+      "day": day, 
+      "month": month, 
+      "suffix": suffix 
+    });
+  }
 
   // useEffect(() => {
   //   const header = ['Name']
@@ -64,25 +58,27 @@ function Home() {
   //   sportScheduleList&&sportScheduleList.map( (item) => {
   //       header.push(item.datetime)
   //       item.sport.map((sport, index) => {
-  //         console.log(context[index])
   //         if ( context[index].length == 0 ) {
-  //             context[index].push(sport.sport_name)
+  //           context[index].push(sport.sport_name)
   //         }
-  //         if (sport.sport_status == "RECORDED") {
-  //             context[index].push('#')
-  //         }
-  //         if (sport.sport_status == "COMPETITIVE") {
-  //             context[index].push('*')
-  //         }
-  //         if (sport.sport_status == "TROPHY") {
-  //             context[index].push('%')
-  //         }
-  //         if (sport.sport_status == "CEREMONIES") {
-  //             context[index].push('!')
-  //         }
-  //         else {
-  //             context[index].push('')
-  //         }
+  //         sport.sport_type.map((type) => {
+  //           console.log(type.status);
+  //           if (type.status == "RECORDED") {
+  //               context[index].push('#')
+  //           }
+  //           if (type.status == "COMPETITIVE") {
+  //               context[index].push('*')
+  //           }
+  //           if (type.status == "TROPHY") {
+  //               context[index].push('%')
+  //           }
+  //           if (type.status == "CEREMONIES") {
+  //               context[index].push('!')
+  //           }
+  //           else {
+  //               context[index].push('')
+  //           }
+  //         })
   //       })
   //   }
   //   )
@@ -117,7 +113,6 @@ function Home() {
             {
             sportNameList.map((rec: SportObject) => {
               if (!['Beach Volleyball', 'Table Tennis', 'Volleyball', 'Ceremonies'].includes(rec.sport_name)) {
-                console.log(rec.sport_icon[0])
                 return (
                   <tr key={rec.sport_id}>
                       <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
