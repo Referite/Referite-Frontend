@@ -5,6 +5,10 @@ import { SportObject } from "../interfaces/Sport";
 import Sidebar from "../components/SideBar";
 import StatusIconBar from "../components/StatusIconBar";
 import '../styles/Home.css';
+import ceremoniesIcon from '../assets/images/ceremonies_status.png';
+import competitiveIcon from '../assets/images/competition_status_icon.png';
+import recordedIcon from '../assets/images/recorded_status_icon.png';
+import trophyIcon from '../assets/images/medal_status_icon.png';
 
 function Home() {
   const [sportNameList, setSportNameList] = useState<Array<string>>([]);
@@ -40,43 +44,50 @@ function Home() {
     { day: '11', month: 'Aug', suffix: 'D16' },
   ];
 
+  const statusIcons = [
+    { status: 'Ceremonies', icon: ceremoniesIcon },
+    { status: 'Competitive', icon: competitiveIcon },
+    { status: 'Recorded', icon: recordedIcon },
+    { status: 'Trophy', icon: trophyIcon },
+  ];
+
 
   useEffect(() => {
-    const header = ['Name'];
-    const context: any[][] = Array.from({ length: 45 }, () => []);
+  const header = ['Name'];
+  const context: any[][] = Array.from({ length: 45 }, () => []);
 
-    sportScheduleList && sportScheduleList.forEach((item) => {
-      header.push(item.datetime);
+  sportScheduleList && sportScheduleList.forEach((item) => {
+    header.push(item.datetime);
 
-      item.sport.forEach((sport, index) => {
-        if (!context[index]) {
-          context[index] = [];
-        }
-        context[index].push(sport.sport_name);
+    item.sport.forEach((sport, index) => {
+      if (!context[index]) {
+        context[index] = [];
+      }
 
-        // Check if sport_status is null
-        let symbol = '';
-        if (sport.sport_status === 'RECORDED') {
-          symbol = '#';
-        } else if (sport.sport_status === 'COMPETITIVE') {
-          symbol = '*';
-        } else if (sport.sport_status === 'TROPHY') {
-          symbol = '%';
-        } else if (sport.sport_status === 'CEREMONIES') {
-          symbol = '!';
-        }
+      // Check if sport_status is null
+      let symbol = '';
+      if (sport.sport_status === 'RECORDED') {
+        symbol = '#';
+      } else if (sport.sport_status === 'COMPETITIVE') {
+        symbol = '*';
+      } else if (sport.sport_status === 'TROPHY') {
+        symbol = '%';
+      } else if (sport.sport_status === 'CEREMONIES') {
+        symbol = '!';
+      } else {
+        symbol = '';
+      }
+      // push sport_status into context
+      context[index].push(symbol);
 
-        // Only push the symbol if it's not null
-        if (symbol) {
-          context[index].push(symbol);
-        }
-      });
-
-      console.log(context);
     });
 
-    setContexts(context);
-  }, [sportScheduleList]);
+    console.log('Context :', context);
+  });
+
+
+  setContexts(context);
+}, [sportScheduleList]);
 
 
 
