@@ -19,6 +19,12 @@
     align-items: center;
 }
 
+.information {
+    position: absolute;
+    top: 1;
+    margin-bottom: 70vh;
+}
+
 .return-button {
     color: white;
     position: absolute;
@@ -28,19 +34,17 @@
     align-items: center;
 }
 
-.logo-pic {
+.sidebar-logo-pic {
     max-width: 3vw;
     height: auto;
 }
 
-.return-pic {
-    max-width: 1.5vw;
+.information-logo-pic {
+    max-width: 3.5vw;
     height: auto;
 }
 
-.btn {
-    background-color: transparent;
-    border: none;
-    outline:none;
-    cursor: pointer;
+.logout-logo-pic {
+    max-width: 2vw;
+    height: auto;
 }

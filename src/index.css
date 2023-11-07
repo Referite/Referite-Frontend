@@ -73,6 +73,7 @@ button:focus-visible {
   font-family: 'Sarabun', sans-serif;
 }
 
-::-webkit-scrollbar-track {
-  background: red;
+body {
+  margin: 0;
+  padding: 0;
 }
