@@ -99,9 +99,9 @@ function Home() {
             <tr>
                 <th>Sports</th>
                 {
-                  dateColumns.map(date => {
+                  dateColumns.map((date, index) => {
                     return (
-                      <th>
+                      <th key={index}>
                         <div>
                           <p style={{marginBottom: '0px'}}>{date.day}</p>
                           <p style={{fontSize: '15px'}}>{date.month}</p>
@@ -114,50 +114,19 @@ function Home() {
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
-                  <div style={{marginTop: '5px', marginBottom: 'auto', width: '4vw'}}>
-                      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 140 160" xmlSpace="preserve" className="white "> 
-                        <g className="emblem"> 
-                          <path d="M74.9,76.8c-1.2-0.4-3.2-0.5-4.9,0.9c-1.7-1.4-3.7-1.3-4.9-0.9c-1,0.4-1.8,0.6-3.3,0.6c1.5,3,4.6,5.1,8.2,5.1 c3.6,0,6.7-2.1,8.2-5.1C76.7,77.4,75.9,77.1,74.9,76.8z" fill="#242752">
-                          </path>
-                          <path d="M70,0C45.3,0,25.2,20,25.2,44.7c0,21.2,14.7,38.9,34.5,43.6C44,79.9,37.6,60.6,45.2,44.5 c1.2,6.4,5.4,12.1,11.6,15C48.7,40.6,54.7,18.3,71.4,6C68.1,17.2,73.1,27.5,84,35.3c12.4,8.9,12.9,27.1,2,36.9 c4.3-1,8.4-3.4,11.4-7.1c-1.9,9.6-7.9,18.3-17.1,23.2c19.8-4.6,34.5-22.4,34.5-43.6C114.8,20,94.7,0,70,0z" fill="#242752">
-                          </path>
-                        </g>
-                      </svg>
-                  </div>
-                  <p style={{marginLeft: '6px'}}>Ceremonies</p>
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
             {
             sportNameList.map((rec: SportObject) => {
-              if (!['Beach Volleyball', 'Table Tennis', 'Volleyball'].includes(rec.sport_name)) {
+              if (!['Beach Volleyball', 'Table Tennis', 'Volleyball', 'Ceremonies'].includes(rec.sport_name)) {
+                console.log(rec.sport_icon[0])
                 return (
                   <tr key={rec.sport_id}>
                       <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
                         <div style={{marginTop: '5px', width: '4vw'}}>
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 504 504" xmlSpace="preserve">
-                            <path fill="#242752" d={rec.sport_icon[0]}></path>
-                          </svg>
+                          {rec.sport_icon && rec.sport_icon[0] && (
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 504 504" xmlSpace="preserve">
+                              <path fill="#242752" d={rec.sport_icon[0]}></path>
+                            </svg>
+                          )}
                         </div>
                         <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
                       </td>
@@ -259,14 +228,60 @@ function Home() {
                     </tr>
                   )
                 }
+                else if (rec.sport_name == 'Ceremonies') {
+                  return (
+                    <tr>
+                      <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
+                        <div style={{marginTop: '5px', marginBottom: 'auto', width: '4vw'}}>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 140 160" xmlSpace="preserve" className="white "> 
+                              <g className="emblem"> 
+                              {rec.sport_icon && rec.sport_icon[0] && (
+                                <path d={rec.sport_icon[0]} fill="#242752">
+                                </path>
+                              )}
+                              {rec.sport_icon && rec.sport_icon[1] && (
+                                <path d={rec.sport_icon[1]} fill="#242752">
+                                </path>
+                              )}
+                              </g>
+                            </svg>
+                        </div>
+                        <p style={{marginLeft: '6px'}}>Ceremonies</p>
+                      </td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  )
+                }
                 else {
                   return (
                     <tr key={rec.sport_id}>
                       <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
                         <div style={{marginTop: '5px', width: '4vw'}}>
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 504 504" xmlSpace="preserve">
+                          {rec.sport_icon && rec.sport_icon[0] && (
                             <path fill="#242752" d={rec.sport_icon[0]}></path>
+                          )}
+                          {rec.sport_icon && rec.sport_icon[1] && (
                             <path fill="#242752" d={rec.sport_icon[1]}></path>
+                          )}
                           </svg>
                         </div>
                         <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
