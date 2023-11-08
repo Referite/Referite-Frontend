@@ -4,6 +4,10 @@ import { SportScheduleObject, dateObject } from "../interfaces/SportSchedule";
 import { SportObject } from "../interfaces/Sport";
 import Sidebar from "../components/SideBar";
 import StatusIconBar from "../components/StatusIconBar";
+import SportIcon from "../components/icon/SportIcon";
+import SportIcon2 from "../components/icon/SportIcon2";
+import BeachVolleyballIcon from "../components/icon/BeachVolleyballIcon";
+import CeremoniesIcon from "../components/icon/CeremoniesIcon";
 import ceremoniesStatusIcon from '../assets/images/ceremonies_status.png'
 import competitionStatusIcon from '../assets/images/competition_status_icon.png'
 import medalStatusIcon from '../assets/images/medal_status_icon.png'
@@ -48,16 +52,16 @@ function Home() {
             context[index].push(sport.sport_name)
         }
         else if (sport.sport_status == "RECORDED") {
-            context[index].push(<a ><img src={recordedStatusIcon} className="recorded-status-icon-schedule" /></a>);
+            context[index].push(<a href={`record/${sport.sport_id}`}><img src={recordedStatusIcon} className="recorded-status-icon-schedule" /></a>);
         }
         else if (sport.sport_status == "COMPETITIVE") {
-            context[index].push(<a ><img src={competitionStatusIcon} className="competition-icon-schedule" /></a>);
+            context[index].push(<a><img src={competitionStatusIcon} className="competition-icon-schedule" /></a>);
         }
         else if (sport.sport_status == "TROPHY") {
             context[index].push(<a href={`record/${sport.sport_id}`}><img src={medalStatusIcon} className="medal-status-icon-schedule" /></a>);
         }
         else if (sport.sport_status == "CEREMONIES") {
-            context[index].push(<a href={`record/${sport.sport_id}`}><img src={ceremoniesStatusIcon} className="ceremonies-icon-schedule" /></a>);
+            context[index].push(<a><img src={ceremoniesStatusIcon} className="ceremonies-icon-schedule" /></a>);
         }
         else {
             context[index].push('');
@@ -107,13 +111,14 @@ function Home() {
                   return (
                     <tr key={rec.sport_id}>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
-                          <div style={{marginTop: '5px', width: '4vw'}}>
+                          {/* <div style={{marginTop: '5px', width: '4vw'}}>
                             {rec.sport_icon && rec.sport_icon[0] && (
                               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 504 504" xmlSpace="preserve">
                                 <path fill="#242752" d={rec.sport_icon[0]}></path>
                               </svg>
                             )}
-                          </div>
+                          </div> */}
+                          <SportIcon rec={rec} viewBox={"0 0 504 504"} />
                           <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
@@ -125,7 +130,7 @@ function Home() {
                     return (
                       <tr key={rec.sport_id}>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
-                          <div style={{marginTop: '5px', width: '4vw'}}>
+                          {/* <div style={{marginTop: '5px', width: '4vw'}}>
                             <circle cx="137.56" cy="261.55" r="2.5"></circle>
                             <circle cx="137.56" cy="228.61" r="2.5"></circle>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 504 504" xmlSpace="preserve">
@@ -171,7 +176,8 @@ function Home() {
                               <circle cx="342.7" cy="293.5" r="2.5"></circle>
                               <circle cx="344.34" cy="226.32" r="2.5"></circle>
                             </svg>
-                          </div>
+                          </div> */}
+                          <BeachVolleyballIcon rec={rec} viewBox={"0 0 504 504"} />
                           <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
@@ -182,7 +188,7 @@ function Home() {
                     return (
                       <tr>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
-                          <div style={{marginTop: '5px', marginBottom: 'auto', width: '4vw'}}>
+                          {/* <div style={{marginTop: '5px', marginBottom: 'auto', width: '4vw'}}>
                               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0" y="0" viewBox="0 0 140 160" xmlSpace="preserve" className="white "> 
                                 <g className="emblem"> 
                                 {rec.sport_icon && rec.sport_icon[0] && (
@@ -195,7 +201,8 @@ function Home() {
                                 )}
                                 </g>
                               </svg>
-                          </div>
+                          </div> */}
+                          <CeremoniesIcon rec={rec} viewBox={"0 0 140 160"} />
                           <p style={{marginLeft: '6px'}}>Ceremonies</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
@@ -206,7 +213,7 @@ function Home() {
                     return (
                       <tr key={rec.sport_id}>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
-                          <div style={{marginTop: '5px', width: '4vw'}}>
+                          {/* <div style={{marginTop: '5px', width: '4vw'}}>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 504 504" xmlSpace="preserve">
                             {rec.sport_icon && rec.sport_icon[0] && (
                               <path fill="#242752" d={rec.sport_icon[0]}></path>
@@ -215,7 +222,8 @@ function Home() {
                               <path fill="#242752" d={rec.sport_icon[1]}></path>
                             )}
                             </svg>
-                          </div>
+                          </div> */}
+                          <SportIcon2 rec={rec} viewBox={"0 0 504 504"} />
                           <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
