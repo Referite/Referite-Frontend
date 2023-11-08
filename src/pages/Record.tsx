@@ -4,9 +4,10 @@ import '../styles/Record.css';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getSportData } from '../assets/services/SportsDetails'
-import { getMessage } from "../assets/services/RecordMedal";
+import { getMessage, UpdateToIOC } from "../assets/services/RecordMedal";
 import incorrect_icon from '../assets/images/referite_icon/incorrect_icon.png';
 import warning_icon from '../assets/images/referite_icon/warning_icon.png'
+import complete_icon from '../assets/images/referite_icon/complete_icon.png'
 import Swal from 'sweetalert2';
 
 interface SportType {
@@ -40,7 +41,7 @@ interface SelectedCountry {
     useEffect(() => {
         if (sport_id) {
             getSportData(sport_id).then(data => setSport(data)).catch(err => console.log(err));
-        }
+    }
     }, [sport_id]);
 
     const typesName: string[] = [];
@@ -91,7 +92,7 @@ interface SelectedCountry {
           });
     }
 
-    function WarningPopup (message: string) {
+    function WarningPopup (message: string, medalValues: any) {
         Swal.fire({ 
             title: `<span style="color: #de9f00; font-size: 3vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> Warning! </span>`,
             html: ` <span> ${message} </span>`,
@@ -103,7 +104,34 @@ interface SelectedCountry {
             customClass: {
                 icon: 'no-border'
               }
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                if (sport_id) {
+                    const type_id = findTypeIdByTypeName(selectedType, sport.sport_types);
+                    const iocBody = {
+                      sport_id: parseInt(sport_id),
+                      sport_type_id: type_id,
+                      participants: medalValues
+                    };
+                    const status = await UpdateToIOC(iocBody);
+                    successPopup(status);
+                  } else {
+                    // Handle the case where sport_id is undefined
+                    console.error("sport_id is undefined");
+                  }
+            } 
         });
+    }
+
+    function successPopup (status: number) {
+        if (status === 200) {
+            Swal.fire({
+                iconHtml: `<img src="${complete_icon}" alt="Custom Icon"  style="width: 6vw;">`,
+                title: `<span style="color: #363b7a; font-size: 3vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> Recorded Successfully! </span>`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
     }
 
     // duplicate country
@@ -131,6 +159,15 @@ interface SelectedCountry {
             }
         }
         return false;
+    }
+
+    function findTypeIdByTypeName(typeName: string, sportTypes: any) {
+        for (const item of sportTypes) {
+            if (item.type_name === typeName) {
+                return item.type_id;
+            }
+        }
+        return null; // Return null if no matching type_name is found
     }
 
     
@@ -194,13 +231,13 @@ interface SelectedCountry {
             if (msg.data.hasOwnProperty("Monosport")) {
                 if (msg.data.hasOwnProperty("Warning")) {
                     const mono_warning_msg = "There are only 1 country in this medal allocation. " + msg.data.Warning;
-                    WarningPopup(mono_warning_msg);
+                    WarningPopup(mono_warning_msg, medalValues);
                 } else {
-                    WarningPopup(msg.data.Monosport);
+                    WarningPopup(msg.data.Monosport, medalValues);
                 }
             }
             else if (msg.data.hasOwnProperty("Warning")) {
-                WarningPopup(msg.data.Warning);
+                WarningPopup(msg.data.Warning, medalValues);
             } else {
                 let medalsHtml = medalValues.map((item) => `
                 <div>
@@ -233,9 +270,28 @@ interface SelectedCountry {
                     showCancelButton: true,
                     cancelButtonText: 'Cancel',
                     confirmButtonText: 'Confirm',
-                    confirmButtonColor: '#4d5499'
+                    confirmButtonColor: '#4d5499',
+                    customClass: {
+                        container: 'confirmation-popup-container'
+                    }
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        if (sport_id) {
+                            const type_id = findTypeIdByTypeName(selectedType, sport.sport_types);
+                            const iocBody = {
+                              sport_id: parseInt(sport_id),
+                              sport_type_id: type_id,
+                              participants: medalValues
+                            };
+                            const status = await UpdateToIOC(iocBody);
+                            successPopup(status);
+                          } else {
+                            // Handle the case where sport_id is undefined
+                            console.error("sport_id is undefined");
+                          }
+                    } 
                 });
-            }
+            };
         } catch (error: any) {
             if (error.message === "You have selected the same country") {
                 // Handle the specific error message
@@ -290,7 +346,6 @@ interface SelectedCountry {
         });
     }
     
-
     // add id to components
     const [, setRecordInputRowCounter] = useState(0);
 
@@ -348,7 +403,8 @@ interface SelectedCountry {
                                 countriesLst={participatingCountries} 
                                 onButtonClick={() => RemoveRow(index, index+1)} 
                                 onCountrySelect={handleCountrySelect} 
-                                id={String(index + 1)}                           />
+                                id={String(index + 1)}                           
+                            />
                             ))}                     
                             </div>
                         </div>
