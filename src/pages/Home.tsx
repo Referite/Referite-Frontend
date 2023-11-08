@@ -4,6 +4,10 @@ import { SportScheduleObject, dateObject } from "../interfaces/SportSchedule";
 import { SportObject } from "../interfaces/Sport";
 import Sidebar from "../components/SideBar";
 import StatusIconBar from "../components/StatusIconBar";
+import ceremoniesStatusIcon from '../assets/images/ceremonies_status.png'
+import competitionStatusIcon from '../assets/images/competition_status_icon.png'
+import medalStatusIcon from '../assets/images/medal_status_icon.png'
+import recordedStatusIcon from '../assets/images/recorded_status_icon.png'
 import '../styles/Home.css';
 
 function Home() {
@@ -34,57 +38,50 @@ function Home() {
     });
   }
 
-  // useEffect(() => {
-  //   const header = ['Name']
-  //   const context: any[][] = Array.from({ length: 45 }, () => []);
+  useEffect(() => {
+    const context: any[][] = Array.from({ length: 46 }, () => []);
 
-  //   // sportScheduleList&&sportScheduleList.map( (item) => {
-  //   //   header.push(item.datetime)
-  //   //   item.sport.map((sport, index) => {
-  //   //     // console.log(context[index])
-  //   //     // console.log(index)
-  //   //       if ( context[index].length == 0 ) {
-  //   //           context[index].push(sport.sport_name)
-  //   //       }
-  //   //       if (sport.sport_status == "RECORDED") {
-  //   //           context[index].push('*')
-  //   //       }
-  //   //       else {
-  //   //           context[index].push('')
-  //   //       }
-  //   //   })
-  //   // }
-  //   // )
-  //   sportScheduleList&&sportScheduleList.map( (item) => {
-  //       header.push(item.datetime)
-  //       item.sport.map((sport, index) => {
-  //         if ( context[index].length == 0 ) {
-  //           context[index].push(sport.sport_name)
-  //         }
-  //         sport.sport_type.map((type) => {
-  //           console.log(type.status);
-  //           if (type.status == "RECORDED") {
-  //               context[index].push('#')
-  //           }
-  //           if (type.status == "COMPETITIVE") {
-  //               context[index].push('*')
-  //           }
-  //           if (type.status == "TROPHY") {
-  //               context[index].push('%')
-  //           }
-  //           if (type.status == "CEREMONIES") {
-  //               context[index].push('!')
-  //           }
-  //           else {
-  //               context[index].push('')
-  //           }
-  //         })
-  //       })
-  //   }
-  //   )
-  //   setContexts(context)
-  //   console.log(contexts)
-  // }, [sportScheduleList])
+    sportScheduleList&&sportScheduleList.map((item) => {
+      item.sport.map((sport, index) => {
+        console.log(sport)
+        if ( context[index].length == 0 ) {
+            context[index].push(sport.sport_name)
+        }
+        else if (sport.sport_status == "RECORDED") {
+            // context[index].push('#');
+            context[index].push(<a ><img src={recordedStatusIcon} className="recorded-status-icon" /></a>);
+        }
+        else if (sport.sport_status == "COMPETITIVE") {
+            // context[index].push('*');
+            context[index].push(<a ><img src={competitionStatusIcon} className="competition-icon" /></a>);
+        }
+        else if (sport.sport_status == "TROPHY") {
+            // context[index].push('%');
+            context[index].push(<a href="record"><img src={medalStatusIcon} className="medal-status-icon" /></a>);
+        }
+        else if (sport.sport_status == "CEREMONIES") {
+            // context[index].push('!');
+            context[index].push(<a ><img src={ceremoniesStatusIcon} className="ceremonies-icon" /></a>);
+        }
+        else {
+            context[index].push('');
+        }
+      })
+    })
+
+    setContexts(context)
+    console.log(contexts)
+  }, [sportScheduleList])
+
+  function test(sportName: string, index: number) {
+    if (sportName == contexts[index][0]) {
+      const tdElements = [];
+      for (let i = 1; i <= contexts[index].length; i++) {
+        tdElements.push(<td key={i}>{contexts[index][i]}</td>);
+      }
+      return tdElements;
+    }
+  }
 
   return (
     <>
@@ -111,7 +108,7 @@ function Home() {
         </thead>
         <tbody>
             {
-            sportNameList.map((rec: SportObject) => {
+            sportNameList.map((rec: SportObject, index) => {
               if (!['Beach Volleyball', 'Table Tennis', 'Volleyball', 'Ceremonies'].includes(rec.sport_name)) {
                 return (
                   <tr key={rec.sport_id}>
@@ -125,6 +122,8 @@ function Home() {
                         </div>
                         <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
                       </td>
+                      {test(rec.sport_name, index)}
+                      {/* <td></td>
                       <td></td>
                       <td></td>
                       <td></td>
@@ -142,8 +141,7 @@ function Home() {
                       <td></td>
                       <td></td>
                       <td></td>
-                      <td></td>
-                      <td></td>
+                      <td></td> */}
                   </tr>
               )
               } 
@@ -202,24 +200,7 @@ function Home() {
                         <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
                       </td>
                       <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      {test(rec.sport_name, index)}
                     </tr>
                   )
                 }
@@ -243,25 +224,7 @@ function Home() {
                         </div>
                         <p style={{marginLeft: '6px'}}>Ceremonies</p>
                       </td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      {test(rec.sport_name, index)}
                     </tr>
                   )
                 }
@@ -281,25 +244,7 @@ function Home() {
                         </div>
                         <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
                       </td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
+                      {test(rec.sport_name, index)}
                     </tr>
                   )
                 }
@@ -307,6 +252,7 @@ function Home() {
             })
             }
             {/* {contexts.map((sport, index) => (
+                
                 <tr key={index}>
                     {sport.map((eachDate, index) => (
                         <td key={index}>{eachDate}</td>

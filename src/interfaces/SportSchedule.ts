@@ -8,6 +8,7 @@ export interface SportSchedule {
     sport_id: number;
     sport_name: string;
     sport_type: Array<SportType>;
+    sport_status: string;
 }
 
 export interface SportScheduleObject {
