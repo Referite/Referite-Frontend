@@ -49,19 +49,19 @@ function Home() {
         }
         else if (sport.sport_status == "RECORDED") {
             // context[index].push('#');
-            context[index].push(<a ><img src={recordedStatusIcon} className="recorded-status-icon" /></a>);
+            context[index].push(<a ><img src={recordedStatusIcon} className="recorded-status-icon-schedule" /></a>);
         }
         else if (sport.sport_status == "COMPETITIVE") {
             // context[index].push('*');
-            context[index].push(<a ><img src={competitionStatusIcon} className="competition-icon" /></a>);
+            context[index].push(<a ><img src={competitionStatusIcon} className="competition-icon-schedule" /></a>);
         }
         else if (sport.sport_status == "TROPHY") {
             // context[index].push('%');
-            context[index].push(<a href="record"><img src={medalStatusIcon} className="medal-status-icon" /></a>);
+            context[index].push(<a href={`record/${sport.sport_id}`}><img src={medalStatusIcon} className="medal-status-icon-schedule" /></a>);
         }
         else if (sport.sport_status == "CEREMONIES") {
             // context[index].push('!');
-            context[index].push(<a ><img src={ceremoniesStatusIcon} className="ceremonies-icon" /></a>);
+            context[index].push(<a href={`record/${sport.sport_id}`}><img src={ceremoniesStatusIcon} className="ceremonies-icon-schedule" /></a>);
         }
         else {
             context[index].push('');
@@ -73,7 +73,7 @@ function Home() {
     console.log(contexts)
   }, [sportScheduleList])
 
-  function test(sportName: string, index: number) {
+  function showSchedule(sportName: string, index: number) {
     if (sportName == contexts[index][0]) {
       const tdElements = [];
       for (let i = 1; i <= contexts[index].length; i++) {
@@ -122,7 +122,7 @@ function Home() {
                         </div>
                         <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
                       </td>
-                      {test(rec.sport_name, index)}
+                      {showSchedule(rec.sport_name, index)}
                       {/* <td></td>
                       <td></td>
                       <td></td>
@@ -200,7 +200,7 @@ function Home() {
                         <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
                       </td>
                       <td></td>
-                      {test(rec.sport_name, index)}
+                      {showSchedule(rec.sport_name, index)}
                     </tr>
                   )
                 }
@@ -224,7 +224,7 @@ function Home() {
                         </div>
                         <p style={{marginLeft: '6px'}}>Ceremonies</p>
                       </td>
-                      {test(rec.sport_name, index)}
+                      {showSchedule(rec.sport_name, index)}
                     </tr>
                   )
                 }
@@ -244,7 +244,7 @@ function Home() {
                         </div>
                         <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
                       </td>
-                      {test(rec.sport_name, index)}
+                      {showSchedule(rec.sport_name, index)}
                     </tr>
                   )
                 }

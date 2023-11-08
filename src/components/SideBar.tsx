@@ -5,6 +5,7 @@ import logout_logo from '../assets/images/logout_logo.png'
 import { Link } from 'react-router-dom'
 
 export default function Sidebar () {
+
     return (
         <div className="side-bar">
             <div className="logo">
