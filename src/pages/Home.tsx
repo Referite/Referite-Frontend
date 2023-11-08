@@ -15,7 +15,7 @@ import recordedStatusIcon from '../assets/images/recorded_status_icon.png'
 import '../styles/Home.css';
 
 function Home() {
-  const [sportNameList, setSportNameList] = useState<Array<string>>([]);
+  const [sportNameList, setSportNameList] = useState<Array<SportObject>>([]);
   const [sportScheduleList, setSportScheduleList] = useState<Array<SportScheduleObject>>([]);
   const [sportNameListStatus, setSportNameListStatus] = useState<boolean>(false);
   const [sportScheduleListStatus, setSportScheduleListStatus] = useState<boolean>(false);
