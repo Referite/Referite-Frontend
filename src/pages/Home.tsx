@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getSportSchedule, getSportName } from "../routes/SportSchedule";
+import { getSportSchedule, getSportName } from "../assets/services/SportSchedule";
 import { SportScheduleObject, dateObject } from "../interfaces/SportSchedule";
 import { SportObject } from "../interfaces/Sport";
 import Sidebar from "../components/SideBar";
@@ -75,11 +75,17 @@ function Home() {
     if (sportName == contexts[index][0]) {
       const tdElements = [];
       for (let i = 1; i <= contexts[index].length; i++) {
-        tdElements.push(<td key={i}>{contexts[index][i]}</td>);
+        const tdElement = (
+          <td key={i} style={{paddingLeft: '5.25%'}}>
+            {contexts[index][i]}
+          </td>
+        );
+        tdElements.push(tdElement);
       }
       return tdElements;
     }
   }
+  // console.log(contexts)
 
   return (
     <>
