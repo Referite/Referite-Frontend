@@ -21,13 +21,13 @@ function App() {
   return (
     <>
     <BrowserRouter>
-        <Routes>
-          <Route index element = {<Home />}/>
-          <Route path="/home" element = {<Home />}/>
-          <Route path="/record" element = {<Record />}/>
-          <Route path="/login" element={<Login setToken={setToken} />}/>
-        </Routes>
-    </BrowserRouter>
+          <Routes>
+            <Route index element = {<Home />}/>
+            <Route path="/home" element = {<Home />}/>
+            <Route path="/record/:sport_id" element = {<Record />}/>
+            <Route path="/login" element={<Login />}/>
+          </Routes>
+        </BrowserRouter>
 
     </>
   )
