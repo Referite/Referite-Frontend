@@ -1,49 +1,61 @@
 import axios from 'axios';
-import { useEffect, useState, useContext, Dispatch, SetStateAction } from 'react';
-import PropTypes from 'prop-types'
-import referiteLogo from '../assets/images/referite_logo.png'
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import referiteLogo from '../assets/images/referite_logo.png';
 // import { Authentication }  from '../routes/Authentication'
-import '../styles/Login.css'
+import '../styles/Login.css';
 
-function Login({ setToken }) {
+function Login() {
   const [refereeID, setRefereeID] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>("");
   const navigate = useNavigate();
 
-  const LoginUser = async (username: string, password: string) => { 
-    await axios.post(
-        'http://127.0.0.1:8000/api/auth/token',
-        { 
-            username: username, 
-            password: password,
-        },
-        { 
-          method: "POST",
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' } 
-        }
-    ).then((res) => {
-      console.log(res);
-      console.log(res.data.access_token);
-      setToken(res.data.access_token)
-      // window.location.href = '/home';
-      navigate('/home');
-    }).catch((err) => {
+  const LoginUser = async (username: string, password: string) => {
+    try {
+      const response = await axios.post(
+          'http://127.0.0.1:8000/api/auth/token',
+          { 
+              username: username, 
+              password: password,
+          },
+          { 
+            method: "POST",
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            // withCredentials: true,
+          }
+      )
+      console.log(response.data.access_token);
+      console.log(response.data.expired);
+      // const currentDate = new Date()
+      const expireDate = new Date(response.data.expired);
+      // const clientsTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
+
+
+      // console.log(currentDate)
+      console.log(expireDate)
+
+      Cookies.set('access_token', response.data.access_token, {expires: 1})
+      // const cookies = Cookies.set('access_token', response.data.access_token)
+      // console.log(cookies)
+      // setToken(res.data.access_token)
+      // window.location.href = '/';
+      navigate('/');
+    } catch(err) {
   
       console.log(err);
-    });
+    };
   };
+
+  useEffect(() => {
+    console.log(Cookies.get('access_token'))
+  }, [refereeID, password]);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
-    // submitLogin();
     await LoginUser(refereeID, password);
   }
-
-  useEffect(() => {
-
-  }, [refereeID, password]);
 
   return (
     <div className="login">
@@ -72,8 +84,8 @@ function Login({ setToken }) {
   )
 }
 
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
-};
+// Login.propTypes = {
+//   setToken: PropTypes.func.isRequired
+// };
 
-export default Login
+export default Login;

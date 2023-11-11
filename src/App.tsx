@@ -3,20 +3,19 @@ import { useState } from 'react';
 import Home from './pages/Home';
 import Record from './pages/Record';
 import Login from './pages/Login';
-import useToken from './components/UseToken';
 
-function setToken(userToken) {
-  sessionStorage.setItem('token', JSON.stringify(userToken));
-}
+// function setToken(userToken) {
+//   sessionStorage.setItem('token', JSON.stringify(userToken));
+// }
 
 function App() {
   
   // const [token, setToken] = useState<string>('');
-  const token = useToken();
+  // const token = useToken();
 
-  if(!token) {
-    return <Login setToken={setToken} />
-  }
+  // if(!token) {
+  //   return <Login setToken={setToken} />
+  // }
 
   return (
     <>

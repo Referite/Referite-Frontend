@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 import { SportScheduleObject } from "../../interfaces/SportSchedule";
 import { SportObject } from "../../interfaces/Sport";
 
@@ -9,7 +10,12 @@ const sportScheduleURL = 'http://127.0.0.1:8000/api/schedule/all'; // sport sche
 
 export const getSportName = (setSportNameList: React.Dispatch<React.SetStateAction<Array<SportObject>>>, 
     setSportNameListStatus: React.Dispatch<React.SetStateAction<boolean>>) => {
-    axios.get(sportNameURL)
+    axios.get(sportNameURL, {
+        headers: {
+            'authorization': Cookies.get('access_token'),
+            'Content-Type': 'application/json'
+        }
+    })
     .then((response) => {
         console.log(response.data.sport_list);
         setSportNameListStatus(true);
@@ -24,7 +30,12 @@ export const getSportName = (setSportNameList: React.Dispatch<React.SetStateActi
 export const getSportSchedule = async (setSportScheduleList: React.Dispatch<React.SetStateAction<SportScheduleObject[]>>, 
     setSportScheduleListStatus: React.Dispatch<React.SetStateAction<boolean>>) => {
     setSportScheduleListStatus(false);
-    await axios.get(sportScheduleURL)
+    await axios.get(sportScheduleURL, {
+        headers: {
+            'authorization': Cookies.get('access_token'),
+            'Content-Type': 'application/json'
+        }
+    })
     .then((response) => {
         console.log(response.data.schedule_list);
         setSportScheduleListStatus(true);
