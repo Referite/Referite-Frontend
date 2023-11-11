@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import referiteLogo from '../assets/images/referite_logo.png';
 // import { Authentication }  from '../routes/Authentication'
@@ -28,29 +29,21 @@ function Login() {
       )
       console.log(response.data.access_token);
       console.log(response.data.expired);
-      // const currentDate = new Date()
+      const currentDate = new Date()
       const expireDate = new Date(response.data.expired);
-      // const clientsTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
-
-      // console.log(currentDate)
+      console.log(currentDate)
       console.log(expireDate)
 
-      Cookies.set('access_token', response.data.access_token, {expires: 1})
-      // const cookies = Cookies.set('access_token', response.data.access_token)
-      // console.log(cookies)
-      // setToken(res.data.access_token)
+      Cookies.set('access_token', response.data.access_token, {expires: expireDate})
       // window.location.href = '/';
+      // console.log(Cookies.get('access_token'))
       navigate('/');
     } catch(err) {
-  
       console.log(err);
+      navigate('/login')
     };
   };
-
-  useEffect(() => {
-    console.log(Cookies.get('access_token'))
-  }, [refereeID, password]);
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()

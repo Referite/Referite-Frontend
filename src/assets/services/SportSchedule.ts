@@ -2,6 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { SportScheduleObject } from "../../interfaces/SportSchedule";
 import { SportObject } from "../../interfaces/Sport";
+import { redirect } from "react-router-dom";
 
 
 const sportNameURL = 'http://127.0.0.1:8000/api/schedule/sport';
@@ -17,6 +18,7 @@ export const getSportName = (setSportNameList: React.Dispatch<React.SetStateActi
         }
     })
     .then((response) => {
+        
         console.log(response.data.sport_list);
         setSportNameListStatus(true);
         setSportNameList(response.data.sport_list);
