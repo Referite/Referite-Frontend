@@ -1,50 +1,107 @@
-.side-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 4.5%;
-    height: 100%;
-    background-color: #363b7a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@media screen and (min-width: 721px) {
+    .side-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 4.5%;
+        height: 100%;
+        background-color: #363b7a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .logo {
+        position: absolute;
+        top: 0;
+        color: white;
+        margin-top: 20%;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .information {
+        position: absolute;
+        top: 1;
+        margin-bottom: 70vh;
+    }
+    
+    .return-button {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 30%;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sidebar-logo-pic {
+        max-width: 3vw;
+        height: auto;
+    }
+    
+    .information-logo-pic {
+        max-width: 3.5vw;
+        height: auto;
+    }
+    
+    .logout-logo-pic {
+        max-width: 2vw;
+        height: auto;
+    }
 }
 
-.logo {
-    position: absolute;
-    top: 0;
-    color: white;
-    margin-top: 20%;
-    justify-content: center;
-    align-items: center;
-}
-
-.information {
-    position: absolute;
-    top: 1;
-    margin-bottom: 70vh;
-}
-
-.return-button {
-    color: white;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 30%;
-    justify-content: center;
-    align-items: center;
-}
-
-.sidebar-logo-pic {
-    max-width: 3vw;
-    height: auto;
-}
-
-.information-logo-pic {
-    max-width: 3.5vw;
-    height: auto;
-}
-
-.logout-logo-pic {
-    max-width: 2vw;
-    height: auto;
+/* Styles for screens with a width less than or equal to 720px */
+@media screen and (max-width: 720px) {
+    .side-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 4.5%;
+        height: 100%;
+        background-color: #363b7a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1001; /* Set a higher z-index value */
+    }
+    
+    .logo {
+        position: absolute;
+        top: 0;
+        color: white;
+        margin-top: 20%;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .information {
+        position: absolute;
+        top: 1;
+        margin-bottom: 70vh;
+    }
+    
+    .return-button {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 30%;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .sidebar-logo-pic {
+        max-width: 3vw;
+        height: auto;
+    }
+    
+    .information-logo-pic {
+        max-width: 3.5vw;
+        height: auto;
+    }
+    
+    .logout-logo-pic {
+        max-width: 2vw;
+        height: auto;
+    }
 }
