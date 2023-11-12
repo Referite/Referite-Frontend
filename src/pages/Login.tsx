@@ -1,17 +1,16 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
 import referiteLogo from '../assets/images/referite_logo.png';
 // import { Authentication }  from '../routes/Authentication'
 import '../styles/Login.css';
 import LoginWithWrongUAndP from '../components/pop_up/LoginWithWrongUAndP';
+import ForgotPassword from '../components/pop_up/ForgotPassword';
 
 function Login() {
   const [refereeID, setRefereeID] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [errorMessage, setErrorMessage] = useState<string>("");
   const navigate = useNavigate();
 
   const LoginUser = async (username: string, password: string) => {
@@ -37,19 +36,25 @@ function Login() {
       console.log(expireDate)
 
       Cookies.set('access_token', response.data.access_token, {expires: expireDate})
-      // window.location.href = '/';
-      // console.log(Cookies.get('access_token'))
       navigate('/');
     } catch(err) {
       console.log(err);
-      navigate('/login')
+      navigate('/login');
       LoginWithWrongUAndP({title: "You cannot login", html: 'Wrong user id or password.'});
     };
   };
 
   const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault()
+    e.preventDefault();
     await LoginUser(refereeID, password);
+  }
+
+  const handleForgotPassword = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault()
+    ForgotPassword({
+      title: 'Forget Password', 
+      html: 'If you forget your password, please inform Backend.'
+    })
   }
 
   return (
@@ -72,7 +77,7 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
           required
         />
-        <a className="forgot-password" href="">Forgot password</a>
+        <a className="forgot-password" onClick={handleForgotPassword}>Forgot password</a>
         <button className='sign-in' onClick={handleSubmit}>Sign In</button>
       </div>
     </div>
