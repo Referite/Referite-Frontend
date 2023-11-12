@@ -27,13 +27,13 @@ function Login() {
             // withCredentials: true,
           }
       )
-      console.log(response.data.access_token);
-      console.log(response.data.expired);
+      // console.log(response.data.access_token);
+      // console.log(response.data.expired);
       const currentDate = new Date()
       const expireDate = new Date(response.data.expired);
 
-      console.log(currentDate)
-      console.log(expireDate)
+      // console.log(currentDate)
+      // console.log(expireDate)
 
       Cookies.set('access_token', response.data.access_token, {expires: expireDate})
       navigate('/');
@@ -83,9 +83,5 @@ function Login() {
     </div>
   )
 }
-
-// Login.propTypes = {
-//   setToken: PropTypes.func.isRequired
-// };
 
 export default Login;

@@ -17,13 +17,11 @@ import '../styles/Home.css';
 function Home() {
   const [sportNameList, setSportNameList] = useState<Array<SportObject>>([]);
   const [sportScheduleList, setSportScheduleList] = useState<Array<SportScheduleObject>>([]);
-  const [sportNameListStatus, setSportNameListStatus] = useState<boolean>(false);
-  const [sportScheduleListStatus, setSportScheduleListStatus] = useState<boolean>(false);
   const [contexts, setContexts] = useState<any[][]>([]);
 
   useEffect(() => {
-      getSportName(setSportNameList, setSportNameListStatus)
-      getSportSchedule(setSportScheduleList, setSportScheduleListStatus);
+      getSportName(setSportNameList)
+      getSportSchedule(setSportScheduleList);
   }, [])
 
   const dateColumns: dateObject[] = [];
@@ -85,7 +83,6 @@ function Home() {
       return tdElements;
     }
   }
-  // console.log(contexts)
 
   return (
     <>
