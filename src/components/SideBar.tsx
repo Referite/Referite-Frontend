@@ -40,9 +40,9 @@ export default function Sidebar () {
                 <img src={information_logo} className="information-logo-pic" />
             </div>
             <div className="return-button">
-                {/* <Link to="/login"> */}
-                <img src={logout_logo} onClick={handleLogOut} className="logout-logo-pic" />
-                {/* </Link> */}
+                <Link to="/login">
+                    <img src={logout_logo} onClick={handleLogOut} className="logout-logo-pic" />
+                </Link>
             </div>
         </div>
     )

@@ -26,7 +26,7 @@ const CheckToken = () => {
         navigate('/login');
       } else {
         console.log('token is not expired');
-        navigate('/');
+        // navigate('/');
       }
     }
   }, [navigate]);

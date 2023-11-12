@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import referiteLogo from '../assets/images/referite_logo.png';
 // import { Authentication }  from '../routes/Authentication'
 import '../styles/Login.css';
+import LoginWithWrongUAndP from '../components/pop_up/LoginWithWrongUAndP';
 
 function Login() {
   const [refereeID, setRefereeID] = useState<string>('');
@@ -42,6 +43,7 @@ function Login() {
     } catch(err) {
       console.log(err);
       navigate('/login')
+      LoginWithWrongUAndP({title: "You cannot login", html: 'Wrong user id or password.'});
     };
   };
 
