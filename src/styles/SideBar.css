@@ -10,7 +10,7 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .logo {
         position: absolute;
         top: 0;
@@ -19,13 +19,13 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .information {
         position: absolute;
         top: 1;
         margin-bottom: 70vh;
     }
-    
+
     .return-button {
         color: white;
         position: absolute;
@@ -34,17 +34,17 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .sidebar-logo-pic {
         max-width: 3vw;
         height: auto;
     }
-    
+
     .information-logo-pic {
         max-width: 3.5vw;
         height: auto;
     }
-    
+
     .logout-logo-pic {
         max-width: 2vw;
         height: auto;
@@ -63,9 +63,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 1001; /* Set a higher z-index value */
+        z-index: 1001;
+        /* Set a higher z-index value */
     }
-    
+
     .logo {
         position: absolute;
         top: 0;
@@ -74,13 +75,13 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .information {
         position: absolute;
         top: 1;
         margin-bottom: 70vh;
     }
-    
+
     .return-button {
         color: white;
         position: absolute;
@@ -89,17 +90,21 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     .sidebar-logo-pic {
         max-width: 3vw;
         height: auto;
     }
-    
+
     .information-logo-pic {
         max-width: 3.5vw;
         height: auto;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
     }
-    
+
     .logout-logo-pic {
         max-width: 2vw;
         height: auto;

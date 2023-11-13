@@ -17,6 +17,7 @@
         margin-left: 2vw;
         margin-right: 2vw;
         align-items: center;
+        font-size: 2vh;
     }
 
     .ceremonies-icon {
@@ -49,19 +50,19 @@
     body {
         margin-bottom: 8vh;
         margin-left: 4.5vw;
-        /* Add margin to the body equal to the height of the status bar */
     }
 
     .status-icon {
         position: fixed;
         bottom: 0;
         display: flex;
-        width: 100%;
+        width: calc(100% - 4.5%);
         height: 8vh;
         background-color: #f3f3f3;
         border-top: 1.5px solid #d6d6d6;
         box-shadow: -1px 2px 2px 0 rgba(0, 0, 0, 0.4);
         justify-content: center;
+        margin-left: 4.5%;
     }
 
     .icon {
@@ -69,6 +70,7 @@
         margin-left: 2vw;
         margin-right: 2vw;
         align-items: center;
+        font-size: 2.2vh;
     }
 
 

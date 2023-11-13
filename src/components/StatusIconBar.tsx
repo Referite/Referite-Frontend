@@ -10,19 +10,19 @@ function StatusIconBar() {
     <div className="status-icon">
         <div className="icon">
             <img src={ceremoniesStatusIcon} className='ceremonies-icon' />
-            <p>Ceremonies</p>
+            <p style={{fontSize: '2vh'}}>Ceremonies</p>
         </div>
         <div className="icon">
             <img src={competitionStatusIcon} className='competition-icon' />
-            <p>Competition</p>
+            <p style={{fontSize: '2vh'}}>Competition</p>
         </div>
         <div className="icon">
             <img src={medalStatusIcon} className='medal-status-icon' />
-            <p>Not Record Yet</p>
+            <p style={{fontSize: '2vh'}}>Not Record Yet</p>
         </div>
         <div className="icon">
             <img src={recordedStatusIcon} className='recorded-status-icon' />
-            <p>Already Recorded</p>
+            <p style={{fontSize: '2vh'}}>Already Recorded</p>
         </div>
     </div>
   )
