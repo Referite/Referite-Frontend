@@ -26,16 +26,6 @@
     color: transparent;
 }
 
-.type-selector {
-    width: 20vw;
-    height: auto;
-    padding: 12px 20px;
-    border-radius:10px;
-    border: none;
-    background-color: #cdcefa;
-}
-
-
 .delete-button {
     font-family: 'Aptos';
     font-size: 1.4vw;
@@ -44,7 +34,6 @@
     border: none;
     padding-left: 60%;
     margin-left: 105%;
-    /* border: solid 1px red; */
 }
 
 .delete-icon {
