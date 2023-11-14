@@ -7,6 +7,6 @@ export interface SportType {
 export interface SportObject {
     sport_id: number;
     sport_name: string;
-    sport_icon: string[];
-    sport_type: SportType[];
+    sport_icon: Array<string>;
+    sport_type: Array<SportType>;
 }

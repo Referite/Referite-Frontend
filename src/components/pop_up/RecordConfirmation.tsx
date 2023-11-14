@@ -20,6 +20,4 @@ const RecordConfirmation = ({ title, html }: PopupElements) => {
     return null;
   };
   
-  export default RecordConfirmation;
-
-
+export default RecordConfirmation;
