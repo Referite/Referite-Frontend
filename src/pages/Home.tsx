@@ -118,7 +118,7 @@ function Home() {
                     <tr key={rec.sport_id}>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
                           <SportIcon rec={rec} viewBox={"0 0 504 504"} />
-                          <p style={{marginLeft: '6px', fontSize: '1.75vw'}}>{rec.sport_name}</p>
+                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
                     </tr>
@@ -130,7 +130,7 @@ function Home() {
                       <tr key={rec.sport_id}>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
                           <BeachVolleyballIcon rec={rec} viewBox={"0 0 504 504"} />
-                          <p style={{marginLeft: '6px', fontSize: '1.75vw'}}>{rec.sport_name}</p>
+                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
                       </tr>
@@ -141,7 +141,7 @@ function Home() {
                       <tr>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
                           <CeremoniesIcon rec={rec} viewBox={"0 0 140 160"} />
-                          <p style={{marginLeft: '6px', fontSize: '1.75vw'}}>Ceremonies</p>
+                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>Ceremonies</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
                       </tr>
@@ -152,7 +152,7 @@ function Home() {
                       <tr key={rec.sport_id}>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
                           <SportIcon2 rec={rec} viewBox={"0 0 504 504"} />
-                          <p style={{marginLeft: '6px', fontSize: '1.75vw'}}>{rec.sport_name}</p>
+                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
                       </tr>

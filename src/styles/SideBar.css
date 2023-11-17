@@ -51,8 +51,8 @@
     }
 }
 
-/* Styles for screens with a width less than or equal to 720px */
-@media screen and (max-width: 720px) {
+/* Styles for screens with a width less than or equal to 720px and height less than or equal to 720px */
+@media screen and (max-width: 720px) and (max-height: 720px) {
     .side-bar {
         position: fixed;
         top: 0;
@@ -63,8 +63,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 1001;
-        /* Set a higher z-index value */
     }
 
     .logo {
@@ -79,7 +77,7 @@
     .information {
         position: absolute;
         top: 1;
-        margin-bottom: 70vh;
+        margin-bottom: 60vh;
     }
 
     .return-button {
@@ -99,14 +97,118 @@
     .information-logo-pic {
         max-width: 3.5vw;
         height: auto;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
     }
 
     .logout-logo-pic {
         max-width: 2vw;
         height: auto;
     }
+}
+
+@media screen and (min-height: 551px) {
+    .side-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 4.5%;
+        height: 100%;
+        background-color: #363b7a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo {
+        position: absolute;
+        top: 0;
+        color: white;
+        margin-top: 20%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .information {
+        position: absolute;
+        top: 1;
+        margin-bottom: 60vh;
+    }
+
+    .return-button {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 30%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sidebar-logo-pic {
+        max-width: 3vw;
+        height: auto;
+    }
+
+    .information-logo-pic {
+        max-width: 3.5vw;
+        height: auto;
+    }
+
+    .logout-logo-pic {
+        max-width: 2vw;
+        height: auto;
+    }
+    
+}
+
+@media screen and (max-height: 550px) {
+    .side-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 4.5%;
+        height: 100%;
+        background-color: #363b7a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo {
+        position: absolute;
+        top: 0;
+        color: white;
+        margin-top: 20%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .information {
+        position: absolute;
+        top: 25%;
+        margin-bottom: 60vh;
+    }
+
+    .return-button {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 30%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sidebar-logo-pic {
+        max-width: 3vw;
+        height: auto;
+    }
+
+    .information-logo-pic {
+        max-width: 3.5vw;
+        height: auto;
+    }
+
+    .logout-logo-pic {
+        max-width: 2vw;
+        height: auto;
+    }
+    
 }
