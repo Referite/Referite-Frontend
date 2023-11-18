@@ -12,7 +12,7 @@ export default function Sidebar () {
     const Logout = async () => {
 
         const response = await axios.get(
-            'http://127.0.0.1:8000/api/auth/logout', {
+            'https://referite-6538ffaf77b0.herokuapp.com/api/auth/logout', {
                 headers: {
                     'authorization': Cookies.get('access_token'),
                     'Content-Type': 'application/json'
