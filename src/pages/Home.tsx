@@ -89,7 +89,7 @@ function Home() {
       const tdElements = [];
       for (let i = 1; i <= contexts[index].length; i++) {
         const tdElement = (
-          <td key={i} style={{paddingLeft: '5.25%'}}>
+          <td key={i}>
             {contexts[index][i]}
           </td>
         );
@@ -113,8 +113,8 @@ function Home() {
                         <th key={index}>
                           <div>
                             <p style={{marginBottom: '0px'}}>{date.day}</p>
-                            <p style={{fontSize: '15px'}}>{date.month}</p>
-                            <p style={{fontSize: '15px', color: '#949494'}}>{date.suffix}</p>
+                            <p style={{fontSize: '2vh'}}>{date.month}</p>
+                            <p style={{fontSize: '2vh', color: '#949494'}}>{date.suffix}</p>
                           </div>
                         </th>
                       )
@@ -130,7 +130,7 @@ function Home() {
                     <tr key={rec.sport_id}>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
                           <SportIcon rec={rec} viewBox={"0 0 504 504"} />
-                          <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
+                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
                     </tr>
@@ -142,7 +142,7 @@ function Home() {
                       <tr key={rec.sport_id}>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
                           <BeachVolleyballIcon rec={rec} viewBox={"0 0 504 504"} />
-                          <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
+                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
                       </tr>
@@ -153,7 +153,7 @@ function Home() {
                       <tr>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
                           <CeremoniesIcon rec={rec} viewBox={"0 0 140 160"} />
-                          <p style={{marginLeft: '6px'}}>Ceremonies</p>
+                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>Ceremonies</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
                       </tr>
@@ -164,7 +164,7 @@ function Home() {
                       <tr key={rec.sport_id}>
                         <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
                           <SportIcon2 rec={rec} viewBox={"0 0 504 504"} />
-                          <p style={{marginLeft: '6px'}}>{rec.sport_name}</p>
+                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
                         </td>
                         {showSchedule(rec.sport_name, index)}
                       </tr>

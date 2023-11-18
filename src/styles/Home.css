@@ -1,78 +1,178 @@
-.sport-schedule {
-    /* float: right;
+@media screen and (min-width: 721px) {
+    .sport-schedule {
+        /* float: right;
     width: 95.5%;
     margin-left: 20px; */
-    /* height: 100%; */
+        /* height: 100%; */
+    }
+
+     table {
+        border-collapse: collapse;
+        width: 95.5%;
+        overflow-x: auto;
+        float: right;
+    }
+
+    thead {
+        position: sticky;
+        top: 0;
+        color: #484FA3;
+        font-size: 3vh;
+        height: 10vh;
+        border-bottom: 1.5px solid #d6d6d6;
+        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+        justify-content: center;
+    }
+
+    td {
+        border-bottom: 1px solid #d6d6d6;
+        height: 7.5vh;
+        padding-left: 5.25%;
+        font-size: 3vh;
+    }
+
+    tr th:nth-child(1) {
+        width: 20%;
+    }
+
+    th:nth-child(n + 2):nth-child(-n + 20) {
+        width: 10vw;
+        /* Adjust the width as needed */
+    }
+
+    tr th:nth-child(odd) {
+        background-color: #f3f3f3;
+    }
+
+    tr th:nth-child(even) {
+        background-color: #e8e8fa;
+    }
+
+    tr td:nth-child(odd) {
+        background-color: #f3f3f3;
+    }
+
+    tr td:nth-child(even) {
+        background-color: #e8e8fa;
+    }
+
+    tr td.special-id {
+        text-align: center;
+    }
+
+    .ceremonies-icon-schedule {
+        width: 2vw;
+        height: 3.5vh;
+    }
+
+    .competition-icon-schedule {
+        width: 1.8vw;
+        height: 3.2vh;
+    }
+
+    .medal-status-icon-schedule {
+        width: 1.8vw;
+        height: 4.5vh;
+    }
+
+    .recorded-status-icon-schedule {
+        width: 1.8vw;
+        height: 4.5vh;
+    }
+
+
 }
 
-table {
-    border-collapse: collapse;
-    width: 95.5%;
-    float: right;
-}
+@media screen and (max-width: 720px) {
+    body {
+        margin-left: 4.5%;
+    }
 
-thead {
-    position: sticky;
-    top: 0;
-    color: #484FA3;
-    font-size: 22px;
-    height: 10vh;
-    border-bottom: 1.5px solid #d6d6d6;
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-    justify-content: center;
-}
+    .sport-schedule {
+        /* float: right;
+        width: 95.5%;
+        margin-left: 20px; */
+        /* height: 100%; */
+    }
 
-td {
-    border-bottom: 1px solid #d6d6d6;
-    height: 7.5vh;
-    padding-left: 5%;
-    font-size: 20px;
-}
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-left: 4.5%;
+        /* Use 100% width for responsiveness */
+        max-width: 100%;
+        /* Set a maximum width */
+        overflow-x: auto;
+        /* Enable horizontal scrolling if needed */
+        float: none;
+        /* Remove float to allow full width */
+    }
 
-tr th:nth-child(1) {
-    width: 20%;
-}
+    thead {
+        position: sticky;
+        top: 0;
+        color: #484FA3;
+        font-size: 3vh;
+        height: 10vh;
+        border-bottom: 1.5px solid #d6d6d6;
+        box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+        justify-content: center;
+    }
 
-th:nth-child(n + 2):nth-child(-n + 20) {
-    width: 10vw; /* Adjust the width as needed */
-}
+    td {
+        border-bottom: 1px solid #d6d6d6;
+        height: 7.5vh;
+        padding-left: 5%;
+        font-size: 3vh;
+    }
 
-tr th:nth-child(odd) {
-    background-color: #f3f3f3;
-}
+    tr th:nth-child(1) {
+        width: 20%;
+    }
 
-tr th:nth-child(even) {
-    background-color: #e8e8fa;
-}
 
-tr td:nth-child(odd) {
-    background-color: #f3f3f3;
-}
+    th:nth-child(n + 2):nth-child(-n + 20) {
+        width: 10vw;
+        /* Adjust the width as needed */
+    }
 
-tr td:nth-child(even) {
-    background-color: #e8e8fa;
-}
+    tr th:nth-child(odd) {
+        background-color: #f3f3f3;
+    }
 
-tr td.special-id {
-    text-align: center;
-}
+    tr th:nth-child(even) {
+        background-color: #e8e8fa;
+    }
 
-.ceremonies-icon-schedule {
-    width: 2vw;
-    height: 3.5vh;
-}
+    tr td:nth-child(odd) {
+        background-color: #f3f3f3;
+    }
 
-.competition-icon-schedule {
-    width: 1.8vw;
-    height: 3.2vh;
-}
+    tr td:nth-child(even) {
+        background-color: #e8e8fa;
+    }
 
-.medal-status-icon-schedule {
-    width: 1.8vw;
-    height: 4.5vh;
-}
+    tr td.special-id {
+        text-align: center;
+    }
 
-.recorded-status-icon-schedule {
-    width: 1.8vw;
-    height: 4.5vh;
+    .ceremonies-icon-schedule {
+        width: 2vw;
+        height: 3.5vh;
+    }
+
+    .competition-icon-schedule {
+        width: 1.8vw;
+        height: 3.2vh;
+    }
+
+    .medal-status-icon-schedule {
+        width: 1.8vw;
+        height: 4.5vh;
+    }
+
+    .recorded-status-icon-schedule {
+        width: 1.8vw;
+        height: 4.5vh;
+    }
 }
