@@ -19,6 +19,7 @@ export default function CountrySelector ({ countriesLst, onCountrySelect, id, se
     const [disabledItems, ] = useState(new Set<string>());
     const [searchValue, setSearchValue] = useState("");
     const searchRef = useRef<HTMLInputElement>(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const handleItemClick = (option: any) => {
         if (!disabledItems.has(option)) {
@@ -30,13 +31,18 @@ export default function CountrySelector ({ countriesLst, onCountrySelect, id, se
     }
 
     useEffect(() => {
-        const handler = () => setShowMenu(false);
+        const handler = (e: any) => {
+            // Close the menu if a click happens outside the dropdown
+            if (inputRef.current && !inputRef.current.contains(e.target)) {
+                setShowMenu(false);
+            }
+        };
 
         window.addEventListener("click", handler);
         return () => {
             window.removeEventListener("click", handler);
         };
-    });
+    }, []);
 
     useEffect(() => {
         // Only update the internal state if the prop has actually changed
@@ -46,7 +52,7 @@ export default function CountrySelector ({ countriesLst, onCountrySelect, id, se
       }, [selectedCountry]); // Only listen to changes of selectedCountry
 
     const handleInputClick = (e: any) => {
-        e.stopPropagation();
+        // e.stopPropagation();
         if (!disabled) {
             setShowMenu(!showMenu);
         }
@@ -88,7 +94,7 @@ export default function CountrySelector ({ countriesLst, onCountrySelect, id, se
         <>
             <div className="input-container-item">
                 <div className="dropdown">
-                    <div className="country-selector" onClick={handleInputClick}> 
+                    <div className="country-selector" ref={inputRef} onClick={handleInputClick}> 
                     <div className="country-text" id={id}>
                         {getDisplay()}
                     </div>
