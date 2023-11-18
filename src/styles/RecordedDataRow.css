@@ -1,0 +1,38 @@
+.medal-value {
+    color: #c9c7c6;
+    max-height: 6vh;
+    text-align: center;
+    font-size: 2.5vw;
+    font-family: 'TH SarabunPSK';
+    margin-bottom: 7%;
+    /* Other styles */
+  }
+  
+  .bold {
+    font-weight: bold; 
+    color: #5a5855;
+  }
+
+.gold-medal-value { 
+    padding-left: 25%;
+}
+
+.silver-medal-value {
+    margin-left: 50%;
+}
+
+.bronze-medal-value {
+    padding-left: 25%;
+    margin-left: 75%;
+}
+
+.recorded-country {
+    box-sizing: border-box;
+    height: 3vw;
+    font-size: 1.5vw;
+    font-family: 'TH SarabunPSK';
+    justify-content: space-between;
+    margin-bottom: 7%;
+    font-weight: bold;
+    color: #5a5855;
+}

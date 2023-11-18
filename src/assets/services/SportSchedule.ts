@@ -3,10 +3,8 @@ import Cookies from "js-cookie";
 import { SportScheduleObject } from "../../interfaces/SportSchedule";
 import { SportObject } from "../../interfaces/Sport";
 
-
-const sportNameURL = 'http://127.0.0.1:8000/api/schedule/sport';
-const sportScheduleURL = 'http://127.0.0.1:8000/api/schedule/all'; // sport schedule API endpoint URL
-
+const sportNameURL = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport';
+const sportScheduleURL = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all';
 
 export const getSportName = (setSportNameList: React.Dispatch<React.SetStateAction<Array<SportObject>>>) => {
     axios.get(sportNameURL, {
@@ -25,7 +23,6 @@ export const getSportName = (setSportNameList: React.Dispatch<React.SetStateActi
     });
 }
 
-
 export const getSportSchedule = async (setSportScheduleList: React.Dispatch<React.SetStateAction<SportScheduleObject[]>>) => {
     await axios.get(sportScheduleURL, {
         headers: {
@@ -41,3 +38,4 @@ export const getSportSchedule = async (setSportScheduleList: React.Dispatch<Reac
         console.log(error);
     });
 };
+
