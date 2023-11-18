@@ -16,7 +16,7 @@ function Login() {
   const LoginUser = async (username: string, password: string) => {
     try {
       const response = await axios.post(
-          'http://127.0.0.1:8000/api/auth/token',
+          'https://referite-6538ffaf77b0.herokuapp.com/api/auth/token',
           { 
               username: username, 
               password: password,
@@ -24,16 +24,9 @@ function Login() {
           { 
             method: "POST",
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            // withCredentials: true,
           }
       )
-      // console.log(response.data.access_token);
-      // console.log(response.data.expired);
-      const currentDate = new Date()
       const expireDate = new Date(response.data.expired);
-
-      // console.log(currentDate)
-      // console.log(expireDate)
 
       Cookies.set('access_token', response.data.access_token, {expires: expireDate})
       navigate('/');
