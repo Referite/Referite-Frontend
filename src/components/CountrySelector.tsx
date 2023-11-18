@@ -5,21 +5,27 @@ interface CountrySelectorProps {
     countriesLst: string[];
     onCountrySelect: (country: string, countryText: string) => any; // Added countryText
     id: string; 
+    selectedCountry: any;
+    isNewRowAdded: any;
 }
 
 
-export default function CountrySelector ({ countriesLst, onCountrySelect, id }: CountrySelectorProps)
+export default function CountrySelector ({ countriesLst, onCountrySelect, id, selectedCountry }: CountrySelectorProps)
 {
 
     const [showMenu, setShowMenu] = useState(false);
     const [selectedValue, setSelectedValue] = useState(null);
     const [disabled, ] = useState(false);
     const [disabledItems, ] = useState(new Set<string>());
+    const [searchValue, setSearchValue] = useState("");
+    const searchRef = useRef<HTMLInputElement>(null);
 
     const handleItemClick = (option: any) => {
         if (!disabledItems.has(option)) {
             setSelectedValue(option);
             onCountrySelect(option, id);
+            setShowMenu(false);
+
         }
     }
 
@@ -31,6 +37,14 @@ export default function CountrySelector ({ countriesLst, onCountrySelect, id }: 
             window.removeEventListener("click", handler);
         };
     });
+
+    useEffect(() => {
+        // Only update the internal state if the prop has actually changed
+        if (selectedCountry !== selectedValue) {
+          setSelectedValue(selectedCountry || null);
+        }
+      }, [selectedCountry]); // Only listen to changes of selectedCountry
+
     const handleInputClick = (e: any) => {
         e.stopPropagation();
         if (!disabled) {
@@ -46,14 +60,10 @@ export default function CountrySelector ({ countriesLst, onCountrySelect, id }: 
     }
 
     const getDisplay = () => {
-        if (selectedValue) {
-            return <span className="selected">{selectedValue}</span>;
-        }
-        return <span className="default">Select Country</span>;
+        return selectedCountry ? <span className="selected">{selectedCountry}</span> : <span className="default">Select Country</span>;
     }
 
-    const [searchValue, setSearchValue] = useState("");
-    const searchRef = useRef<HTMLInputElement>(null);
+    
 
     useEffect(() => {
         setSearchValue("");

@@ -13,17 +13,16 @@ import competitionStatusIcon from '../assets/images/competition_status_icon.png'
 import medalStatusIcon from '../assets/images/medal_status_icon.png'
 import recordedStatusIcon from '../assets/images/recorded_status_icon.png'
 import '../styles/Home.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Home() {
   const [sportNameList, setSportNameList] = useState<Array<SportObject>>([]);
   const [sportScheduleList, setSportScheduleList] = useState<Array<SportScheduleObject>>([]);
-  const [sportNameListStatus, setSportNameListStatus] = useState<boolean>(false);
-  const [sportScheduleListStatus, setSportScheduleListStatus] = useState<boolean>(false);
   const [contexts, setContexts] = useState<any[][]>([]);
 
   useEffect(() => {
-      getSportName(setSportNameList, setSportNameListStatus)
-      getSportSchedule(setSportScheduleList, setSportScheduleListStatus);
+      getSportName(setSportNameList)
+      getSportSchedule(setSportScheduleList);
   }, [])
 
   const dateColumns: dateObject[] = [];
@@ -42,23 +41,37 @@ function Home() {
     });
   }
 
+  const navigate = useNavigate();
+  const handleNavigation = (sportId: number, date: any, event: any) => {
+    event.preventDefault();
+    navigate(`record/${sportId}`, { state: { date: date } });
+  };
+
   useEffect(() => {
     const context: any[][] = Array.from({ length: 46 }, () => []);
 
     sportScheduleList&&sportScheduleList.map((item) => {
       item.sport.map((sport, index) => {
-        console.log(sport)
+        // console.log(sport)
         if ( context[index].length == 0 ) {
             context[index].push(sport.sport_name)
         }
         else if (sport.sport_status == "RECORDED") {
-            context[index].push(<a href={`record/${sport.sport_id}`}><img src={recordedStatusIcon} className="recorded-status-icon-schedule" /></a>);
+          context[index].push(
+            <Link to={`record/${sport.sport_id}`} onClick={(event) => handleNavigation(sport.sport_id, item.datetime, event)}>
+              <img src={recordedStatusIcon} className="recorded-status-icon-schedule" />
+            </Link>
+          );
         }
         else if (sport.sport_status == "COMPETITIVE") {
             context[index].push(<a><img src={competitionStatusIcon} className="competition-icon-schedule" /></a>);
         }
         else if (sport.sport_status == "TROPHY") {
-            context[index].push(<a href={`record/${sport.sport_id}`}><img src={medalStatusIcon} className="medal-status-icon-schedule" /></a>);
+            context[index].push(
+              <Link to={`record/${sport.sport_id}`} onClick={(event) => handleNavigation(sport.sport_id, item.datetime, event)}>
+                <img src={medalStatusIcon} className="medal-status-icon-schedule" />
+              </Link>
+            );
         }
         else if (sport.sport_status == "CEREMONIES") {
             context[index].push(<a><img src={ceremoniesStatusIcon} className="ceremonies-icon-schedule" /></a>);
@@ -85,7 +98,6 @@ function Home() {
       return tdElements;
     }
   }
-  // console.log(contexts)
 
   return (
     <>
