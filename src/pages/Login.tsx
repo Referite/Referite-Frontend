@@ -16,7 +16,7 @@ function Login() {
   const LoginUser = async (username: string, password: string) => {
     try {
       const response = await axios.post(
-          'http://127.0.0.1:8000/api/auth/token',
+          'https://referite-6538ffaf77b0.herokuapp.com/api/auth/token',
           { 
               username: username, 
               password: password,
