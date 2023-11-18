@@ -28,7 +28,7 @@ export default function RecordInputRow ({
       </div>
       <input
         type="text"
-        className="medal-num-input"
+        className="medal-num-input gold-input"
         placeholder='0'
         id={`input1-${id}`}
         value={medalValues.input1}
@@ -36,7 +36,7 @@ export default function RecordInputRow ({
       />
       <input
         type="text"
-        className="medal-num-input"
+        className="medal-num-input silver-input"
         placeholder='0'
         id={`input2-${id}`}
         value={medalValues.input2}
@@ -44,7 +44,7 @@ export default function RecordInputRow ({
       />
       <input
         type="text"
-        className="medal-num-input"
+        className="medal-num-input bronze-input"
         placeholder='0'
         id={`input3-${id}`}
         value={medalValues.input3}
