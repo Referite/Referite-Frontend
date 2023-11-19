@@ -25,7 +25,7 @@ export default function Record () {
   sport_name: '',
   sport_types: []
   });
-
+  
   const [selectedType, setSelectedType] = useState(''); 
 
   const [serviceList, setServiceList] = useState(() => [

@@ -82,7 +82,7 @@ select option:checked {
 .header-container {
     /* flex: 1; */
     margin-left: 38%;
-    width: 75%;
+    width: 74%;
     display: grid;
     /* gap: 0.5%; */
     grid-template-columns: auto auto auto auto auto; 

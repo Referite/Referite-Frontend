@@ -118,5 +118,9 @@ export function successPopup (status: number) {
             showConfirmButton: false,
             timer: 1500
         });
+        // Set a timeout to reload the page after the popup closes
+        setTimeout(() => {
+            window.location.reload();
+        }, 1600); // Delay slightly longer than the popup timer
     }
 }

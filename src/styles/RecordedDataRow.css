@@ -5,7 +5,7 @@
     font-size: 2.5vw;
     font-family: 'TH SarabunPSK';
     margin-bottom: 7%;
-    /* Other styles */
+    width: 15%;
   }
   
   .bold {
@@ -13,26 +13,27 @@
     color: #5a5855;
   }
 
-.gold-medal-value { 
+/* .gold-medal-value { 
     padding-left: 25%;
-}
+} */
 
 .silver-medal-value {
-    margin-left: 50%;
+    margin-left: 34%;
 }
 
 .bronze-medal-value {
-    padding-left: 25%;
-    margin-left: 75%;
+    margin-left: 81%;
 }
 
 .recorded-country {
     box-sizing: border-box;
     height: 3vw;
-    font-size: 1.5vw;
+    font-size: 2vw;
     font-family: 'TH SarabunPSK';
     justify-content: space-between;
     margin-bottom: 7%;
     font-weight: bold;
     color: #5a5855;
+    width: 100%;
+    width:19vw;
 }
