@@ -1,0 +1,12 @@
+.popup-icon {
+    max-width: 100%; /* Ensures the popup is never wider than the viewport */
+    max-height: 100%;
+}
+
+.swal2-styled.swal2-confirm {
+    font-size: 1vw; /* Set the font size for the confirm button */
+}
+  
+.swal2-styled.swal2-cancel {
+    font-size: 1vw; /* Set the font size for the cancel button, if you have one */
+}
