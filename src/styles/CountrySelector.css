@@ -15,7 +15,7 @@
 .country-selector {
     display: flex;
     width: 20vw;
-    padding-left:10px;
+    padding-left:1vw;
     border-radius:17px;
     background-color: #f3f3f3;
     box-sizing: border-box;
