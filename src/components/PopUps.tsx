@@ -43,17 +43,17 @@ export function ConfirmationPopup (medalValues: any, sport:any, selectedType: st
             Swal.fire({ 
                 title: `<span style="color: #4d5499; font-size: 3vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> Carefully Check! </span>`,
                 html: `
-                        <p> 
-                            <span style="color: #4d5499; font-size: 2vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> 
-                                Sport: 
-                            </span> 
-                            ${sport.sport_name} 
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span style="color: #4d5499; font-size: 2vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> 
-                                Event: 
-                            </span> 
-                            ${selectedType}
-                        </p>
+                    <p> 
+                        <span style="color: #4d5499; font-size: 2vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> 
+                            Sport: 
+                        </span> 
+                        ${sport.sport_name} 
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style="color: #4d5499; font-size: 2vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> 
+                            Event: 
+                        </span> 
+                        ${selectedType}
+                    </p>
                     <div style="overflow-y: auto; max-height: 17vh">
                         ${medalsHtml}
                     </div>
