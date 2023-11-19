@@ -26,7 +26,7 @@ interface MedalValues {
     sport_types: []
     });
 
-    const [selectedType, setSelectedType] = useState(''); 
+    const [selectedType, setSelectedType] = useState('Select Sport Type...');
 
     const [serviceList, setServiceList] = useState(() => [
     { service: '', id: `service-${Date.now()}` },
@@ -107,7 +107,6 @@ interface MedalValues {
           sport?.sport_types?.find((type) => type.type_name === typeName)?.status
         );
       };
-
       const recordStatus = getTypeStatus(selectedType);
       console.log(recordStatus);
 
@@ -172,86 +171,90 @@ interface MedalValues {
       
     
     const RecordButtonClick = async () => {
-        const medalValues = serviceList.map((_, index) => {
-            // Convert service.id to a string if it's not already, to match the type in selectedCountries
-            console.log(selectedCountries);
-            const id = index + 1;
-            const country = selectedCountries.find(country => country.id == index + 1)?.country;
-            console.log(country);
-    
-            const medal1 = parseInt((document.getElementById(`input1-${id}`) as HTMLInputElement)?.value || '0', 10);
-            const medal2 = parseInt((document.getElementById(`input2-${id}`) as HTMLInputElement)?.value || '0', 10);
-            const medal3 = parseInt((document.getElementById(`input3-${id}`) as HTMLInputElement)?.value || '0', 10);
-    
-            if (isNaN(medal1) || isNaN(medal2) || isNaN(medal3)) {
-                ErrorPopup("Medal values must be numbers");
-            }
-    
-            return {
-                country,
-                medal: {
-                    gold: medal1,
-                    silver: medal2,
-                    bronze: medal3
-                }
-            };
-        });
-    
-        const filteredMedalValues = medalValues.filter((medalEntry) => {
-            return !(medalEntry.medal.gold === 0 && medalEntry.medal.silver === 0 && medalEntry.medal.bronze === 0);
-        });
+      const medalValues = serviceList.map((_, index) => {
+          // Convert service.id to a string if it's not already, to match the type in selectedCountries
+          console.log(selectedCountries);
+          const id = index + 1;
+          const country = selectedCountries.find(country => country.id == index + 1)?.country;
+          console.log(country);
+  
+          const medal1 = parseInt((document.getElementById(`input1-${id}`) as HTMLInputElement)?.value || '0', 10);
+          const medal2 = parseInt((document.getElementById(`input2-${id}`) as HTMLInputElement)?.value || '0', 10);
+          const medal3 = parseInt((document.getElementById(`input3-${id}`) as HTMLInputElement)?.value || '0', 10);
+  
+          if (isNaN(medal1) || isNaN(medal2) || isNaN(medal3)) {
+              ErrorPopup("Medal values must be numbers");
+          }
+  
+          return {
+              country,
+              medal: {
+                  gold: medal1,
+                  silver: medal2,
+                  bronze: medal3
+              }
+          };
+      });
+  
+      const filteredMedalValues = medalValues.filter((medalEntry) => {
+          return !(medalEntry.medal.gold === 0 && medalEntry.medal.silver === 0 && medalEntry.medal.bronze === 0);
+      });
 
-        const jsonString = {
-            sport_name: sport.sport_name,
-            participants: filteredMedalValues
-        };
+      const jsonString = {
+          sport_name: sport.sport_name,
+          participants: filteredMedalValues
+      };
 
-        try {
-            if (hasDuplicateCountries(jsonString.participants) == true) {
-                throw new Error("You have selected the same country");
-            } else if (hasNegativeMedal(jsonString.participants) == true) {
-                throw new Error("Medal values cannot be negative");
-            }
-            console.log(filteredMedalValues);
-            const msg: any = await getMessage(jsonString);
-            if (msg.data.hasOwnProperty("Monosport")) {
-                if (msg.data.hasOwnProperty("Warning")) {
-                    const mono_warning_msg = "There are only 1 country in this medal allocation. " + msg.data.Warning;
-                    WarningPopup(mono_warning_msg, filteredMedalValues, sport, selectedType, sport_id);
+      try {
+          if (hasDuplicateCountries(jsonString.participants) == true) {
+              throw new Error("You have selected the same country");
+          } else if (hasNegativeMedal(jsonString.participants) == true) {
+              throw new Error("Medal values cannot be negative");
+          }
+          console.log(filteredMedalValues);
+          const msg: any = await getMessage(jsonString);
+          if (msg.data.hasOwnProperty("Monosport")) {
+              if (msg.data.hasOwnProperty("Warning")) {
+                  const mono_warning_msg = "There are only 1 country in this medal allocation. " + msg.data.Warning;
+                  WarningPopup(mono_warning_msg, filteredMedalValues, sport, selectedType, sport_id);
+              } else {
+                  WarningPopup(msg.data.Monosport, filteredMedalValues, sport, selectedType, sport_id);
+              }
+          }
+          else if (msg.data.hasOwnProperty("Warning")) {
+              WarningPopup(msg.data.Warning, filteredMedalValues, sport, selectedType, sport_id);
+          } else {
+              ConfirmationPopup(filteredMedalValues, sport, selectedType, sport_id);
+          };
+      } catch (error: any) {
+          if (error.message === "You have selected the same country") {
+              // Handle the specific error message
+              ErrorPopup(error.message); 
+          } else if (error.message === "Medal values cannot be negative") {
+              ErrorPopup(error.message); 
+          } 
+          else if (error.response) {
+              // Handle other HTTP response status codes
+              if (error.response.status === 400) {
+                if (selectedType === "Select Sport Type...") {
+                  ErrorPopup("You didn't choose a sport type")
                 } else {
-                    WarningPopup(msg.data.Monosport, filteredMedalValues, sport, selectedType, sport_id);
+                  const errorMessage = error.response.data.detail;
+                  ErrorPopup(errorMessage); 
                 }
-            }
-            else if (msg.data.hasOwnProperty("Warning")) {
-                WarningPopup(msg.data.Warning, filteredMedalValues, sport, selectedType, sport_id);
-            } else {
-                ConfirmationPopup(filteredMedalValues, sport, selectedType, sport_id);
-            };
-        } catch (error: any) {
-            if (error.message === "You have selected the same country") {
-                // Handle the specific error message
-                ErrorPopup(error.message); 
-            } else if (error.message === "Medal values cannot be negative") {
-                ErrorPopup(error.message); 
-            } 
-            else if (error.response) {
-                // Handle other HTTP response status codes
-                if (error.response.status === 400) {
-                    const errorMessage = error.response.data.detail;
-                    ErrorPopup(errorMessage); 
-                } else if (error.response.status === 422) {
-                    filteredMedalValues.map((item) => {
-                        if (item.country == null){
-                            ErrorPopup("Please select country");
-                        }
-                    })
-                } else {
-                    console.log(error.response.status);
-                }
-            } else {
-                console.log(error)
-            }
-        }
+              } else if (error.response.status === 422) {
+                  filteredMedalValues.map((item) => {
+                      if (item.country == null){
+                          ErrorPopup("Please select country");
+                      }
+                  })
+              } else {
+                  console.log(error.response.status);
+              }
+          } else {
+              console.log(error)
+          }
+      }
     }
     
     const AddMoreCountry = () => {

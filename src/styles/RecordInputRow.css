@@ -7,11 +7,22 @@
     border-radius: .2em .2em 0 0;
     padding: .4em;
     width: 15%;
-    max-height: 6vh;
+    height: 50%;
     color: rgb(185, 185, 185);
     text-align: center;
-    margin-left: 40%;
     font-size: 1.25vw
+}
+
+.gold-input {
+    margin-left: 45%;
+}
+
+.silver-input {
+    margin-left: 35%;
+}
+
+.bronze-input {
+    margin-left: 32%;
 }
 
 .medal-num-input::placeholder {
