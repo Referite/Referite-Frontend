@@ -2,7 +2,6 @@ import Sidebar from "../components/SideBar";
 import RecordInputRow from "../components/RecordInputRow";
 import '../styles/Record.css';
 import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { getSportData } from '../assets/services/SportsDetails'
 import { getMessage } from "../assets/services/RecordMedal";
 import { useLocation } from 'react-router-dom';
@@ -11,7 +10,6 @@ import { SportData } from "../interfaces/Sport";
 import { SelectedCountry } from "../interfaces/Country";
 import RecordedDataRow from "../components/RecordedDataRow";
 import React from "react";
-import Cookies from "js-cookie";
 
 interface MedalValues {
   input1: string;
@@ -43,8 +41,6 @@ export default function Record () {
   const [selectedCountriesValues, setSelectedCountriesValues] = useState<string[]>(serviceList.map(() => ""));
   const [isNewRowAdded, setIsNewRowAdded] = useState(false);
   const [selectedCountries, setSelectedCountries] = useState<SelectedCountry[]>([]);
-  const navigate = useNavigate();
-
 
   const formatDate = (dateString: any) => {
       const date = dateString ? new Date(dateString) : null;
