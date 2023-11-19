@@ -32,7 +32,6 @@ function Login() {
       navigate('/');
       console.log('Login Successfully');
     } catch(err) {
-      console.log(err);
       navigate('/login');
       LoginWithWrongUAndP({title: "You cannot login", html: 'Wrong user id or password.'});
     };
