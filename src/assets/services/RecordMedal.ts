@@ -1,11 +1,12 @@
 import axios from "axios"
+import Cookies from "js-cookie";
 
 export async function getMessage(body: any){
     try {
         const msg = await axios.post(`https://referite-6538ffaf77b0.herokuapp.com/api/record/verify`, body,
         {
             headers: {
-                'authorization': "dev",
+                'authorization': Cookies.get('access_token'),
                 'Content-Type': 'application/json'
             }
         });
@@ -20,7 +21,7 @@ export async function UpdateToIOC(body: any) {
         const msg = await axios.post(`https://referite-6538ffaf77b0.herokuapp.com/api/record/medal/update`, body,
         {
             headers: {
-                'authorization': "dev",
+                'authorization': Cookies.get('access_token'),
                 'Content-Type': 'application/json'
             }
         });

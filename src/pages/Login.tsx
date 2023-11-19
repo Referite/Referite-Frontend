@@ -30,6 +30,7 @@ function Login() {
 
       Cookies.set('access_token', response.data.access_token, {expires: expireDate})
       navigate('/');
+      console.log('Login Successfully');
     } catch(err) {
       console.log(err);
       navigate('/login');

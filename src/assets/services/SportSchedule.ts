@@ -38,4 +38,3 @@ export const getSportSchedule = async (setSportScheduleList: React.Dispatch<Reac
         console.log(error);
     });
 };
-
