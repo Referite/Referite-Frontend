@@ -15,12 +15,13 @@
 .country-selector {
     display: flex;
     width: 20vw;
-    padding-left:10px;
+    padding-left:1vw;
     border-radius:17px;
     background-color: #f3f3f3;
     box-sizing: border-box;
     border: none;
     height: 3vw;
+    overflow-y: hidden;
     font-size: 1.5vw;
     font-family: 'TH SarabunPSK';
     color: #b9b9b9;
@@ -33,7 +34,7 @@
 }
 
 .country-text {
-    padding-top: 10px;
+    padding-top: 3.5%;
 }
 
 .dropdown-tools {
