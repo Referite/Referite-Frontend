@@ -2,10 +2,9 @@ import Sidebar from "../components/SideBar";
 import RecordInputRow from "../components/RecordInputRow";
 import '../styles/Record.css';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { getSportData } from '../assets/services/SportsDetails'
 import { getMessage } from "../assets/services/RecordMedal";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { ErrorPopup, ConfirmationPopup, WarningPopup } from "../components/PopUps";
 import { SportData } from "../interfaces/Sport";
 import { SelectedCountry } from "../interfaces/Country";
@@ -18,155 +17,154 @@ interface MedalValues {
   input3: string;
 }
   
-  export default function Record () {
-    
+export default function Record () {
 
-    const [sport, setSport] = useState<SportData>({
-    sport_name: '',
-    sport_types: []
-    });
-
-    const [selectedType, setSelectedType] = useState('Select Sport Type...');
-
-    const [serviceList, setServiceList] = useState(() => [
-    { service: '', id: `service-${Date.now()}` },
-    { service: '', id: `service-${Date.now() + 1}` },
-    { service: '', id: `service-${Date.now() + 2}` }
-    ]);
-
-    const [medalValuesList, setMedalValuesList] = useState<MedalValues[]>(serviceList.map(() => ({
-      input1: '',
-      input2: '',
-      input3: '',
-    })));
-
-    const [selectedCountriesValues, setSelectedCountriesValues] = useState<string[]>(serviceList.map(() => ""));
-    const [isNewRowAdded, setIsNewRowAdded] = useState(false);
-    const [selectedCountries, setSelectedCountries] = useState<SelectedCountry[]>([]);
-
-
-    const formatDate = (dateString: any) => {
-        const date = dateString ? new Date(dateString) : null;
-      
-        if (date) {
-          const day = date.getDate().toString().padStart(2, '0');
-          const month = (date.getMonth() + 1).toString().padStart(2, '0');
-          const year = date.getFullYear();
-      
-          return `${day} / ${month} / ${year}`;
-        }
-      
-        return '';
-      };
-      
-      const { sport_id } = useParams<{ sport_id: string }>(); // get sport_id from url
-      
-      const location = useLocation();
-      const date = location.state.date;
-
-      useEffect(() => {
-        if (sport_id) {
-          getSportData(sport_id, date)
-            .then(data => setSport(data))
-            .catch(err => console.log(err));
-        }
-      }, [sport_id]);
-      
-      const typesName: string[] = [];
-      for (const t of sport.sport_types) {
-        typesName.push(t.type_name);
-      }
-
-      // useEffect(() => {
-      //   setSelectedCountriesValues(serviceList.map(() => ""));
-      // }, [selectedType, serviceList]);
-      
-      const handleChangeType = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedType(e.target.value);
-      
-        // Reset medal values for all rows to allow input after type change
-        setMedalValuesList(serviceList.map(() => ({
-          input1: '',
-          input2: '',
-          input3: '',
-        })));
-      };
-
-      const handleMedalInputChange = (rowIndex: number, inputName: string, value: string) => {
-        setMedalValuesList((prevValues) => prevValues.map((values, index) => {
-          if (index === rowIndex) {
-            return { ...values, [inputName]: value };
-          }
-          return values;
-        }));
-      };
-
-      const getTypeStatus = (typeName: string): string | undefined => {
-        return (
-          typeName &&
-          sport?.sport_types?.find((type) => type.type_name === typeName)?.status
-        );
-      };
-      const recordStatus = getTypeStatus(selectedType);
-      console.log(recordStatus);
-
-      const participatingCountries = recordStatus === "TROPHY"
-      ? selectedType && sport?.sport_types.find((type) => type.type_name === selectedType)?.participating_countries || []
-      : [];
-
-      const medalsData = recordStatus === "RECORDED"
-          ? selectedType && sport?.sport_types.find((type) => type.type_name === selectedType)?.participants
-          : null;
-
-      function hasDuplicateCountries(participants: { country: string | undefined; medal: { gold: number; silver: number; bronze: number; }; }[]): boolean {
-        const countriesSet = new Set<string>();
-      
-        for (const participant of participants) {
-          const country = participant.country;
-      
-          if (country !== undefined && countriesSet.has(country)) {
-            return true; // Found a duplicate country
-          } else if (country !== undefined) {
-            countriesSet.add(country);
-          }
-        }
-      
-        return false; // No duplicate countries found
-      }
-      
-      function hasNegativeMedal(participants: { country: string | undefined; medal: { gold: number; silver: number; bronze: number; }; }[]): boolean {
-        for (let i = 0; i < participants.length; i++) {
-          const medal = participants[i].medal;
-          if (medal.gold < 0 || medal.silver < 0 || medal.bronze < 0) {
-            return true;
-          }
-        }
-        return false;
-      }
-      
-      const handleCountrySelect = (country: string, index: number, id: number) => {
-        console.log(country);
-        // Update the selected country value for the specified index
-        setSelectedCountriesValues(prevValues =>
-          prevValues.map((prevValue, i) => (i === index ? country : prevValue))
-        );
-
-        setSelectedCountries(prevCountries => {
-          try {
-              const newCountries = prevCountries.filter(c => c.id !== id);
-              return [...newCountries, { id, country }];
+  const [sport, setSport] = useState<SportData>({
+  sport_name: '',
+  sport_types: []
+  });
   
-              
-          } catch (error: any) {
-              console.error(error.message);
-              return prevCountries;
-          }
-      });
-      };
+  const [selectedType, setSelectedType] = useState(''); 
 
-      useEffect(() => {
-        setSelectedCountriesValues(serviceList.map(() => ""));
-      }, [selectedType]); 
+  const [serviceList, setServiceList] = useState(() => [
+  { service: '', id: `service-${Date.now()}` },
+  { service: '', id: `service-${Date.now() + 1}` },
+  { service: '', id: `service-${Date.now() + 2}` }
+  ]);
+
+  const [medalValuesList, setMedalValuesList] = useState<MedalValues[]>(serviceList.map(() => ({
+    input1: '',
+    input2: '',
+    input3: '',
+  })));
+
+  const [selectedCountriesValues, setSelectedCountriesValues] = useState<string[]>(serviceList.map(() => ""));
+  const [isNewRowAdded, setIsNewRowAdded] = useState(false);
+  const [selectedCountries, setSelectedCountries] = useState<SelectedCountry[]>([]);
+
+  const formatDate = (dateString: any) => {
+      const date = dateString ? new Date(dateString) : null;
+    
+      if (date) {
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+    
+        return `${day} / ${month} / ${year}`;
+      }
+    
+      return '';
+    };
+    
+    const { sport_id } = useParams<{ sport_id: string }>(); // get sport_id from url
+    
+    const location = useLocation();
+    const date = location.state?.date;
+
+    useEffect(() => {
+      if (sport_id) {
+        getSportData(sport_id, date)
+          .then(data => setSport(data))
+          .catch(err => console.log(err));
+      }
+    }, [sport_id]);
+    
+    const typesName: string[] = [];
+    for (const t of sport.sport_types) {
+      typesName.push(t.type_name);
+    }
+
+    // useEffect(() => {
+    //   setSelectedCountriesValues(serviceList.map(() => ""));
+    // }, [selectedType, serviceList]);
+    
+    const handleChangeType = (e: React.ChangeEvent<HTMLSelectElement>) => {
+      setSelectedType(e.target.value);
+    
+      // Reset medal values for all rows to allow input after type change
+      setMedalValuesList(serviceList.map(() => ({
+        input1: '',
+        input2: '',
+        input3: '',
+      })));
+    };
+
+    const handleMedalInputChange = (rowIndex: number, inputName: string, value: string) => {
+      setMedalValuesList((prevValues) => prevValues.map((values, index) => {
+        if (index === rowIndex) {
+          return { ...values, [inputName]: value };
+        }
+        return values;
+      }));
+    };
+
+    const getTypeStatus = (typeName: string): string | undefined => {
+      return (
+        typeName &&
+        sport?.sport_types?.find((type) => type.type_name === typeName)?.status
+      );
+    };
+
+    const recordStatus = getTypeStatus(selectedType);
+    console.log(recordStatus);
+
+    const participatingCountries = recordStatus === "TROPHY"
+    ? selectedType && sport?.sport_types.find((type) => type.type_name === selectedType)?.participating_countries || []
+    : [];
+
+    const medalsData = recordStatus === "RECORDED"
+        ? selectedType && sport?.sport_types.find((type) => type.type_name === selectedType)?.participants
+        : null;
+
+    function hasDuplicateCountries(participants: { country: string | undefined; medal: { gold: number; silver: number; bronze: number; }; }[]): boolean {
+      const countriesSet = new Set<string>();
+    
+      for (const participant of participants) {
+        const country = participant.country;
+    
+        if (country !== undefined && countriesSet.has(country)) {
+          return true; // Found a duplicate country
+        } else if (country !== undefined) {
+          countriesSet.add(country);
+        }
+      }
+    
+      return false; // No duplicate countries found
+    }
+    
+    function hasNegativeMedal(participants: { country: string | undefined; medal: { gold: number; silver: number; bronze: number; }; }[]): boolean {
+      for (let i = 0; i < participants.length; i++) {
+        const medal = participants[i].medal;
+        if (medal.gold < 0 || medal.silver < 0 || medal.bronze < 0) {
+          return true;
+        }
+      }
+      return false;
+    }
+      
+    const handleCountrySelect = (country: string, index: number, id: number) => {
+      console.log(country);
+      // Update the selected country value for the specified index
+      setSelectedCountriesValues(prevValues =>
+        prevValues.map((prevValue, i) => (i === index ? country : prevValue))
+      );
+
+      setSelectedCountries(prevCountries => {
+        try {
+            const newCountries = prevCountries.filter(c => c.id !== id);
+            return [...newCountries, { id, country }];
+
+            
+        } catch (error: any) {
+            console.error(error.message);
+            return prevCountries;
+        }
+    });
+    };
+
+    useEffect(() => {
+      setSelectedCountriesValues(serviceList.map(() => ""));
+    }, [selectedType]); 
       
       
     
@@ -227,33 +225,29 @@ interface MedalValues {
               ConfirmationPopup(filteredMedalValues, sport, selectedType, sport_id);
           };
       } catch (error: any) {
-          if (error.message === "You have selected the same country") {
-              // Handle the specific error message
-              ErrorPopup(error.message); 
-          } else if (error.message === "Medal values cannot be negative") {
-              ErrorPopup(error.message); 
-          } 
-          else if (error.response) {
-              // Handle other HTTP response status codes
-              if (error.response.status === 400) {
-                if (selectedType === "Select Sport Type...") {
-                  ErrorPopup("You didn't choose a sport type")
-                } else {
-                  const errorMessage = error.response.data.detail;
-                  ErrorPopup(errorMessage); 
-                }
-              } else if (error.response.status === 422) {
-                  filteredMedalValues.map((item) => {
-                      if (item.country == null){
-                          ErrorPopup("Please select country");
-                      }
-                  })
-              } else {
-                  console.log(error.response.status);
-              }
-          } else {
-              console.log(error)
-          }
+        if (error.message === "You have selected the same country") {
+            // Handle the specific error message
+            ErrorPopup(error.message); 
+        } else if (error.message === "Medal values cannot be negative") {
+            ErrorPopup(error.message); 
+        } 
+        else if (error.response) {
+            // Handle other HTTP response status codes
+            if (error.response.status === 400) {
+                const errorMessage = error.response.data.detail;
+                ErrorPopup(errorMessage); 
+            } else if (error.response.status === 422) {
+                filteredMedalValues.map((item) => {
+                    if (item.country == null){
+                        ErrorPopup("Please select country");
+                    }
+                })
+            } else {
+                console.log(error.response.status);
+            }
+        } else {
+            console.log(error)
+        }
       }
     }
     
@@ -267,25 +261,23 @@ interface MedalValues {
 
     // Then reset the flag on the next render
     useEffect(() => {
-        if (isNewRowAdded) {
-            // Give enough time for the child components to pick up the new flag
-            const timer = setTimeout(() => {
-                setIsNewRowAdded(false);
-            }, 0);
+      if (isNewRowAdded) {
+          // Give enough time for the child components to pick up the new flag
+          const timer = setTimeout(() => {
+              setIsNewRowAdded(false);
+          }, 0);
 
-            return () => clearTimeout(timer);
-        }
+          return () => clearTimeout(timer);
+      }
     }, [isNewRowAdded]);
-      
+
     const RemoveRow = (serviceId: string) => {
       console.log(serviceId);
       setServiceList(serviceList.filter(service => service.id !== serviceId));
       setMedalValuesList(medalValuesList.filter((_, index) => serviceList[index].id !== serviceId));
       setSelectedCountriesValues(selectedCountriesValues.filter((_, index) => serviceList[index].id !== serviceId));
     };
-
-    
-        
+  
     return (
         <>
             <Sidebar />

@@ -37,7 +37,9 @@ export default function Sidebar () {
                 </Link>
             </div>
             <div className='information'>
-                <img src={information_logo} className="information-logo-pic" />
+                <a href="https://docs.google.com/document/d/1Vcdsr0bUD3-XN6FUIluWj6KTJIivQr0k-Xh2btUErCA/edit">
+                    <img src={information_logo} className="information-logo-pic" />
+                </a>
             </div>
             <div className="return-button">
                 <Link to="/login">
