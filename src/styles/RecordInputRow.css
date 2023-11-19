@@ -7,10 +7,22 @@
     border-radius: .2em .2em 0 0;
     padding: .4em;
     width: 15%;
-    max-height: 6vh;
+    height: 50%;
     color: rgb(185, 185, 185);
     text-align: center;
-    margin-left: 40%;
+    font-size: 1.25vw
+}
+
+.gold-input {
+    margin-left: 45%;
+}
+
+.silver-input {
+    margin-left: 35%;
+}
+
+.bronze-input {
+    margin-left: 32%;
 }
 
 .medal-num-input::placeholder {
@@ -25,31 +37,20 @@
     color: transparent;
 }
 
-.type-selector {
-    width: 20vw;
-    height: auto;
-    padding: 12px 20px;
-    border-radius:10px;
-    border: none;
-    background-color: #cdcefa;
-}
-
-
 .delete-button {
     font-family: 'Aptos';
     font-size: 1.4vw;
     cursor: pointer; 
     background-color: transparent; 
     border: none;
-    /* padding-left: 60%;
-    margin-left: 105%; */
-    /* border: solid 1px red; */
+    padding-left: 60%;
+    margin-left: 105%;
 }
 
 .delete-icon {
     width: 1.5vw;
     height: auto;
-    opacity: 0;
+    opacity: 0.3;
     transition: opacity 0.3s ease;
 }
 

@@ -1,46 +1,140 @@
-.side-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 4.5%;
-    height: 100%;
-    background-color: #363b7a;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+@media screen and (min-width: 721px), screen and (min-height: 551px) {
+    .side-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 4.5%;
+        height: 100%;
+        background-color: #363b7a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo {
+        position: absolute;
+        top: 0;
+        color: white;
+        margin-top: 3.5vh;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .information {
+        position: absolute;
+        top: 1;
+        margin-bottom: 62vh;
+    }
+
+    .return-button {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 30%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sidebar-logo-pic {
+        max-width: 3vw;
+        height: auto;
+    }
+
+    .information-logo-pic {
+        max-width: 3.5vw;
+        height: auto;
+        margin-top: 100%;
+    }
+
+    .logout-logo-pic {
+        max-width: 2vw;
+        height: auto;
+    }
 }
 
-.logo {
-    position: absolute;
-    top: 0;
-    color: white;
-    margin-top: 20%;
-    justify-content: center;
-    align-items: center;
+
+@media screen and (max-width: 720px), screen and (max-height: 550px) {
+    .side-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 4.5%;
+        height: 100%;
+        background-color: #363b7a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo {
+        position: absolute;
+        top: 0;
+        color: white;
+        margin-top: 20%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .information {
+        position: absolute;
+        top: 1;
+        margin-bottom: 60vh;
+    }
+
+    .return-button {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: 30%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .sidebar-logo-pic {
+        max-width: 3vw;
+        height: auto;
+    }
+
+    .information-logo-pic {
+        max-width: 3.5vw;
+        height: auto;
+    }
+
+    .logout-logo-pic {
+        max-width: 2vw;
+        height: auto;
+    }
 }
 
-.return-button {
-    color: white;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 30%;
-    justify-content: center;
-    align-items: center;
-}
 
-.logo-pic {
-    max-width: 3vw;
-    height: auto;
-}
+@media screen and (max-height: 250px) {
+    .information {
+        position: absolute;
+        top: 1;
+        margin-top: 35%;
+    }
 
-.return-pic {
-    max-width: 1.5vw;
-    height: auto;
-}
+    .sidebar-logo-pic {
+        max-width: 3vw;
+        height: auto;
+    }
 
-.btn {
-    background-color: transparent;
-    border: none;
-    outline:none;
-    cursor: pointer;
+    .information-logo-pic {
+        max-width: 3.5vw;
+        height: auto;
+    }
+
+    .logout-logo-pic {
+        max-width: 2vw;
+        height: auto;
+    }
+    
+    .return-button {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        margin-bottom: auto;
+        justify-content: center;
+        align-items: center;
+    }
 }
