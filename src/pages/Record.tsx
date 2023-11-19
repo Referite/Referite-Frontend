@@ -24,7 +24,7 @@ export default function Record () {
   sport_types: []
   });
   
-  const [selectedType, setSelectedType] = useState(''); 
+  const [selectedType, setSelectedType] = useState('Select Sport Type...'); 
 
   const [serviceList, setServiceList] = useState(() => [
   { service: '', id: `service-${Date.now()}` },
@@ -234,8 +234,12 @@ export default function Record () {
         else if (error.response) {
             // Handle other HTTP response status codes
             if (error.response.status === 400) {
+              if (selectedType === "Select Sport Type...") {
+                ErrorPopup("You didn't select any sport type");
+              } else {
                 const errorMessage = error.response.data.detail;
                 ErrorPopup(errorMessage); 
+              }
             } else if (error.response.status === 422) {
                 filteredMedalValues.map((item) => {
                     if (item.country == null){
