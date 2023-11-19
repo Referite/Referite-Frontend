@@ -4,7 +4,7 @@ import '../styles/Record.css';
 import { useState, useEffect } from 'react';
 import { getSportData } from '../assets/services/SportsDetails'
 import { getMessage } from "../assets/services/RecordMedal";
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { ErrorPopup, ConfirmationPopup, WarningPopup } from "../components/PopUps";
 import { SportData } from "../interfaces/Sport";
 import { SelectedCountry } from "../interfaces/Country";
