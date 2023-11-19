@@ -37,7 +37,7 @@ export default function Sidebar () {
                 </Link>
             </div>
             <div className='information'>
-                <a href="https://docs.google.com/document/d/1Vcdsr0bUD3-XN6FUIluWj6KTJIivQr0k-Xh2btUErCA/edit">
+                <a href="https://drive.google.com/file/d/1d-70xUqSSYS045Lbe6G2hZzCoUym_Fiv/view">
                     <img src={information_logo} className="information-logo-pic" />
                 </a>
             </div>
