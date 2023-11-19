@@ -43,18 +43,20 @@ export function ConfirmationPopup (medalValues: any, sport:any, selectedType: st
             Swal.fire({ 
                 title: `<span style="color: #4d5499; font-size: 3vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> Carefully Check! </span>`,
                 html: `
-                    <p> 
-                        <span style="color: #4d5499; font-size: 2vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> 
-                            Sport: 
-                        </span> 
-                        ${sport.sport_name} 
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span style="color: #4d5499; font-size: 2vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> 
-                            Event: 
-                        </span> 
-                        ${selectedType}
-                    </p>
-                    ${medalsHtml}
+                        <p> 
+                            <span style="color: #4d5499; font-size: 2vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> 
+                                Sport: 
+                            </span> 
+                            ${sport.sport_name} 
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span style="color: #4d5499; font-size: 2vw; font-family: 'TH SarabunPSK'; font-weight: bold;"> 
+                                Event: 
+                            </span> 
+                            ${selectedType}
+                        </p>
+                    <div style="overflow-y: auto; max-height: 17vh">
+                        ${medalsHtml}
+                    </div>
                     <br><br>
                     <span style="color: red; font-size: 1.5vw; font-family: 'TH SarabunPSK';"> 
                         After confirmation, any medal changes require contacting the IOC.
