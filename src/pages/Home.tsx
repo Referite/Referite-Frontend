@@ -1,4 +1,4 @@
-import { useEffect, useState, CSSProperties } from "react";
+import { useEffect, useState } from "react";
 import { getSportSchedule, getSportName } from "../assets/services/SportSchedule";
 import { SportScheduleObject, dateObject } from "../interfaces/SportSchedule";
 import { SportObject } from "../interfaces/Sport";
@@ -13,6 +13,7 @@ import competitionStatusIcon from '../assets/images/competition_status_icon.png'
 import medalStatusIcon from '../assets/images/medal_status_icon.png'
 import recordedStatusIcon from '../assets/images/recorded_status_icon.png'
 import { Link, useNavigate } from 'react-router-dom';
+import { override, loaderContainerStyle } from '../styles/ClipLoaderStyles'
 import ClipLoader from "react-spinners/ClipLoader";
 import '../styles/Home.css';
 
@@ -21,24 +22,6 @@ function Home() {
   const [sportScheduleList, setSportScheduleList] = useState<Array<SportScheduleObject>>([]);
   const [contexts, setContexts] = useState<any[][]>([]);
   const [loading, setLoading] = useState(false);
-
-  const override: CSSProperties = {
-    display: "block",
-    margin: "0 auto",
-    borderWidth: "0.5vw"
-  };
-
-  const loaderContainerStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    width: '100vw',
-    position: 'absolute', // TypeScript should now understand this as a valid value
-    top: 0,
-    left: 0,
-    zIndex: 1000
-  };
 
   useEffect(() => {
     setLoading(true)

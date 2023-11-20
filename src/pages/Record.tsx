@@ -1,6 +1,6 @@
 import Sidebar from "../components/SideBar";
 import RecordInputRow from "../components/RecordInputRow";
-import { useState, useEffect, Fragment, CSSProperties } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { getSportData } from '../assets/services/SportsDetails'
 import { getMessage } from "../assets/services/RecordMedal";
 import { useLocation, useParams } from 'react-router-dom';
@@ -9,6 +9,7 @@ import { SportData } from "../interfaces/Sport";
 import { SelectedCountry } from "../interfaces/Country";
 import RecordedDataRow from "../components/RecordedDataRow";
 import ClipLoader from "react-spinners/ClipLoader";
+import { override, loaderContainerStyle } from '../styles/ClipLoaderStyles'
 import '../styles/Record.css';
 
 interface MedalValues {
@@ -42,25 +43,6 @@ export default function Record () {
   const [isNewRowAdded, setIsNewRowAdded] = useState(false);
   const [selectedCountries, setSelectedCountries] = useState<SelectedCountry[]>([]);
   const [loading, setLoading] = useState(false);
-
-  // css properties for loading screen
-  const override: CSSProperties = {
-    display: "block",
-    margin: "0 auto",
-    borderWidth: "0.5vw"
-  };
-
-  const loaderContainerStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    width: '100vw',
-    position: 'absolute', 
-    top: 0,
-    left: 0,
-    zIndex: 1000
-  };
 
   useEffect(() => {
     setLoading(true)
@@ -100,10 +82,6 @@ export default function Record () {
     for (const t of sport.sport_types) {
       typesName.push(t.type_name);
     }
-
-    // useEffect(() => {
-    //   setSelectedCountriesValues(serviceList.map(() => ""));
-    // }, [selectedType, serviceList]);
     
     const handleChangeType = (e: React.ChangeEvent<HTMLSelectElement>) => {
       setSelectedType(e.target.value);
