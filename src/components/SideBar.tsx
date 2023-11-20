@@ -5,6 +5,7 @@ import logout_logo from '../assets/images/logout_logo.png'
 import { Link, useNavigate } from 'react-router-dom'
 import Cookies from 'js-cookie';
 import axios from 'axios';
+import { API_URL } from '../../config.ts'
 
 export default function Sidebar () {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function Sidebar () {
     const Logout = async () => {
 
         const response = await axios.get(
-            'https://referite-6538ffaf77b0.herokuapp.com/api/auth/logout', {
+            `${API_URL}/api/auth/logout`, {
                 headers: {
                     'authorization': Cookies.get('access_token'),
                     'Content-Type': 'application/json'

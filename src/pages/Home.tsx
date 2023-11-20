@@ -12,8 +12,8 @@ import ceremoniesStatusIcon from '../assets/images/ceremonies_status.png'
 import competitionStatusIcon from '../assets/images/competition_status_icon.png'
 import medalStatusIcon from '../assets/images/medal_status_icon.png'
 import recordedStatusIcon from '../assets/images/recorded_status_icon.png'
-import '../styles/Home.css';
 import { Link, useNavigate } from 'react-router-dom';
+import '../styles/Home.css';
 
 function Home() {
   const [sportNameList, setSportNameList] = useState<Array<SportObject>>([]);

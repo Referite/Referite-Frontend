@@ -1,9 +1,10 @@
 import axios from "axios"
 import Cookies from "js-cookie";
+import { API_URL } from '../../../config.ts'
 
 export async function getMessage(body: any){
     try {
-        const msg = await axios.post(`https://referite-6538ffaf77b0.herokuapp.com/api/record/verify`, body,
+        const msg = await axios.post(`${API_URL}/api/record/verify`, body,
         {
             headers: {
                 'authorization': Cookies.get('access_token'),
@@ -18,7 +19,7 @@ export async function getMessage(body: any){
 
 export async function UpdateToIOC(body: any) {
     try {
-        const msg = await axios.post(`https://referite-6538ffaf77b0.herokuapp.com/api/record/medal/update`, body,
+        const msg = await axios.post(`${API_URL}/api/record/medal/update`, body,
         {
             headers: {
                 'authorization': Cookies.get('access_token'),
