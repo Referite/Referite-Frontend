@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import referiteLogo from '../assets/images/referite_logo.png';
 import LoginWithWrongUAndP from '../components/pop_up/LoginWithWrongUAndP';
 import ForgotPassword from '../components/pop_up/ForgotPassword';
+import { API_URL } from '../../config.ts'
 import '../styles/Login.css';
 
 function Login() {
@@ -15,7 +16,7 @@ function Login() {
   const LoginUser = async (username: string, password: string) => {
     try {
       const response = await axios.post(
-          'https://referite-6538ffaf77b0.herokuapp.com/api/auth/token',
+          `${API_URL}/api/auth/token`,
           { 
               username: username, 
               password: password,
