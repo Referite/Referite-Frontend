@@ -1,6 +1,6 @@
 import Sidebar from "../components/SideBar";
 import RecordInputRow from "../components/RecordInputRow";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { getSportData } from '../assets/services/SportsDetails'
 import { getMessage } from "../assets/services/RecordMedal";
 import { useLocation, useParams } from 'react-router-dom';
@@ -8,7 +8,8 @@ import { ErrorPopup, ConfirmationPopup, WarningPopup } from "../components/PopUp
 import { SportData } from "../interfaces/Sport";
 import { SelectedCountry } from "../interfaces/Country";
 import RecordedDataRow from "../components/RecordedDataRow";
-import React from "react";
+import ClipLoader from "react-spinners/ClipLoader";
+import { override, loaderContainerStyle } from '../styles/ClipLoaderStyles'
 import '../styles/Record.css';
 
 interface MedalValues {
@@ -41,6 +42,14 @@ export default function Record () {
   const [selectedCountriesValues, setSelectedCountriesValues] = useState<string[]>(serviceList.map(() => ""));
   const [isNewRowAdded, setIsNewRowAdded] = useState(false);
   const [selectedCountries, setSelectedCountries] = useState<SelectedCountry[]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 5000)
+  }, [])
 
   const formatDate = (dateString: any) => {
       const date = dateString ? new Date(dateString) : null;
@@ -73,10 +82,6 @@ export default function Record () {
     for (const t of sport.sport_types) {
       typesName.push(t.type_name);
     }
-
-    // useEffect(() => {
-    //   setSelectedCountriesValues(serviceList.map(() => ""));
-    // }, [selectedType, serviceList]);
     
     const handleChangeType = (e: React.ChangeEvent<HTMLSelectElement>) => {
       setSelectedType(e.target.value);
@@ -288,111 +293,124 @@ export default function Record () {
   
     return (
         <>
-            <Sidebar />
-            <div className="record-page-container">
-                <div className="sport-info-container">
-                    <div className="type-topic-container">
-                        <label className="sport-topic"> {sport.sport_name} </label>
-                        <select
-                            className="type-selector"
-                            value={selectedType}
-                            onChange={handleChangeType}
-                            >
-                            <option > Select Sport Type... </option>
-                            {typesName.map((i, index) => (
-                                <option key={index} value={i}>
-                                    {i}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="sport-info">
-                        <label className="participants"> 
-                            Competition Date: {" "}
-                            <span className="countries-num"> 
-                                {formatDate(date)}
-                                {" "}  
-                            </span> 
-                        </label>
-                        <label className="participants"> 
-                            Participating countries: {" "}
-                            <span className="countries-num"> 
-                                {selectedType && sport.sport_types.find((type)=> type.type_name == selectedType)?.participating_country_count}
-                                {" "}  
-                            </span> 
-                        </label>
-                    </div>
-                </div>
-                <div className="border-container">
-                    <div className="recording-container">
-                        <div className="header-container">
-                            <div className="header-item"> <label className="medal"> Gold </label> </div>
-                            <div className="header-item"> <label className="medal"> Silver </label> </div>
-                            <div className="header-item"> <label className="medal"> Bronze </label> </div>
+
+        {loading ? (
+            <div style={loaderContainerStyle}>
+              <ClipLoader
+                color="#a6a6a6"
+                cssOverride={override}
+                size={100}
+              />
+            </div>
+            ) : (
+              <div>
+                <Sidebar />
+                <div className="record-page-container">
+                    <div className="sport-info-container">
+                        <div className="type-topic-container">
+                            <label className="sport-topic"> {sport.sport_name} </label>
+                            <select
+                                className="type-selector"
+                                value={selectedType}
+                                onChange={handleChangeType}
+                                >
+                                <option > Select Sport Type... </option>
+                                {typesName.map((i, index) => (
+                                    <option key={index} value={i}>
+                                        {i}
+                                    </option>
+                                ))}
+                            </select>
                         </div>
-                        <div className='big-input-container'>
-                            <div className="input-container">
-                            {recordStatus === "RECORDED" ? (
-                              // Directly map over medalsData to display recorded rows
-                              // Assuming medalsData is available in the component's scope
-                              medalsData.map((data: { country: string; medal: { gold: number; silver: number; bronze: number; }; }) => (
-                                <RecordedDataRow
-                                  key={data.country}
-                                  country={data.country}
-                                  goldValue={data.medal.gold}
-                                  silverValue={data.medal.silver}
-                                  bronzeValue={data.medal.bronze}
-                                />
-                              ))
-                            ) : (
-                              // Render input rows for adding new data or editing existing data
-                              serviceList.map((service, index) => (
-                                <React.Fragment key={service.id}>
-                                  <RecordInputRow
-                                    id={String(index + 1)}
-                                    countriesLst={participatingCountries} // replace emptyLst with actual countries list if available
-                                    medalValues={medalValuesList[index]}
-                                    selectedCountry={selectedCountriesValues[index]}
-                                    onButtonClick={(event: { stopPropagation: () => void; }) => {
-                                      event.stopPropagation();
-                                      RemoveRow(service.id);
-                                    }}
-                                    onCountrySelect={(country: string) => handleCountrySelect(country, index, index + 1)}
-                                    onMedalInputChange={(inputName: string, value: string) => handleMedalInputChange(index, inputName, value)}
-                                    isNewRowAdded={isNewRowAdded && index === serviceList.length - 1}
-                                  />
-                                </React.Fragment>
-                              ))
-                            )}
+                        <div className="sport-info">
+                            <label className="participants"> 
+                                Competition Date: {" "}
+                                <span className="countries-num"> 
+                                    {formatDate(date)}
+                                    {" "}  
+                                </span> 
+                            </label>
+                            <label className="participants"> 
+                                Participating countries: {" "}
+                                <span className="countries-num"> 
+                                    {selectedType && sport.sport_types.find((type)=> type.type_name == selectedType)?.participating_country_count}
+                                    {" "}  
+                                </span> 
+                            </label>
+                        </div>
+                    </div>
+                    <div className="border-container">
+                        <div className="recording-container">
+                            <div className="header-container">
+                                <div className="header-item"> <label className="medal"> Gold </label> </div>
+                                <div className="header-item"> <label className="medal"> Silver </label> </div>
+                                <div className="header-item"> <label className="medal"> Bronze </label> </div>
+                            </div>
+                            <div className='big-input-container'>
+                                <div className="input-container">
+                                {recordStatus === "RECORDED" ? (
+                                  // Directly map over medalsData to display recorded rows
+                                  // Assuming medalsData is available in the component's scope
+                                  medalsData.map((data: { country: string; medal: { gold: number; silver: number; bronze: number; }; }) => (
+                                    <RecordedDataRow
+                                      key={data.country}
+                                      country={data.country}
+                                      goldValue={data.medal.gold}
+                                      silverValue={data.medal.silver}
+                                      bronzeValue={data.medal.bronze}
+                                    />
+                                  ))
+                                ) : (
+                                  // Render input rows for adding new data or editing existing data
+                                  serviceList.map((service, index) => (
+                                    <Fragment key={service.id}>
+                                      <RecordInputRow
+                                        id={String(index + 1)}
+                                        countriesLst={participatingCountries} // replace emptyLst with actual countries list if available
+                                        medalValues={medalValuesList[index]}
+                                        selectedCountry={selectedCountriesValues[index]}
+                                        onButtonClick={(event: { stopPropagation: () => void; }) => {
+                                          event.stopPropagation();
+                                          RemoveRow(service.id);
+                                        }}
+                                        onCountrySelect={(country: string) => handleCountrySelect(country, index, index + 1)}
+                                        onMedalInputChange={(inputName: string, value: string) => handleMedalInputChange(index, inputName, value)}
+                                        isNewRowAdded={isNewRowAdded && index === serviceList.length - 1}
+                                      />
+                                    </Fragment>
+                                  ))
+                                )}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className="buttons-container">
-                  {recordStatus === "RECORDED" ? (
-                    // handle button when status is "RECORDED"
-                    <div className="already-recorded-container">
-                      Already Recorded
+                    <div className="buttons-container">
+                      {recordStatus === "RECORDED" ? (
+                        // handle button when status is "RECORDED"
+                        <div className="already-recorded-container">
+                          Already Recorded
+                        </div>
+                      ) : (
+                        // default button and handle button when status is "TROPHY"
+                        <>
+                          <input 
+                            className="add-country-button"
+                            type="button" 
+                            value="Add more Country" 
+                            onClick={AddMoreCountry}
+                          />
+                          <input 
+                            type="button" 
+                            value="Record Medal" 
+                            className="record-button"         
+                            onClick={RecordButtonClick}            
+                          />
+                        </>
+                      )}
                     </div>
-                  ) : (
-                    // default button and handle button when status is "TROPHY"
-                    <>
-                      <input 
-                        className="add-country-button"
-                        type="button" 
-                        value="Add more Country" 
-                        onClick={AddMoreCountry}
-                      />
-                      <input 
-                        type="button" 
-                        value="Record Medal" 
-                        className="record-button"         
-                        onClick={RecordButtonClick}            
-                      />
-                    </>
-                  )}
                 </div>
-            </div>
+              </div>
+            )}
         </>
     )
 }
