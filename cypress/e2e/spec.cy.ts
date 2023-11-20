@@ -47,5 +47,9 @@ describe('Click "Not record" icon', () => {
 
     cy.contains('Sign In').click()
 
+    // cy.get('tr:eq(1) td:eq(5) a:has(img.medal-status-icon-schedule)').click();
+    // cy.get('tr img[src*="/src/assets/images/medal_status_icon.png"]').should('be.visible');
+    // cy.get('tr td img[src*="../assets/images/medal_status_icon.png"]').click({ multiple: true })
+
   })
 })
