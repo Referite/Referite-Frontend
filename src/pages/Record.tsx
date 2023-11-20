@@ -241,11 +241,15 @@ export default function Record () {
                 ErrorPopup(errorMessage); 
               }
             } else if (error.response.status === 422) {
+              if (selectedType === "Select Sport Type...") {
+                ErrorPopup("You didn't select any sport type");
+              } else {
                 filteredMedalValues.map((item) => {
-                    if (item.country == null){
-                        ErrorPopup("Please select country");
-                    }
+                  if (item.country == null){
+                      ErrorPopup("Please select country");
+                  }
                 })
+              }  
             } else {
                 console.log(error.response.status);
             }

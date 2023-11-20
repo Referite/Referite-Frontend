@@ -21,7 +21,7 @@
     box-sizing: border-box;
     border: none;
     height: 3vw;
-    overflow-y: hidden;
+    word-break: break-all;
     font-size: 1.5vw;
     font-family: 'TH SarabunPSK';
     color: #b9b9b9;
