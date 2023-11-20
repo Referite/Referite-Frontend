@@ -1,12 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import referiteLogo from '../assets/images/referite_logo.png';
-// import { Authentication }  from '../routes/Authentication'
-import '../styles/Login.css';
 import LoginWithWrongUAndP from '../components/pop_up/LoginWithWrongUAndP';
 import ForgotPassword from '../components/pop_up/ForgotPassword';
+import '../styles/Login.css';
 
 function Login() {
   const [refereeID, setRefereeID] = useState<string>('');

@@ -1,6 +1,5 @@
 import Sidebar from "../components/SideBar";
 import RecordInputRow from "../components/RecordInputRow";
-import '../styles/Record.css';
 import { useState, useEffect } from 'react';
 import { getSportData } from '../assets/services/SportsDetails'
 import { getMessage } from "../assets/services/RecordMedal";
@@ -10,6 +9,7 @@ import { SportData } from "../interfaces/Sport";
 import { SelectedCountry } from "../interfaces/Country";
 import RecordedDataRow from "../components/RecordedDataRow";
 import React from "react";
+import '../styles/Record.css';
 
 interface MedalValues {
   input1: string;
