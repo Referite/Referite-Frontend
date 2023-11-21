@@ -1,5 +1,5 @@
 export interface SelectedCountry {
-    id: number;
+    id: string;
     country: string;
 }
 

@@ -147,39 +147,39 @@ export default function Record () {
       return false;
     }
       
-    const handleCountrySelect = (country: string, index: number, id: number) => {
+    const handleCountrySelect = (country: string, index: number, id: string) => {
       console.log(country);
-      // Update the selected country value for the specified index
+      // Update the selected country value for the specified index in selectedCountriesValues array
       setSelectedCountriesValues(prevValues =>
         prevValues.map((prevValue, i) => (i === index ? country : prevValue))
       );
-
+    
+      // Update the selectedCountries array of objects
       setSelectedCountries(prevCountries => {
         try {
-            const newCountries = prevCountries.filter(c => c.id !== id);
-            return [...newCountries, { id, country }];
-
-            
+          // Filter out the object with the same id as the one being updated
+          const newCountries = prevCountries.filter(c => c.id !== id);
+          // Append the new country object with the provided id and country name
+          return [...newCountries, { id, country }];
         } catch (error: any) {
-            console.error(error.message);
-            return prevCountries;
+          // Log the error message and return the previous state in case of an error
+          console.error(error.message);
+          return prevCountries;
         }
-    });
+      });
     };
+    
 
     useEffect(() => {
       setSelectedCountriesValues(serviceList.map(() => ""));
     }, [selectedType]); 
       
-      
-    
     const RecordButtonClick = async () => {
-      const medalValues = serviceList.map((_, index) => {
+      const medalValues = serviceList.map((service, index) => {
           // Convert service.id to a string if it's not already, to match the type in selectedCountries
           console.log(selectedCountries);
           const id = index + 1;
-          const country = selectedCountries.find(country => country.id == index + 1)?.country;
-          console.log(country);
+          const country = selectedCountries.find(country => country.id == service.id)?.country;
   
           const medal1 = parseInt((document.getElementById(`input1-${id}`) as HTMLInputElement)?.value || '0', 10);
           const medal2 = parseInt((document.getElementById(`input2-${id}`) as HTMLInputElement)?.value || '0', 10);
@@ -285,12 +285,28 @@ export default function Record () {
     }, [isNewRowAdded]);
 
     const RemoveRow = (serviceId: string) => {
-      console.log(serviceId);
-      setServiceList(serviceList.filter(service => service.id !== serviceId));
-      setMedalValuesList(medalValuesList.filter((_, index) => serviceList[index].id !== serviceId));
-      setSelectedCountriesValues(selectedCountriesValues.filter((_, index) => serviceList[index].id !== serviceId));
+      // First, find the index of the service to remove
+      const indexToRemove = serviceList.findIndex(service => service.id === serviceId);
+      
+      // If the serviceId is not found in the serviceList, we shouldn't attempt to remove anything
+      if (indexToRemove === -1) {
+        console.error('Service ID not found:', serviceId);
+        return; // Exit the function early
+      }
+    
+      // Update serviceList by filtering out the service with the serviceId
+      setServiceList(prevServiceList => prevServiceList.filter((_, index) => index !== indexToRemove));
+    
+      // Update selectedCountries by filtering out the country with the serviceId
+      setSelectedCountries(prevCountries => prevCountries.filter(country => country.id !== serviceId));
+    
+      // Update medalValuesList by removing the entry at the same index as the removed service
+      setMedalValuesList(prevMedalValues => prevMedalValues.filter((_, index) => index !== indexToRemove));
+    
+      // If you have another state like selectedCountriesValues that is indexed in parallel and needs to be updated
+      setSelectedCountriesValues(prevValues => prevValues.filter((_, index) => index !== indexToRemove));
     };
-  
+    
     return (
         <>
 
@@ -373,7 +389,7 @@ export default function Record () {
                                           event.stopPropagation();
                                           RemoveRow(service.id);
                                         }}
-                                        onCountrySelect={(country: string) => handleCountrySelect(country, index, index + 1)}
+                                        onCountrySelect={(country: string) => handleCountrySelect(country, index, service.id)}
                                         onMedalInputChange={(inputName: string, value: string) => handleMedalInputChange(index, inputName, value)}
                                         isNewRowAdded={isNewRowAdded && index === serviceList.length - 1}
                                       />
