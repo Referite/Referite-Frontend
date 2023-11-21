@@ -5,6 +5,7 @@ import Cookies from 'js-cookie';
 import referiteLogo from '../assets/images/referite_logo.png';
 import LoginWithWrongUAndP from '../components/pop_up/LoginWithWrongUAndP';
 import ForgotPassword from '../components/pop_up/ForgotPassword';
+import BGChanger from '../components/BGChanger'
 import '../styles/Login.css';
 
 function Login() {
@@ -51,6 +52,7 @@ function Login() {
 
   return (
     <div className="login">
+      <BGChanger/>
       <img src={referiteLogo} alt="referite logo" />
       <div className="box">
         <label className="label-name">Referee ID</label>
