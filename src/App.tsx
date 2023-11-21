@@ -1,8 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-// import { CheckToken } from './assets/services/CheckToken';
 import Cookies from 'js-cookie';
 import Home from './pages/Home';
 import Record from './pages/Record';

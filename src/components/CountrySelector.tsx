@@ -51,7 +51,7 @@ export default function CountrySelector ({ countriesLst, onCountrySelect, id, se
         }
       }, [selectedCountry]); // Only listen to changes of selectedCountry
 
-    const handleInputClick = (e: any) => {
+    const handleInputClick = () => {
         // e.stopPropagation();
         if (!disabled) {
             setShowMenu(!showMenu);

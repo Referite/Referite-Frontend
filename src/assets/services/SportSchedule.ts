@@ -3,8 +3,8 @@ import Cookies from "js-cookie";
 import { SportScheduleObject } from "../../interfaces/SportSchedule";
 import { SportObject } from "../../interfaces/Sport";
 
-const sportNameURL = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport';
-const sportScheduleURL = 'https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all';
+const sportNameURL = `https://referite-6538ffaf77b0.herokuapp.com/api/schedule/sport`;
+const sportScheduleURL = `https://referite-6538ffaf77b0.herokuapp.com/api/schedule/all`;
 
 export const getSportName = (setSportNameList: React.Dispatch<React.SetStateAction<Array<SportObject>>>) => {
     axios.get(sportNameURL, {

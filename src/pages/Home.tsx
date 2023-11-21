@@ -12,13 +12,23 @@ import ceremoniesStatusIcon from '../assets/images/ceremonies_status.png'
 import competitionStatusIcon from '../assets/images/competition_status_icon.png'
 import medalStatusIcon from '../assets/images/medal_status_icon.png'
 import recordedStatusIcon from '../assets/images/recorded_status_icon.png'
-import '../styles/Home.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { override, loaderContainerStyle } from '../styles/ClipLoaderStyles'
+import ClipLoader from "react-spinners/ClipLoader";
+import '../styles/Home.css';
 
 function Home() {
   const [sportNameList, setSportNameList] = useState<Array<SportObject>>([]);
   const [sportScheduleList, setSportScheduleList] = useState<Array<SportScheduleObject>>([]);
   const [contexts, setContexts] = useState<any[][]>([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 5000)
+  }, [])
 
   useEffect(() => {
       getSportName(setSportNameList)
@@ -101,82 +111,95 @@ function Home() {
 
   return (
     <>
-      <Sidebar />
-      <div className="sport-schudule">
-        <table>
-          <thead>
-              <tr>
-                  <th>Sports</th>
-                  {
-                    dateColumns.map((date, index) => {
-                      return (
-                        <th key={index}>
-                          <div>
-                            <p style={{marginBottom: '0px'}}>{date.day}</p>
-                            <p style={{fontSize: '2vh'}}>{date.month}</p>
-                            <p style={{fontSize: '2vh', color: '#949494'}}>{date.suffix}</p>
-                          </div>
-                        </th>
-                      )
-                    })
-                  }
-              </tr>
-          </thead>
-          <tbody>
-              {
-                sportNameList.map((rec: SportObject, index: number) => {
-                if (!['Beach Volleyball', 'Table Tennis', 'Volleyball', 'Ceremonies'].includes(rec.sport_name)) {
-                  return (
-                    <tr key={rec.sport_id}>
-                        <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
-                          <SportIcon rec={rec} viewBox={"0 0 504 504"} />
-                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
-                        </td>
-                        {showSchedule(rec.sport_name, index)}
-                    </tr>
-                  )
-                } 
-                else {
-                  if (rec.sport_name == 'Beach Volleyball') {
+    {loading ? (
+    <div style={loaderContainerStyle}>
+      <ClipLoader
+        color="#a6a6a6"
+        cssOverride={override}
+        size={100}
+      />
+    </div>
+    ) : (
+        <div>
+          <Sidebar />
+          <div className="sport-schudule">
+          <table>
+            <thead>
+                <tr>
+                    <th>Sports</th>
+                    {
+                      dateColumns.map((date, index) => {
+                        return (
+                          <th key={index}>
+                            <div>
+                              <p style={{marginBottom: '0px'}}>{date.day}</p>
+                              <p style={{fontSize: '2vh'}}>{date.month}</p>
+                              <p style={{fontSize: '2vh', color: '#949494'}}>{date.suffix}</p>
+                            </div>
+                          </th>
+                        )
+                      })
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                {
+                  sportNameList.map((rec: SportObject, index: number) => {
+                  if (!['Beach Volleyball', 'Table Tennis', 'Volleyball', 'Ceremonies'].includes(rec.sport_name)) {
                     return (
                       <tr key={rec.sport_id}>
-                        <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
-                          <BeachVolleyballIcon rec={rec} viewBox={"0 0 504 504"} />
-                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
-                        </td>
-                        {showSchedule(rec.sport_name, index)}
-                      </tr>
-                      )
-                  }
-                  else if (rec.sport_name == 'Ceremonies') {
-                    return (
-                      <tr>
-                        <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
-                          <CeremoniesIcon rec={rec} viewBox={"0 0 140 160"} />
-                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>Ceremonies</p>
-                        </td>
-                        {showSchedule(rec.sport_name, index)}
+                          <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
+                            <SportIcon rec={rec} viewBox={"0 0 504 504"} />
+                            <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
+                          </td>
+                          {showSchedule(rec.sport_name, index)}
                       </tr>
                     )
-                  }
+                  } 
                   else {
-                    return (
-                      <tr key={rec.sport_id}>
-                        <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
-                          <SportIcon2 rec={rec} viewBox={"0 0 504 504"} />
-                          <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
-                        </td>
-                        {showSchedule(rec.sport_name, index)}
-                      </tr>
-                    )
+                    if (rec.sport_name == 'Beach Volleyball') {
+                      return (
+                        <tr key={rec.sport_id}>
+                          <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
+                            <BeachVolleyballIcon rec={rec} viewBox={"0 0 504 504"} />
+                            <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
+                          </td>
+                          {showSchedule(rec.sport_name, index)}
+                        </tr>
+                        )
+                    }
+                    else if (rec.sport_name == 'Ceremonies') {
+                      return (
+                        <tr>
+                          <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
+                            <CeremoniesIcon rec={rec} viewBox={"0 0 140 160"} />
+                            <p style={{marginLeft: '6px', fontSize: '1vw'}}>Ceremonies</p>
+                          </td>
+                          {showSchedule(rec.sport_name, index)}
+                        </tr>
+                      )
+                    }
+                    else {
+                      return (
+                        <tr key={rec.sport_id}>
+                          <td style={{display: 'flex', justifyItems: 'center', alignItems:'center'}}>
+                            <SportIcon2 rec={rec} viewBox={"0 0 504 504"} />
+                            <p style={{marginLeft: '6px', fontSize: '1vw'}}>{rec.sport_name}</p>
+                          </td>
+                          {showSchedule(rec.sport_name, index)}
+                        </tr>
+                      )
+                    }
                   }
+                  })
                 }
-                })
-              }
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
+        <StatusIconBar/>
       </div>
-      <StatusIconBar/>
+      )}
+      
     </>
   )
 }
