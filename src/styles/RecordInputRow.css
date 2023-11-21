@@ -25,6 +25,10 @@
     margin-left: 32%;
 }
 
+.strong-gray-color {
+    color: #888;
+}
+
 .medal-num-input::placeholder {
     font-size: 1.4vw;
     color: rgb(185, 185, 185);
