@@ -26,7 +26,8 @@
 }
 
 .strong-gray-color {
-    color: #888;
+    color:#757575;
+    font-weight: bold;
 }
 
 .medal-num-input::placeholder {
