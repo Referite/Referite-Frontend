@@ -15,9 +15,9 @@ export default function RecordInputRow ({
 }: CountrySelectorProps
 ) {
 
-    return (
-        <>
-            <div className="country-dropdown-bar">
+  return (
+    <>
+      <div className="country-dropdown-bar">
         <CountrySelector
           countriesLst={countriesLst}
           onCountrySelect={(country) => onCountrySelect(country, id)}
@@ -28,15 +28,17 @@ export default function RecordInputRow ({
       </div>
       <input
         type="text"
-        className="medal-num-input gold-input"
+        className={`medal-num-input gold-input ${medalValues.input1 !== '0' ? 'strong-gray-color' : ''}`}
         placeholder='0'
         id={`input1-${id}`}
         value={medalValues.input1}
-        onChange={(e) => onMedalInputChange('input1', e.target.value)}
+        onChange={(e) => {
+          onMedalInputChange('input1', e.target.value)
+        }}
       />
       <input
         type="text"
-        className="medal-num-input silver-input"
+        className={`medal-num-input silver-input ${medalValues.input1 !== '0' ? 'strong-gray-color' : ''}`}
         placeholder='0'
         id={`input2-${id}`}
         value={medalValues.input2}
@@ -44,7 +46,7 @@ export default function RecordInputRow ({
       />
       <input
         type="text"
-        className="medal-num-input bronze-input"
+        className={`medal-num-input bronze-input ${medalValues.input1 !== '0' ? 'strong-gray-color' : ''}`}
         placeholder='0'
         id={`input3-${id}`}
         value={medalValues.input3}
@@ -53,6 +55,6 @@ export default function RecordInputRow ({
       <button className='delete-button' onClick={onButtonClick} id={id}>
         <img src={delete_row_icon} className="delete-icon" alt="Delete" />
       </button>
-        </>
-    )
+    </>
+  )
 }
