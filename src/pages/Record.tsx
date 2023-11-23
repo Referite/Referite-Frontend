@@ -181,22 +181,34 @@ export default function Record () {
           const id = index + 1;
           const country = selectedCountries.find(country => country.id == service.id)?.country;
   
-          const medal1 = parseInt((document.getElementById(`input1-${id}`) as HTMLInputElement)?.value || '0', 10);
-          const medal2 = parseInt((document.getElementById(`input2-${id}`) as HTMLInputElement)?.value || '0', 10);
-          const medal3 = parseInt((document.getElementById(`input3-${id}`) as HTMLInputElement)?.value || '0', 10);
-  
-          if (isNaN(medal1) || isNaN(medal2) || isNaN(medal3)) {
-              ErrorPopup("Medal values must be numbers");
+          const medal1Value = (document.getElementById(`input1-${id}`) as HTMLInputElement)?.value || '0';
+          const medal2Value = (document.getElementById(`input2-${id}`) as HTMLInputElement)?.value || '0';
+          const medal3Value = (document.getElementById(`input3-${id}`) as HTMLInputElement)?.value || '0';
+
+          const medal1 = parseFloat(medal1Value);
+          const medal2 = parseFloat(medal2Value);
+          const medal3 = parseFloat(medal3Value);
+
+          if (isNaN(medal1) || isNaN(medal2) || isNaN(medal3) || 
+              !Number.isInteger(medal1) || !Number.isInteger(medal2) || !Number.isInteger(medal3)) {
+              ErrorPopup("Medal values must be whole numbers");
+          } else {
+              // Convert to integer if validation passes
+              const medal1Int = parseInt(medal1Value, 10);
+              const medal2Int = parseInt(medal2Value, 10);
+              const medal3Int = parseInt(medal3Value, 10);
+              
+              return {
+                country,
+                medal: {
+                    gold: medal1Int,
+                    silver: medal2Int,
+                    bronze: medal3Int
+                }
+            };
           }
   
-          return {
-              country,
-              medal: {
-                  gold: medal1,
-                  silver: medal2,
-                  bronze: medal3
-              }
-          };
+          
       });
   
       const filteredMedalValues = medalValues.filter((medalEntry) => {
