@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CountrySelector Component renders correctly 1`] = `
+<CountrySelector
+  countriesLst={
+    [
+      "Country1",
+      "Country2",
+    ]
+  }
+  onCountrySelect={[MockFunction]}
+  selectedCountry="Country1"
+/>
+`;

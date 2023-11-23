@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RecordInputRow Component renders correctly 1`] = `
+<RecordInputRow
+  countriesLst={
+    [
+      "Country1",
+      "Country2",
+    ]
+  }
+  id="1"
+  isNewRowAdded={false}
+  medalValues={
+    {
+      "input1": "1",
+      "input2": "0",
+      "input3": "0",
+    }
+  }
+  onButtonClick={[MockFunction]}
+  onCountrySelect={[MockFunction]}
+  onMedalInputChange={[MockFunction]}
+  selectedCountry="Country1"
+/>
+`;
