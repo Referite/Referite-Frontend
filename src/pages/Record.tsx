@@ -3,7 +3,7 @@ import RecordInputRow from "../components/RecordInputRow";
 import { useState, useEffect, Fragment } from 'react';
 import { getSportData } from '../assets/services/SportsDetails'
 import { getMessage } from "../assets/services/RecordMedal";
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ErrorPopup, ConfirmationPopup, WarningPopup } from "../components/PopUps";
 import { SportData } from "../interfaces/Sport";
 import { SelectedCountry } from "../interfaces/Country";
@@ -65,18 +65,21 @@ export default function Record () {
       return '';
     };
     
-    const { sport_id } = useParams<{ sport_id: string }>(); // get sport_id from url
+    const { sport_id, date } = useParams<{ sport_id: string, date: string }>(); // get sport_id from url
     
-    const location = useLocation();
-    const date = location.state?.date;
+    // const location = useLocation();
+    // const date = location.state?.date;
+
+    // console.log(date);
+    // console.log(typeof(date));
 
     useEffect(() => {
-      if (sport_id) {
+      if (sport_id && date) {
         getSportData(sport_id, date)
           .then(data => setSport(data))
           .catch(err => console.log(err));
       }
-    }, [sport_id]);
+    }, [sport_id, date]);
     
     const typesName: string[] = [];
     for (const t of sport.sport_types) {
@@ -181,29 +184,36 @@ export default function Record () {
           const id = index + 1;
           const country = selectedCountries.find(country => country.id == service.id)?.country;
   
-          const medal1 = parseInt((document.getElementById(`input1-${id}`) as HTMLInputElement)?.value || '0', 10);
-          const medal2 = parseInt((document.getElementById(`input2-${id}`) as HTMLInputElement)?.value || '0', 10);
-          const medal3 = parseInt((document.getElementById(`input3-${id}`) as HTMLInputElement)?.value || '0', 10);
-  
-          if (isNaN(medal1) || isNaN(medal2) || isNaN(medal3)) {
-              ErrorPopup("Medal values must be numbers");
-          }
-  
-          return {
+          const medal1Value = (document.getElementById(`input1-${id}`) as HTMLInputElement)?.value || '0';
+          const medal2Value = (document.getElementById(`input2-${id}`) as HTMLInputElement)?.value || '0';
+          const medal3Value = (document.getElementById(`input3-${id}`) as HTMLInputElement)?.value || '0';
+
+          const medal1 = parseFloat(medal1Value);
+          const medal2 = parseFloat(medal2Value);
+          const medal3 = parseFloat(medal3Value);
+
+          if (isNaN(medal1) || isNaN(medal2) || isNaN(medal3) || 
+              !Number.isInteger(medal1) || !Number.isInteger(medal2) || !Number.isInteger(medal3)) {
+            ErrorPopup("Medal values must be whole numbers");
+            return null; // Return null to indicate an invalid entry
+          } else {
+            // Convert to integer if validation passes
+            return {
               country,
               medal: {
-                  gold: medal1,
-                  silver: medal2,
-                  bronze: medal3
+                gold: parseInt(medal1Value, 10),
+                silver: parseInt(medal2Value, 10),
+                bronze: parseInt(medal3Value, 10)
               }
-          };
+            };
+          }
       });
   
-      const filteredMedalValues = medalValues.filter((medalEntry) => {
+      const filteredMedalValues = medalValues.filter((medalEntry: any) => {
           return !(medalEntry.medal.gold === 0 && medalEntry.medal.silver === 0 && medalEntry.medal.bronze === 0);
       });
 
-      const jsonString = {
+      const jsonString: any = {
           sport_name: sport.sport_name,
           participants: filteredMedalValues
       };
@@ -249,7 +259,7 @@ export default function Record () {
               if (selectedType === "Select Sport Type...") {
                 ErrorPopup("You didn't select any sport type");
               } else {
-                filteredMedalValues.map((item) => {
+                filteredMedalValues.map((item: any) => {
                   if (item.country == null){
                       ErrorPopup("Please select country");
                   }
