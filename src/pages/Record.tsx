@@ -65,18 +65,21 @@ export default function Record () {
       return '';
     };
     
-    const { sport_id } = useParams<{ sport_id: string }>(); // get sport_id from url
+    const { sport_id, date } = useParams<{ sport_id: string, date: string }>(); // get sport_id from url
     
-    const location = useLocation();
-    const date = location.state?.date;
+    // const location = useLocation();
+    // const date = location.state?.date;
+
+    // console.log(date);
+    // console.log(typeof(date));
 
     useEffect(() => {
-      if (sport_id) {
+      if (sport_id && date) {
         getSportData(sport_id, date)
           .then(data => setSport(data))
           .catch(err => console.log(err));
       }
-    }, [sport_id]);
+    }, [sport_id, date]);
     
     const typesName: string[] = [];
     for (const t of sport.sport_types) {

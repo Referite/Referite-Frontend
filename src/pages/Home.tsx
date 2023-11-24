@@ -52,9 +52,9 @@ function Home() {
   }
 
   const navigate = useNavigate();
-  const handleNavigation = (sportId: number, date: any, event: any) => {
+  const handleNavigation = (sportId: number, date: string, event: any) => {
     event.preventDefault();
-    navigate(`record/${sportId}`, { state: { date: date } });
+    navigate(`/record/${sportId}/${date}`);
   };
 
   useEffect(() => {
@@ -68,7 +68,7 @@ function Home() {
         }
         else if (sport.sport_status == "RECORDED") {
           context[index].push(
-            <Link to={`record/${sport.sport_id}`} onClick={(event) => handleNavigation(sport.sport_id, item.datetime, event)}>
+            <Link to={`/record/${sport.sport_id}/${item.datetime}`} onClick={(event) => handleNavigation(sport.sport_id, item.datetime, event)}>
               <img src={recordedStatusIcon} className="recorded-status-icon-schedule" />
             </Link>
           );
@@ -78,7 +78,7 @@ function Home() {
         }
         else if (sport.sport_status == "TROPHY") {
             context[index].push(
-              <Link to={`record/${sport.sport_id}`} onClick={(event) => handleNavigation(sport.sport_id, item.datetime, event)}>
+              <Link to={`/record/${sport.sport_id}/${item.datetime}`} onClick={(event) => handleNavigation(sport.sport_id, item.datetime, event)}>
                 <img src={medalStatusIcon} className="medal-status-icon-schedule" />
               </Link>
             );
