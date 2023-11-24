@@ -3,7 +3,7 @@ import RecordInputRow from "../components/RecordInputRow";
 import { useState, useEffect, Fragment } from 'react';
 import { getSportData } from '../assets/services/SportsDetails'
 import { getMessage } from "../assets/services/RecordMedal";
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { ErrorPopup, ConfirmationPopup, WarningPopup } from "../components/PopUps";
 import { SportData } from "../interfaces/Sport";
 import { SelectedCountry } from "../interfaces/Country";
@@ -194,31 +194,26 @@ export default function Record () {
 
           if (isNaN(medal1) || isNaN(medal2) || isNaN(medal3) || 
               !Number.isInteger(medal1) || !Number.isInteger(medal2) || !Number.isInteger(medal3)) {
-              ErrorPopup("Medal values must be whole numbers");
+            ErrorPopup("Medal values must be whole numbers");
+            return null; // Return null to indicate an invalid entry
           } else {
-              // Convert to integer if validation passes
-              const medal1Int = parseInt(medal1Value, 10);
-              const medal2Int = parseInt(medal2Value, 10);
-              const medal3Int = parseInt(medal3Value, 10);
-              
-              return {
-                country,
-                medal: {
-                    gold: medal1Int,
-                    silver: medal2Int,
-                    bronze: medal3Int
-                }
+            // Convert to integer if validation passes
+            return {
+              country,
+              medal: {
+                gold: parseInt(medal1Value, 10),
+                silver: parseInt(medal2Value, 10),
+                bronze: parseInt(medal3Value, 10)
+              }
             };
           }
-  
-          
       });
   
-      const filteredMedalValues = medalValues.filter((medalEntry) => {
+      const filteredMedalValues = medalValues.filter((medalEntry: any) => {
           return !(medalEntry.medal.gold === 0 && medalEntry.medal.silver === 0 && medalEntry.medal.bronze === 0);
       });
 
-      const jsonString = {
+      const jsonString: any = {
           sport_name: sport.sport_name,
           participants: filteredMedalValues
       };
@@ -264,7 +259,7 @@ export default function Record () {
               if (selectedType === "Select Sport Type...") {
                 ErrorPopup("You didn't select any sport type");
               } else {
-                filteredMedalValues.map((item) => {
+                filteredMedalValues.map((item: any) => {
                   if (item.country == null){
                       ErrorPopup("Please select country");
                   }
